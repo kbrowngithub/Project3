@@ -23,8 +23,8 @@ export default class IngredientList extends Component {
     }
     sendIngredient() {
         API.saveIngredient({
-            newItem: this.state.newIngredient,
-            newQuantity: this.state.newQuantity
+            name: this.state.newIngredient,
+            quantity: this.state.newQuantity
         })
         .then(res => console.log(res))
         .catch(err => console.log(err));
