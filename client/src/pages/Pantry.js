@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import API from "../utils/API";
 //allows linking to different routes
 import { Link } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ export default class IngredientList extends Component {
     constructor() {
         super();
         this.state = {
+            userIngredients: [],
             newIngredient: null,
             newQuantity: null
         };
@@ -20,7 +22,12 @@ export default class IngredientList extends Component {
 
     }
     sendIngredient() {
-        console.log( this.state.newIngredient, this.state.newQuantity )
+        API.saveIngredient({
+            newItem: this.state.newIngredient,
+            newQuantity: this.state.newQuantity
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
     }
 
     render() {

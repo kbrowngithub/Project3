@@ -17,7 +17,7 @@ const Schema = mongoose.Schema;
 //     ]
 // }
 
-
+//NOTE: THIS IS NOT CONSISTENT WITH SPOONACULAR AND WILL NEED TO BE OVERHAULED
 const recipeSchema = new Schema({
     label: { type: String, required: true },
     image: { type: String, default: "https://ezyvectors.com/wp-content/uploads//edd/2019/05/Colorful-Free-Food-Icon-Vector.jpg" },
