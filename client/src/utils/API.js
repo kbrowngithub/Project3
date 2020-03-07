@@ -18,6 +18,7 @@ export default {
     return axios.post("/api/recipes", recipeData);
   },
   searchRecipes: function(query) {
+<<<<<<< HEAD
     const AppID = "7e12516e";
     const AppKey = "43686ac14fed6aac00402ab6b447842f";
     query = "bbq";
@@ -26,5 +27,11 @@ export default {
   },
   invite: function(smsData) {
     return axios.post("/api/recipes/", smsData);
+=======
+    var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=chicken,+parmesan,+mushrooms,+anchovies&number=2&ignorePantry=true"
+    axios.get(queryURL)
+      .then(res=> console.log(res.data))
+      .catch(err=> console.log(err));
+>>>>>>> 9133ec2011603e297f3b80a8406e56de335a8da2
   }
 };
