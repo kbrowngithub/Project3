@@ -17,20 +17,18 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "nodemon": "^1.18.7",
-    "twilio": "^3.40.0"
+    "nodemon": "^1.18.7"
   },
   "dependencies": {
     "axios": "^0.18.0",
-<<<<<<< HEAD
-    "body-parser": "^1.19.0",
-=======
->>>>>>> 9133ec2011603e297f3b80a8406e56de335a8da2
-    "dotenv": "^8.2.0",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "express": "^4.16.3",
-    "express-pino-logger": "^4.0.0",
+    "express-session": "^1.17.0",
     "if-env": "^1.0.4",
-    "mongoose": "^5.3.16",
+    "mongoose": "^5.9.3",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.0"
