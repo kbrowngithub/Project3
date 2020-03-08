@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -10,6 +11,15 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
+// Twilio Specific
+const bodyParser = require('body-parser');
+const pino = require('express-pino-logger')();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(pino);
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)

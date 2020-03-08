@@ -8,6 +8,7 @@ import Pantry from './pages/Pantry';
 import Friends from './pages/Friends';
 import CreateUser from './pages/CreateUser';
 import Home from './pages/Home';
+import Invite from './pages/Invite'; // Twilio
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/pantry" component={Pantry} />
           <Route exact path="/friends" component={Friends} />
           <Route exact path="/create" component={CreateUser} />
+          <Route exact path="/invite" component={Invite} />
           <Route component={NoMatch} />
         </Switch>
       </div>
