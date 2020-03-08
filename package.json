@@ -21,10 +21,14 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "dotenv": "^8.2.0",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "express": "^4.16.3",
+    "express-session": "^1.17.0",
     "if-env": "^1.0.4",
-    "mongoose": "^5.3.16",
+    "mongoose": "^5.9.3",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.0"
