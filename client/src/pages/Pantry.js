@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import API from "../utils/API";
 //allows linking to different routes
 import { Link } from 'react-router-dom';
-
+import Recipes from './Recipes';
+import { List, ListItem } from "../components/List";
 //class component
 export default class IngredientList extends Component {
     constructor() {
@@ -15,6 +16,18 @@ export default class IngredientList extends Component {
         this.addIngredient = this.addIngredient.bind(this);
         this.sendIngredient = this.sendIngredient.bind(this);
     }
+    componentDidMount() {
+        this.loadIngredients();
+    }
+    loadIngredients = () => {
+        API.getIngredients()
+            .then(res=> {
+                this.setState({ userIngredients: res.data });
+                console.log(this.state.userIngredients)
+            })
+            .catch(err => console.log(err));
+    }
+
     addIngredient({ target }) {
         this.setState({
             [target.name]: target.value
@@ -42,7 +55,22 @@ export default class IngredientList extends Component {
                         </tr>
                     </thead>
                     {/* returns rows of table */}
-                    <tbody>
+                    {this.state.userIngredients.length ? (
+                        <List>
+                            {this.state.userIngredients.map(ingredient => (
+                                <ListItem key={ingredient._id}>
+                                    <Link to={"/pantry/" + ingredient._id}>
+                                        <strong>
+                                            {ingredient.name}
+                                        </strong>
+                                    </Link>
+                                </ListItem>
+                            ))}
+                        </List>
+                        ) : (
+                            <h3>No ingredients to display, add some below!</h3>
+                        )}
+                    {/* <tbody>
                         <td>Roast Beast</td>
                         <td>23 lbs</td>
                     </tbody>
@@ -53,7 +81,7 @@ export default class IngredientList extends Component {
                     <tbody>
                         <td>Anchovies</td>
                         <td>3 pallets</td>
-                    </tbody>
+                    </tbody> */}
                     <tbody>
                         <td>
                             <input name="newIngredient" type="text" placeholder="Add Ingredient" value={this.state.newIngredient} onChange={this.addIngredient}></input>
