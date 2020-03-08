@@ -17,6 +17,15 @@ export default {
   saveRecipe: function(recipeData) {
     return axios.post("/api/recipes", recipeData);
   },
+
+  newUser: function(userData) {
+    return axios.post("/api/users", userData);
+  },
+
+  login: function(userData) {
+    return axios.post("/login", userData);
+  },
+  
   searchRecipes: function(query) {
     var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=chicken,+parmesan,+mushrooms,+anchovies&number=2&ignorePantry=true"
     axios.get(queryURL)
