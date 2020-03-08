@@ -13,4 +13,8 @@ router
   .put(recipesController.update)
   .delete(recipesController.remove);
 
+// Matches with "/api/recipes/messages"
+router.route("/messages")
+  .post(recipesController.invite);
+
 module.exports = router;
