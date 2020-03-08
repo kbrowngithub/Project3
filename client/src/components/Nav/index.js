@@ -12,7 +12,7 @@ function Nav() {
 
             <Link to="/" className="navbar-brand">Chuck Wagon</Link>
             <div className="">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav naving">
                     <AwesomeButton
                         type="secondary"
                         size="medium"
