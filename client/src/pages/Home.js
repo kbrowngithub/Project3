@@ -4,15 +4,15 @@ import { Button, Card } from 'react-bootstrap';
 export default function Home() {
     return (
         <div>
-            <h3 class="content-center">Home</h3>
-            <div class="row">
+            <h3 className="content-center">Home</h3>
+            <div className="row">
                 <Button variant="info" style={{ margin: '10px' }}>Drink Recipes</Button>
 
                 <Button variant="info" style={{ margin: '10px' }}>Food Recipes</Button>
             </div>
             <h4>Recent Recipes</h4>
 
-            <div class="row">
+            <div className="row">
                 <Card style={{ width: '18rem' }}>
                     <Card.Img variant="top" src="holder.js/100px180" />
                     <Card.Body>
@@ -48,7 +48,7 @@ export default function Home() {
                 </Card>
             </div>
             <br></br>
-            <div class="row">
+            <div className="row">
                 <Card style={{ width: '18rem' }}>
                     <Card.Img variant="top" src="holder.js/100px180" />
                     <Card.Body>
