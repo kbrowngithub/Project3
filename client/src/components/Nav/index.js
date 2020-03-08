@@ -1,45 +1,68 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { AwesomeButton, AwesomeButtonProgress, AwesomeButtonSocial } from 'react-awesome-button';
+import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/themes/theme-blue.css';
+import './styles.css';
 
 function Nav() {
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      
+        <nav className="navbar navbar-expand-lg navbar-dark">
+
             <Link to="/" className="navbar-brand">Chuck Wagon</Link>
             <div className="">
                 <ul className="navbar-nav">
                     <AwesomeButton
                         type="secondary"
-                        size="small"
-                        class="margin"
-                    // action={(element, next) => doSomethingThenCall(next)}
-                    >Home</AwesomeButton>
-                       <AwesomeButtonProgress
+                        size="medium"
+                        ripple
+                        href="/"
+                        className='button'
+                    >Home
+                   </AwesomeButton>
+                    <AwesomeButton
                         type="primary"
-                        size="small"
-                    // action={(element, next) => doSomethingThenCall(next)}
-                    >Friends</AwesomeButtonProgress>
-                     <AwesomeButtonProgress
+                        size="medium"
+                        ripple
+                        href="/friends"
+                        className='button'
+                    >Friends</AwesomeButton>
+                    <AwesomeButton
                         type="secondary"
-                        size="small"
-                    // action={(element, next) => doSomethingThenCall(next)}
-                    >Recipes</AwesomeButtonProgress>
-                      <AwesomeButtonProgress
+                        size="medium"
+                        ripple
+                        href="/recipes"
+                        className='button'
+                    >Recipes</AwesomeButton>
+                    <AwesomeButton
                         type="primary"
-                        size="small"
-                    // action={(element, next) => doSomethingThenCall(next)}
-                    >NewUser</AwesomeButtonProgress>
-                       <AwesomeButtonProgress
+                        size="medium"
+                        ripple
+                        href="/create"
+                        className='button'
+                    >NewUser</AwesomeButton>
+                    <AwesomeButton
                         type="secondary"
-                        size="small"
-                    // action={(element, next) => doSomethingThenCall(next)}
-                    >Pantry</AwesomeButtonProgress>
+                        size="medium"
+                        ripple
+                        href="/pantry"
+                        className='button'
+                    >Pantry</AwesomeButton>
                 </ul>
+
             </div>
+
+            <div className="md-form my-0">
+                <input className="form-control mr-sm-2 searchBar" type="text" placeholder="Search Favorite Recipes" aria-label="Search" />
+            </div>
+            <div>
+        
+</div>
+
         </nav>
-    );
+    
+            );
 }
 
 export default Nav;
