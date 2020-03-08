@@ -32,7 +32,7 @@ class Invite extends Component {
       console.log(`Sending sms to ${this.state.message.to}`);
 
       this.setState({ submitting: true });
-      fetch('/api/recipes/messages', {
+      fetch('/api/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
