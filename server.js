@@ -5,6 +5,10 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const mongoose = require("mongoose");
 const routes = require("./routes/api_routes");
+
+// Twilio Response Server
+const http = require('http');
+
 // var passport = require('passport');
 // var LocalStrategy = require('passport-local').Strategy;
 const app = express();
@@ -66,4 +70,8 @@ app.use(function(req, res, next) {
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
+
+http.createServer(app).listen(1337, () => {
+  console.log('Express server listening on port 1337');
 });
