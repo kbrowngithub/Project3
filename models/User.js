@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// var passportLocalMongoose = require('passport-local-mongoose');
+var bcrypt = require("bcryptjs");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -20,8 +20,17 @@ const UserSchema = new mongoose.Schema({
     default: Date.now
   }
 });
-// UserSchema.plugin(passportLocalMongoose);
+
 
 const User = mongoose.model('User', UserSchema);
+
+User.prototype.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
+// // Hooks are automatic methods that run during various phases of the User Model lifecycle
+// // In this case, before a User is created, we will automatically hash their password
+// User.addHook("beforeCreate", function(user) {
+//   user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+// });
 
 module.exports = User;
