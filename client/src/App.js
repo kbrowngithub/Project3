@@ -11,6 +11,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile"
 import Home from './pages/Home';
+import Invite from './pages/Invite'; // Twilio
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/invite" component={Invite} />
           <Route component={NoMatch} />
         </Switch>
       </div>
