@@ -43,5 +43,6 @@ function api_routes(app) {
     //     res.end(twiml.toString());
     //   });
     app.post('/api/pantry', pantryController.create);
+    app.get('/api/pantry', pantryController.findAll);
 }
 module.exports = api_routes;
