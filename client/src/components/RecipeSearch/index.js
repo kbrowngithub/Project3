@@ -24,12 +24,12 @@ class RecipeSearch extends Component {
             .catch(err => console.log(err));
     }
 
-    searchRecipes = () => {
-        API.searchRecipes(this.state.strQuery)
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => console.log(err));
+    searchRecipes() {
+        API.searchRecipes({
+            query: this.state.strQuery
+        })
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
     }
 
     jsonConverter = json => {
