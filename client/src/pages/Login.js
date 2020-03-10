@@ -20,6 +20,10 @@ class Login extends Component {
             API.login({
                 email: this.state.email,
                 password: this.state.password
+            }).then(function(data){
+                console.log("CLIENT DATA " + data);
+                sessionStorage.setItem("Logout", false);
+                window.location.href="/profile"
             })
         }
     };

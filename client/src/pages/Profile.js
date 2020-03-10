@@ -1,12 +1,24 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import session from "express-session";
 
 class Profile extends Component {
+    componentDidMount() {
+        console.log(sessionStorage.getItem("Logout"))
+        if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
+            window.location.href = "/"
+        }
+    }
+    
     handleLogout = event => {
-        API.logout().then(
-                // console.log("test")
-                window.location.replace('/')
-        )
+        API.logout().then(function(response){
+            console.log("Data: ", response) 
+            console.log("Logut clientside")
+            if (response.data === "Logout!") {
+                sessionStorage.setItem("Logout", true);
+             window.location.href = "/"
+            }
+        } )
     }
 
     render() {

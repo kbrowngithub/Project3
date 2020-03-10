@@ -21,28 +21,23 @@ function api_routes(app) {
     app.post('/api/login', (req, res, next) => {
         console.log("Login Request Recieved")
         passport.authenticate('local', {
-          successRedirect: '/profile',
+          successRedirect: '/',
           failureRedirect: '/login'
         })(req, res, next);
+        // res.json(req.user);
       });
       
     
-    // app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    //     console.log("LOGIN REQUEST RECIEVED")
-    //     res.json(req.user);
-    // });
-
-    // app.get("/profile", ensureAuthenticated, function(req, res, user) {
-    //     if (user) {
-    //         console.log("user")
-    //     } else {
-    //         console.log("No user")
-    //     }
-    // });
+    app.post("/api/login", passport.authenticate("local"), function(req, res) {
+        console.log("LOGIN REQUEST RECIEVED")
+        res.json(req.user);
+    });
 
     // Logout
     app.get('/logout', (req, res) => {
+        console.log("Logout")
         req.logout();
+        res.send("Logout!");
     });
 }
 
