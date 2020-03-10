@@ -6,6 +6,7 @@ export default {
     return axios.get("/api/recipes");
   },
   getIngredients: function() {
+    console.log("API getIng");
     return axios.get("/api/pantry");
   },
   // Gets the recipe with the given id
@@ -24,10 +25,10 @@ export default {
     return axios.post("/api/pantry", pantryData);
   },
   searchRecipes: function(query) {
-    console.log(query);
-  //   var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + query + "&number=2&ignorePantry=true"
-  //   axios.get(queryURL)
-  //     .then(res=> console.log(res.data))
-  //     .catch(err=> console.log(err));
+    console.log("search API", query);
+    var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=cf937a5d671c42ee9344d0012d8505f7&ingredients=" + query + "&number=2&ignorePantry=true"
+    return axios.get(queryURL)
+      // .then(res=> console.log(res.data))
+      // .catch(err=> console.log(err));
   }
 };
