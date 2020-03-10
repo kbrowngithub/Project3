@@ -23,7 +23,12 @@ export default {
   },
 
   login: function(userData) {
-    return axios.post("/login", userData);
+    console.log("API.js hit");
+    return axios.post("/api/login", userData);
+  },
+
+  logout: function() {
+    return axios.get("/logout");
   },
   
   searchRecipes: function(query) {

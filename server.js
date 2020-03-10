@@ -1,9 +1,9 @@
 const express = require("express");
-const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const mongoose = require("mongoose");
 const routes = require("./routes/api_routes");
+const passport = require("./config/passport");
 // var passport = require('passport');
 // var LocalStrategy = require('passport-local').Strategy;
 const app = express();
@@ -16,8 +16,6 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-// Add routes, both API and view
-routes(app);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/recipedb");
@@ -42,16 +40,19 @@ app.use(passport.session());
 // passport.serializeUser(User.serializeUser());
 // passport.deserializeUser(User.deserializeUser());
 
-// Connect flash
-app.use(flash());
+// // Connect flash
+// app.use(flash());
 
-// Global variables
-app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
-});
+// // Global variables
+// app.use(function(req, res, next) {
+//   res.locals.success_msg = req.flash('success_msg');
+//   res.locals.error_msg = req.flash('error_msg');
+//   res.locals.error = req.flash('error');
+//   next();
+// });
+
+// Add routes, both API and view
+routes(app);
 
 // Start the API server
 app.listen(PORT, function() {
