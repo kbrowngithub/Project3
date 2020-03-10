@@ -30,19 +30,7 @@ passport.use(new LocalStrategy(
           message: "Incorrect password."
         });
       }
-
-
-    // bcrypt.compare(password, user.password, (err, isMatch) => {
-    //     if (err) throw err;
-    //     if (isMatch) {
-    //       console.log("user authed inside bcyrpt")
-    //         return done(null, user);
-    //     } else {
-    //       console.log("Wrong password")
-    //         return done(null, false, { message: 'Password incorrect' });
-    //     }
-    //   });
-
+      
       // If none of the above, return the user
       console.log("User authed")
       return done(null, user);
