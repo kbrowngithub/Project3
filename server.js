@@ -72,6 +72,3 @@ app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-http.createServer(app).listen(1337, () => {
-  console.log('Express server listening on port 1337');
-});
