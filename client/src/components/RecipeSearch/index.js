@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import { Button } from 'react-bootstrap';
 
 
-class RecipeFinder extends Component {
+class RecipeSearch extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -15,14 +15,7 @@ class RecipeFinder extends Component {
     componentDidMount() {
         this.loadIngredients();
     }
-    searchRecipes = () => {
-        let query = this.state.strQuery
-        API.searchRecipes(query)
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => console.log(err));
-    }
+    
     loadIngredients = () => {
         API.getIngredients()
             .then(res => {
@@ -30,6 +23,15 @@ class RecipeFinder extends Component {
             })
             .catch(err => console.log(err));
     }
+
+    searchRecipes = () => {
+        API.searchRecipes(this.state.strQuery)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => console.log(err));
+    }
+
     jsonConverter = json => {
         var array = [];
         json.map(ingredient => {
@@ -56,4 +58,4 @@ class RecipeFinder extends Component {
     }
 }
 
-export default RecipeFinder;
+export default RecipeSearch;
