@@ -1,5 +1,5 @@
 var db = require("../models")
-const router = require("express").Router();
+var passport = require("../config/passport");
 const usersController = require("../controllers/usersController");
 const smsController = require("../controllers/smsController");
 const pantryController = require("../controllers/pantryController");
@@ -9,6 +9,36 @@ const axios = require("axios");
 function api_routes(app) {
     app.get("/", function (req, res) {
         res.send("Hello World");
+    })
+
+    app.get("/api/users", function(req, res) {
+        db.User.find({}).then(function(data) {
+            res.json(data)
+        })
+    })
+
+    app.post("/api/users", usersController.create);
+
+    app.post('/api/login', (req, res, next) => {
+        console.log("Login Request Recieved")
+        passport.authenticate('local', {
+          successRedirect: '/',
+          failureRedirect: '/login'
+        })(req, res, next);
+        // res.json(req.user);
+      });
+      
+    
+    app.post("/api/login", passport.authenticate("local"), function(req, res) {
+        console.log("LOGIN REQUEST RECIEVED")
+        res.json(req.user);
+    });
+
+    // Logout
+    app.get('/logout', (req, res) => {
+        console.log("Logout")
+        req.logout();
+        res.send("Logout!");
     });
 
     app.get("/api/users", function (req, res) {
@@ -60,4 +90,6 @@ function api_routes(app) {
         });
     });
 }
+
+
 module.exports = api_routes;
