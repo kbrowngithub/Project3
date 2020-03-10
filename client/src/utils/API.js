@@ -23,6 +23,19 @@ export default {
   saveIngredient: function(pantryData) {
     return axios.post("/api/pantry", pantryData);
   },
+
+  newUser: function(userData) {
+    return axios.post("/api/users", userData);
+  },
+
+  login: function(userData) {
+    return axios.post("/api/login", userData);
+  },
+
+  logout: function() {
+    return axios.get("/logout");
+  },
+  
   searchRecipes: function(query) {
     return axios.post("/api/spoon", query);
   }
