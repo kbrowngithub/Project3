@@ -6,9 +6,9 @@ const passport = require("./config/passport");
 const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 3001;
+
 // Twilio Response Server
 const http = require('http');
-
 
 // Define middleware here
 // Twilio Specific

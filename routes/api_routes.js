@@ -1,13 +1,8 @@
 var db = require("../models")
-const express = require('express');
-const router = express.Router();
-const usersController = require("../controllers/usersController");
 var passport = require("../config/passport");
-var ensureAuthenticated = require("../config/middleware/auth");
-
-const router = require("express").Router();
 const usersController = require("../controllers/usersController");
 const smsController = require("../controllers/smsController");
+
 function api_routes(app) {
     app.get("/", function (req, res) {
         res.send("Hello World");
