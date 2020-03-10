@@ -2,6 +2,7 @@ var db = require("../models")
 const router = require("express").Router();
 const usersController = require("../controllers/usersController");
 const smsController = require("../controllers/smsController");
+const pantryController = require("../controllers/pantryController");
 function api_routes(app) {
     app.get("/", function (req, res) {
         res.send("Hello World");
@@ -41,5 +42,6 @@ function api_routes(app) {
     //     res.writeHead(200, {'Content-Type': 'text/xml'});
     //     res.end(twiml.toString());
     //   });
+    app.post('/api/pantry', pantryController.create);
 }
 module.exports = api_routes;
