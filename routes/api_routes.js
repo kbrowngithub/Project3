@@ -42,7 +42,6 @@ function api_routes(app) {
         req.logout();
         res.send("Logout!");
     });
-    });
 
     app.get("/api/users", function (req, res) {
         db.User.find({}).then(function (data) {
