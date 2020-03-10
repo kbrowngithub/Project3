@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import session from "express-session";
 
 class Profile extends Component {
     componentDidMount() {
