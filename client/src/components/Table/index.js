@@ -22,7 +22,6 @@ class Table extends Component {
         API.getIngredients()
             .then(res=> {
                 this.setState({ ingredients: res.data });
-                console.log(this.state.ingredients)
             })
             .catch(err => console.log(err));
     }

@@ -5,7 +5,6 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const mongoose = require("mongoose");
 const routes = require("./routes/api_routes");
-require('dotenv').config();
 
 // Twilio Response Server
 const http = require('http');
