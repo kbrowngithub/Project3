@@ -14,6 +14,7 @@ export default class Friends extends Component {
                    <thead className="thead-light">
                        <tr>
                            <th>Username</th>
+                           <th>Mobile#</th>
                            <th>Email</th>
                        </tr>
                    </thead>

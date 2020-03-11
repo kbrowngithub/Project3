@@ -1,3 +1,4 @@
+var nodemailer = require('nodemailer');
 const client = require('twilio')(
   process.env.TWILIO_ACCOUT_SID,
   process.env.TWILIO_AUTH_TOKEN
@@ -38,5 +39,13 @@ module.exports = {
 
     res.writeHead(200, { 'Content-Type': 'text/xml' });
     res.end(twiml.toString());
-  }
+  },
+  emailInvite: function (req, res) {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    }
 }
