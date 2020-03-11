@@ -2,6 +2,9 @@ var db = require("../models")
 var passport = require("../config/passport");
 const usersController = require("../controllers/usersController");
 const smsController = require("../controllers/smsController");
+const pantryController = require("../controllers/pantryController");
+const axios = require("axios");
+
 
 function api_routes(app) {
     app.get("/", function (req, res) {
@@ -72,6 +75,20 @@ function api_routes(app) {
     //     res.writeHead(200, {'Content-Type': 'text/xml'});
     //     res.end(twiml.toString());
     //   });
+    app.post('/api/pantry', pantryController.create);
+    app.get('/api/pantry', pantryController.findAll);
+
+    app.post('/api/spoon', function (req, res) {
+        var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&number=2&ignorePantry=true";
+        axios.get(queryURL)
+        .then(response => {
+            console.log(response)
+            res.json(response.data);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+    });
 }
 
 
