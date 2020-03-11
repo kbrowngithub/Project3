@@ -26,12 +26,12 @@ export default class Friends extends Component {
                </table>
                {/* <input type='button' value='Invite Friend' href="invite" className='btn btn-info' /> */}
                <AwesomeButton
-                    type="secondary"
+                    type="primary"
                     size="medium"
                     ripple
                     href="/invite"
                     className='button'
-                >New</AwesomeButton>
+                >NewFriend</AwesomeButton>
             </div>
         )
     }
