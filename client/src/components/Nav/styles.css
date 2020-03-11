@@ -1,0 +1,43 @@
+.navbar-brand {
+font-size: xx-large;
+font-family: 'Tangerine', serif;
+font-size: 60px;
+text-shadow: 4px 4px 4px #62a1f3;
+font-family: 'Indie Flower', cursive;
+margin-left: 30px;
+margin-right: 20px;
+}
+
+.navbar {
+    max-height: 80px;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7d7e7d+0,0e0e0e+100;Black+3D */
+background: rgb(125,126,125); /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+.searchBar {
+    margin-left: 60px;
+    font-family: 'Indie Flower', cursive;
+    background-color: #c2d7f3;
+    font-size: large;
+    font-weight: bolder;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 7px;
+    border-color: darkgray;
+}
+
+.button {
+    margin-left: 10px;
+    font-size: x-large;
+    border-style: solid;
+    border-radius:7px;
+    text-shadow: 4px 4px 4px #aaa;
+    border-color: darkgray;
+    font-family: 'Indie Flower', cursive;
+    background-color: red;
+}
