@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import RecipeSearch from "../components/RecipeSearch";
 
 export default function Home() {
+
     return (
         <div>
             <h3 className="content-center">Home</h3>
             <div className="row">
                 <Button variant="info" style={{ margin: '10px' }}>Drink Recipes</Button>
 
-                <Button variant="info" style={{ margin: '10px' }}>Food Recipes</Button>
+                <RecipeSearch></RecipeSearch>
             </div>
-            <h4>Recent Recipes</h4>
+            <h4>Found Recipes</h4>
 
             <div className="row">
                 <Card style={{ width: '18rem' }}>
@@ -78,7 +80,7 @@ export default function Home() {
                         <Card.Text>
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
-    </Card.Text>
+                    </Card.Text>
                         <Button variant="primary">Go somewhere</Button>
                     </Card.Body>
                 </Card>
