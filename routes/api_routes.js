@@ -58,24 +58,10 @@ function api_routes(app) {
 
     app.post('/api/sms', smsController.inviteResponse);
 
-    //   app.post('/api/sms', (req, res) => {
-    //     console.log(`Hit the localhost:1337/sms post route`);
-    //     const twiml = new MessagingResponse();
+    app.post('/api/email', smsController.emailInvite);
 
-    //     if (req.body.Body == 'YES') {
-    //       twiml.message('Great! Go to this url: https://bachelor-helper-recipes.herokuapp.com/');
-    //     } else if (req.body.Body == 'NO') {
-    //       twiml.message('Okay. Maybe some other time.');
-    //     } else {
-    //       twiml.message(
-    //         'No Body param match, Twilio sends this in the request to your server.'
-    //       );
-    //     }
-
-    //     res.writeHead(200, {'Content-Type': 'text/xml'});
-    //     res.end(twiml.toString());
-    //   });
     app.post('/api/pantry', pantryController.create);
+    
     app.get('/api/pantry', pantryController.findAll);
 
     app.post('/api/spoon', function (req, res) {

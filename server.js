@@ -8,7 +8,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 3001;
 
 // Twilio Response Server
-const http = require('http');
+// const http = require('http');
 
 // Define middleware here
 // Twilio Specific
@@ -51,4 +51,3 @@ routes(app);
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
-
