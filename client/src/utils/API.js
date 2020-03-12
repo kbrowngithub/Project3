@@ -38,5 +38,9 @@ export default {
   
   searchRecipes: function(query) {
     return axios.post("/api/spoon", query);
+  },
+
+  searchDrinks: function(query) {
+    return axios.post("/api/drink", query);
   }
 };

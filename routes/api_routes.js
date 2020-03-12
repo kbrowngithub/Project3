@@ -80,26 +80,21 @@ function api_routes(app) {
                     .catch(err => {
                         console.log(err);
                     })
-            });
-           
-        
-        
-           
+            });      
         })
         .catch(err => {
             res.json(err);
         });
     });
+    
+    app.post("/api/drink", function(req,res) {
+        var queryURL = "https://www.thecocktaildb.com/api/json/v1/" + process.env.drinkAPIKey + "/filter.php?i=" + req.body.query;
+            axios.get(queryURL)
+            .then(response=> {
+                res.json(response.data);
+            })
+                .catch(err => console.log(err));
+    })
 }
-// json.map(recipe => {
-//     var querySumm = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=" + process.env.foodAPIKey;
-//     axios.get(querySumm)
-//     .then(response2 => {
-//         console.log(response2.data);
-//     })
-//     .catch(err => {
-//         newData = err;
-//     })
-// });
 
 module.exports = api_routes;
