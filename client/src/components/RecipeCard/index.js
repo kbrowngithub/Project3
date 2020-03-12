@@ -8,10 +8,9 @@ function RecipeCard(props) {
             <Card.Body>
                 <Card.Title>{props.title}</Card.Title>
                 <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
+                    {props.summary}
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">Checkout the Recipe</Button>
             </Card.Body>
         </Card>
     )
