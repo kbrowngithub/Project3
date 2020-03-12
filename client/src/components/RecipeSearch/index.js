@@ -23,12 +23,13 @@ class RecipeSearch extends Component {
             })
             .catch(err => console.log(err));
     }
-
     searchRecipes() {
         API.searchRecipes({
             query: this.state.strQuery
         })
-        .then(res => console.log(res.data))
+        .then(res => {
+            this.props.updateRecipesCB(res.data);
+        })
         .catch(err => console.log(err));
     }
 

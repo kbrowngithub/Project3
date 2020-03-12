@@ -82,7 +82,6 @@ function api_routes(app) {
         var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&number=2&ignorePantry=true";
         axios.get(queryURL)
         .then(response => {
-            console.log(response)
             res.json(response.data);
         })
         .catch(err => {
