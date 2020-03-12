@@ -53,7 +53,8 @@ class Signup extends Component {
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(this.state.password, salt, (err, hash) => {
                     if (err) throw err;
-                    this.state.password = hash;
+                    // this.state.password = hash;
+                    this.setState({password: hash});
                     API.newUser({
                         name: this.state.fullName,
                         email: this.state.email,
