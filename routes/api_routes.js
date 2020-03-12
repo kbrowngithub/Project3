@@ -24,7 +24,6 @@ function api_routes(app) {
           successRedirect: '/',
           failureRedirect: '/login'
         })(req, res, next);
-        // res.json(req.user);
       });
       
     
@@ -63,8 +62,10 @@ function api_routes(app) {
     
     app.get('/api/pantry', pantryController.findAll);
 
+    app.delete('/api/pantry/:id', pantryController.remove);
+
     app.post('/api/spoon', function (req, res) {
-        var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&number=2&ignorePantry=true";
+        var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&number=20&ignorePantry=true";
         axios.get(queryURL)
         .then(response => {
             var recipeSumms = [];
