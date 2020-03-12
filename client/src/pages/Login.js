@@ -17,6 +17,10 @@ class Login extends Component {
             return this.setState({loginFlag: 2});
         }
 
+        if (sessionStorage.getItem("Nouser") === "true") {
+            return this.setState({loginFlag: 3})
+        }
+
         if (this.state.email && this.state.password) {
             API.login({
                 email: this.state.email,

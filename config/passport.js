@@ -12,13 +12,13 @@ passport.use(new LocalStrategy(
   function(email, password, done) {
     // When a user tries to sign in this code runs
     console.log("Local Strategy hit")
-    console.log("Login info to passport.js " + email,password)
     db.User.findOne({
         email: email
     }).then(function(user) {
       // If there's no user with the given email
       if (!user) {
         console.log("User not found")
+        window.sessionStorage.setItem("Nouser", true);
         return done(null, false, {
           message: "Incorrect email."
         });
@@ -26,6 +26,7 @@ passport.use(new LocalStrategy(
     //   If there is a user with the given email, but the password the user gives us is incorrect
       else if (!user.validPassword(password)) {
         console.log("Incorrect password")
+        sessionStorage.setItem("Wrongpassword", true);
         return done(null, false, {
           message: "Incorrect password."
         });
