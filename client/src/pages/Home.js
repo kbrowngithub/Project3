@@ -16,6 +16,7 @@ class Home extends Component {
 
     updateRecipes = array => {
         this.setState({ recipeData: array });
+        console.log(this.state.recipeData)
     }
 
     render() {
