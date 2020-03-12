@@ -6,7 +6,7 @@ import Jumbotron from "../components/Jumbotron";
 class Invite extends Component {
   state = {
     to: '',
-    from: '',
+    from: '<username goes here>',
     note: '',
     message: {
       to: '',
@@ -33,6 +33,45 @@ class Invite extends Component {
 
       this.setState({ submitting: true });
       fetch('/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state.message)
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(`data.success = ${data.success}`);
+          alert(`Invite sent to ${this.state.message.to}`)
+          if (data.success) {
+            this.setState({
+              error: false,
+              submitting: false,
+              message: {
+                to: '',
+                body: ''
+              }
+            });
+          } else {
+            this.setState({
+              error: true,
+              submitting: false
+            });
+          }
+        });
+    } else {
+      alert(`Something went wrong!`)
+    }
+  };
+
+  handleEmailFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.message.to) {
+      // alert(`Sending Invite to ${this.state.to}`);
+      console.log(`Sending email to ${this.state.message.to}`);
+
+      this.setState({ submitting: true });
+      fetch('/api/email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -97,10 +136,17 @@ class Invite extends Component {
               </div>
               <FormBtn
                 disabled={!(this.state.message.to)}
+                onClick={this.handleEmailFormSubmit}
+              >
+                Send Email
+              </FormBtn>
+              <FormBtn
+                disabled={!(this.state.message.to)}
                 onClick={this.handleFormSubmit}
               >
-                Send Invite
+                Send Text
               </FormBtn>
+              
             </form>
           </Col>
         </Row>

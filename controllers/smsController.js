@@ -1,3 +1,4 @@
+var nodemailer = require('nodemailer');
 require("dotenv").config();
 
 const client = require('twilio')(
@@ -40,5 +41,30 @@ module.exports = {
 
     res.writeHead(200, { 'Content-Type': 'text/xml' });
     res.end(twiml.toString());
+  },
+  emailInvite: function (req, res) {
+    console.log(`recipesController:emailInvite(): from=<session-uid-here>, to=${req.body.to}, body=${req.body.body}`);
+    const msgText = "Dinner invite from <session-uid-here>\n" + req.body.body + "\nTo accept go to: https://bachelor-helper-recipes.herokuapp.com/"
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.chuckwagonEmailAddr,
+        pass: process.env.chuckwagonEmailPW
+      }
+    });
+    transporter.sendMail({
+      from: 'Chuck Wagon',
+      to: req.body.to,
+      subject: `Dinner invite from <session-uid-here>`,
+      text: msgText
+    }, function(error, info) {
+      if (error) {
+        console.log(error);
+        res.send(`Email error: ${error}`);
+      } else {
+        console.log(`Email sent: ${info.response}`);
+        res.send(info.response);
+      }
+    });
   }
 }
