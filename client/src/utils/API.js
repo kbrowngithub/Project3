@@ -16,6 +16,9 @@ export default {
   deleteRecipe: function(id) {
     return axios.delete("/api/recipes/" + id);
   },
+  deleteIngredient: function(id) {
+    return axios.delete("/api/pantry/" + id);
+  },
   // Saves a recipe to the database
   saveRecipe: function(recipeData) {
     return axios.post("/api/recipes", recipeData);

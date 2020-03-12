@@ -40,11 +40,6 @@ class Recipes extends Component {
     });
   };
 
-  // label: { type: String, required: true },
-  //   image: { type: String, default: "https://ezyvectors.com/wp-content/uploads//edd/2019/05/Colorful-Free-Food-Icon-Vector.jpg" },
-  //   source: { type: String, required: true },
-  //   url: { type: String, required: true },
-  //   ingredientLines: {type: Array, required: true},
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.label && this.state.source) {
