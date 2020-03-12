@@ -19,6 +19,7 @@ module.exports = {
     db.User
       .create(req.body)
       .then(dbModel => res.json(dbModel))
+      // .catch(err => console.log(err.message));
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

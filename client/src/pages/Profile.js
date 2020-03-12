@@ -5,7 +5,7 @@ class Profile extends Component {
     componentDidMount() {
         console.log(sessionStorage.getItem("Logout"))
         if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
-            window.location.href = "/"
+            window.location.href = "/login"
         }
     }
     
@@ -17,7 +17,7 @@ class Profile extends Component {
                 sessionStorage.setItem("Logout", true);
              window.location.href = "/"
             }
-        } )
+        })
     }
 
     render() {
