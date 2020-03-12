@@ -32,7 +32,7 @@ class Signup extends Component {
             return alert("Passowrds do not match")
         }
 
-        if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email))) {
+        if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(this.state.email)) {
 
         } else {
             return alert("Please enter valid email")
@@ -50,7 +50,7 @@ class Signup extends Component {
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(this.state.password, salt, (err, hash) => {
                     if (err) throw err;
-                    this.state.password = hash;
+                    this.setState({password: hash});
                     API.newUser({
                         name: this.state.fullName,
                         email: this.state.email,
