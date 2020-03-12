@@ -5,7 +5,6 @@ const smsController = require("../controllers/smsController");
 const pantryController = require("../controllers/pantryController");
 const axios = require("axios");
 
-
 function api_routes(app) {
     app.get("/", function (req, res) {
         res.send("Hello World");
@@ -68,13 +67,39 @@ function api_routes(app) {
         var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&number=2&ignorePantry=true";
         axios.get(queryURL)
         .then(response => {
-            res.json(response.data);
+            var recipeSumms = [];
+            response.data.map(recipe => {
+                    var querySumm = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=" + process.env.foodAPIKey;
+                    axios.get(querySumm)
+                    .then(data => {
+                        recipeSumms.push(data.data);
+                        if (recipeSumms.length === response.data.length) {
+                            res.json({query1: response.data, query2: recipeSumms});
+                        }   
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            });
+           
+        
+        
+           
         })
         .catch(err => {
             res.json(err);
         });
     });
 }
-
+// json.map(recipe => {
+//     var querySumm = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=" + process.env.foodAPIKey;
+//     axios.get(querySumm)
+//     .then(response2 => {
+//         console.log(response2.data);
+//     })
+//     .catch(err => {
+//         newData = err;
+//     })
+// });
 
 module.exports = api_routes;

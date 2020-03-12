@@ -28,7 +28,8 @@ class RecipeSearch extends Component {
             query: this.state.strQuery
         })
         .then(res => {
-            this.props.updateRecipesCB(res.data);
+            console.log(res);
+            // this.props.updateRecipesCB(res.data);
         })
         .catch(err => console.log(err));
     }
