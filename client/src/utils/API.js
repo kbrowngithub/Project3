@@ -26,6 +26,9 @@ export default {
   saveIngredient: function(pantryData) {
     return axios.post("/api/pantry", pantryData);
   },
+  updateIngredient: function(pantryData) {
+    return axios.put("/api/pantry/" + pantryData.id, pantryData);
+  },
 
   newUser: function(userData) {
     return axios.post("/api/users", userData);
