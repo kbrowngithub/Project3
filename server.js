@@ -25,6 +25,11 @@ app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+<<<<<<< HEAD
+  // Try line below to fix path issues on Heroku - didn't work
+  // app.use(express.static(path.join(__dirname, '/client/build')));
+=======
+>>>>>>> 8b2f3e596ce319f81758a4bdb8d3f8eb10d503bf
 }
 
 // Connect to the Mongo DB
