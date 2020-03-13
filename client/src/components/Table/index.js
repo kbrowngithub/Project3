@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import "./style.css";
 import API from "../../utils/API";
-
+import QuantityBtn from '../QuantityBtn'
+import { Button } from 'react-bootstrap';
 class Table extends Component {
     constructor (props) {
         super(props) 
@@ -13,10 +14,17 @@ class Table extends Component {
         }
         this.addIngredient = this.addIngredient.bind(this);
         this.sendIngredient = this.sendIngredient.bind(this);
+        this.deleteIngredient = this.deleteIngredient.bind(this);
     }
     componentDidMount() {
         this.loadIngredients();
     }
+
+    updateQuantity = (id, int) => {
+        API.updateIngredient({id: id, quantity: int})
+            .then(res=> console.log("Quantity Changed"))
+            .catch(err=> console.log(err));
+        }
 
     loadIngredients = () => {
         API.getIngredients()
@@ -32,6 +40,12 @@ class Table extends Component {
         });
 
     }
+    
+    deleteIngredient (id) {
+        API.deleteIngredient(id)
+            .then(res => window.location.reload(false))
+            .catch(err => console.log(err));
+    }
 
     sendIngredient() {
         API.saveIngredient({
@@ -45,12 +59,17 @@ class Table extends Component {
 
     renderTableData() {
         return this.state.ingredients.map((ingredient, index) => {
-          const { id, name, quantity, unit } = ingredient
           return(
-            <tr key={id}>
-              <td>{name}</td>
-              <td>{quantity}</td>
-              <td>{unit}</td>
+            <tr key={ingredient._id}>
+              <td>{ingredient.name}</td>
+              <td>
+                <QuantityBtn 
+                    id={ingredient._id}
+                    quantity={ingredient.quantity}
+                    updateQuantityCB = { this.updateQuantity }/>
+              </td>
+              <td>{ingredient.unit}</td>
+              <td><Button variant="danger" onClick={() => this.deleteIngredient(ingredient._id)}>X</Button></td>
             </tr>
           )
         });
