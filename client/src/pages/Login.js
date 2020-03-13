@@ -17,18 +17,20 @@ class Login extends Component {
             return this.setState({loginFlag: 2});
         }
 
-        if (sessionStorage.getItem("Nouser") === "true") {
-            return this.setState({loginFlag: 3})
-        }
-
         if (this.state.email && this.state.password) {
+            let currentComponent = this;
+            
             API.login({
                 email: this.state.email,
                 password: this.state.password
             }).then(function(data){
-                console.log("CLIENT DATA " + data);
+                console.log("CLIENT DATA ",data);
                 sessionStorage.setItem("Logout", false);
                 window.location.href="/profile"
+            }).catch(function(error){
+                if (error) {
+                    return currentComponent.setState({loginFlag: 3})
+                }
             })
         }
     };
@@ -49,8 +51,7 @@ class Login extends Component {
                         {/* <% include ./partials/messages %> */}
                         { this.state.loginFlag === 1 && <p>Please enter your email</p>}
                         { this.state.loginFlag === 2 && <p>Please enter your password</p>}
-                        { this.state.loginFlag === 3 && <p>Email address not found</p>}
-                        { this.state.loginFlag === 4 && <p>Password is incorrect</p>}
+                        { this.state.loginFlag === 3 && <p>Email or password is incorrect</p>}
                         <form action="/login" method="POST">
                             <div className="form-group">
                                 <label for="email">Email</label>
