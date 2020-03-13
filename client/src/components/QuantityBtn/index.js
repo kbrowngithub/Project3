@@ -16,14 +16,12 @@ class QuantityBtn extends Component {
   }
   DecreaseItem = () => {
     if (this.state.quantity == "") {
-      console.log("Sorry, negativety is illegal")
+      console.log("Sorry, negativety is illegal");
     } else {
       this.setState({ quantity: this.state.quantity - 1 }, () => {
         this.props.updateQuantityCB(this.state.id, this.state.quantity);
       });
     }
-    
-    
   }
 
 
@@ -31,7 +29,7 @@ class QuantityBtn extends Component {
     return (
       <div>
         <button onClick={this.DecreaseItem}>{"<--"}</button>
-        {this.state.quantity}
+        {"    " + this.state.quantity + "   "}
         <button onClick={this.IncrementItem}>{"-->"}</button>
         
       </div>
