@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./style.css";
 import API from "../../utils/API";
+import QuantityBtn from '../QuantityBtn'
 import { Button } from 'react-bootstrap';
 class Table extends Component {
     constructor (props) {
@@ -18,6 +19,12 @@ class Table extends Component {
     componentDidMount() {
         this.loadIngredients();
     }
+
+    updateQuantity = (id, int) => {
+        API.updateIngredient({id: id, quantity: int})
+            .then(res=> console.log("Quantity Changed"))
+            .catch(err=> console.log(err));
+        }
 
     loadIngredients = () => {
         API.getIngredients()
@@ -55,9 +62,14 @@ class Table extends Component {
           return(
             <tr key={ingredient._id}>
               <td>{ingredient.name}</td>
-              <td>{ingredient.quantity}</td>
+              <td>
+                <QuantityBtn 
+                    id={ingredient._id}
+                    quantity={ingredient.quantity}
+                    updateQuantityCB = { this.updateQuantity }/>
+              </td>
               <td>{ingredient.unit}</td>
-              <td><Button type={"danger"} onClick={() => this.deleteIngredient(ingredient._id)}>X</Button></td>
+              <td><Button variant="danger" onClick={() => this.deleteIngredient(ingredient._id)}>X</Button></td>
             </tr>
           )
         });

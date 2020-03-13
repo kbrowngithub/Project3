@@ -21,12 +21,10 @@ class Home extends Component {
 
     updateRecipes = (array) => {
         this.setState({ recipeData: array });
-
     }
 
     updateDrinks = (array) => {
         this.setState({ drinkData: array });
-        console.log(this.state.drinkData)
     }
 
     render() {
