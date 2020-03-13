@@ -19,12 +19,11 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/friends" component={Friends} />
           <Route exact path="/" component={Home} />
           <Route exact path="/recipes" component={Recipes} />
           <Route exact path="/recipes/:id" component={Detail} />
           <Route exact path="/pantry" component={Pantry} />
-          
+          <Route exact path="/friends" component={Friends} />
           <Route exact path="/create" component={CreateUser} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
