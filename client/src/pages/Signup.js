@@ -34,12 +34,12 @@ class Signup extends Component {
             return this.setState({signupFlag: 2});
         }
 
-        if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email))) {
+        // if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(this.state.email)) {
 
-        } else {
-            // return alert("Please enter valid email")
-            return this.setState({signupFlag: 3});
-        }
+        // } else {
+        //     // return alert("Please enter valid email")
+        //     return this.setState({signupFlag: 3});
+        // }
 
         if (this.state.password.length < 6) {
             // errors.push({ msg: 'Password must be at least 6 characters' });
@@ -53,7 +53,6 @@ class Signup extends Component {
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(this.state.password, salt, (err, hash) => {
                     if (err) throw err;
-                    // this.state.password = hash;
                     this.setState({password: hash});
                     API.newUser({
                         name: this.state.fullName,
