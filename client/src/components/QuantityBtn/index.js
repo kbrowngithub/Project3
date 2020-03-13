@@ -15,9 +15,14 @@ class QuantityBtn extends Component {
     });
   }
   DecreaseItem = () => {
-    this.setState({ quantity: this.state.quantity - 1 }, () => {
-      this.props.updateQuantityCB(this.state.id, this.state.quantity);
-    });
+    if (this.state.quantity == "") {
+      console.log("Sorry, negativety is illegal")
+    } else {
+      this.setState({ quantity: this.state.quantity - 1 }, () => {
+        this.props.updateQuantityCB(this.state.id, this.state.quantity);
+      });
+    }
+    
     
   }
 
