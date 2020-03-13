@@ -27,12 +27,6 @@ function api_routes(app) {
         })(req, res, next);
         // res.json(req.user);
       });
-      
-    
-    // app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    //     console.log("LOGIN REQUEST RECIEVED")
-    //     res.json(req.user);
-    // });
 
     // Logout
     app.get('/logout', (req, res) => {

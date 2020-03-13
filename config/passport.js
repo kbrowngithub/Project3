@@ -18,7 +18,6 @@ passport.use(new LocalStrategy(
       // If there's no user with the given email
       if (!user) {
         console.log("User not found")
-        // sessionStorage.setItem("Nouser", "true");
         return done(null, false, {
           message: "Incorrect email."
         });
@@ -26,7 +25,6 @@ passport.use(new LocalStrategy(
     //   If there is a user with the given email, but the password the user gives us is incorrect
       else if (!user.validPassword(password)) {
         console.log("Incorrect password")
-        // sessionStorage.setItem("Wrongpassword", "true");
         return done(null, false, {
           message: "Incorrect password."
         });
@@ -34,6 +32,7 @@ passport.use(new LocalStrategy(
       
       // If none of the above, return the user
       console.log("User authed")
+      console.log("User data: ",user)
       return done(null, user);
     });
   }
