@@ -29,7 +29,8 @@ class Profile extends Component {
                 <p class="lead mb-3">Welcome </p>
                 {/* <%= user.name %> */}
                 <button onClick={this.handleLogout} type="button" className="btn">Logout</button>
-                <a href="/" class="btn btn-secondary">Home</a>
+                {/* <a href="/" class="btn btn-secondary">Home</a> */}
+                <Link to="/">Home</Link>
             </div>
 
         )
