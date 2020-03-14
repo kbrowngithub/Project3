@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import { Button } from 'react-bootstrap';
+import { AwesomeButton } from 'react-awesome-button';
+import 'react-awesome-button/dist/themes/theme-blue.css';
 
 class DrinkSearch extends Component {
     constructor(props) {
@@ -21,8 +23,18 @@ class DrinkSearch extends Component {
         .catch(err => console.log(err));
     }
     render() {
-        return (
-            <Button variant="info" onClick={this.searchDrinks} style={{ margin: '10px' }}>Drink Recipes</Button>
+        return (            
+            <AwesomeButton
+            variant="info"
+            onClick={this.searchDrinks}
+            type="secondary"
+            size="large"
+            ripple
+            href="/"
+            className='button'
+          >
+            Drink Recipes
+          </AwesomeButton>
         )
     }
 }
