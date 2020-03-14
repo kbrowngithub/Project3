@@ -44,6 +44,7 @@ class Recipes extends Component {
         API.getRecipes()
             .then(res=> this.setState({ recipes: res.data }))
             .catch(err=> console.log(err));
+            
     }
     deleteRecipe = id => {
         API.deleteRecipe(id)
@@ -100,7 +101,7 @@ class Recipes extends Component {
             .catch(err => console.log(err));
         }
     }
-
+    
     render() {
         const showForm = this.state.showForm;
         let recipeField = null;
