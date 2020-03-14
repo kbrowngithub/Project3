@@ -17,7 +17,7 @@ class RecipeSearch extends Component {
     componentDidMount() {
         this.loadIngredients();
     }
-    
+
     loadIngredients = () => {
         API.getIngredients()
             .then(res => {
@@ -29,19 +29,19 @@ class RecipeSearch extends Component {
         API.searchRecipes({
             query: this.state.strQuery
         })
-        .then(res => {
-            for (let i = 0; i < res.data.query2.length; i++) {
-                res.data.query1[i].summary = res.data.query2[i].summary;
-            }
-            this.props.updateRecipesCB(res.data.query1);
-        })
-        .catch(err => console.log(err));
+            .then(res => {
+                for (let i = 0; i < res.data.query2.length; i++) {
+                    res.data.query1[i].summary = res.data.query2[i].summary;
+                }
+                this.props.updateRecipesCB(res.data.query1);
+            })
+            .catch(err => console.log(err));
     }
 
     jsonConverter = json => {
         var array = [];
         json.map(ingredient => {
-          return array.push(ingredient.name);
+            return array.push(ingredient.name);
         });
         this.pantryConcatenator(array);
     }
@@ -60,16 +60,14 @@ class RecipeSearch extends Component {
     render() {
         return (
             <AwesomeButton
-                    variant="info"
-                    onClick={this.searchRecipes}
-                    type="secondary"
-                    size="large"
-                    ripple
-                    href="/"
-                    className='button'
-                  >
-                    Food Recipes
-                  </AwesomeButton>
+                variant="info"
+                onPress={this.searchRecipes}
+                type="secondary"
+                size="large"
+                className='button'
+            >
+                Food Recipes
+            </AwesomeButton>
             // <Button variant="info" onClick={this.searchRecipes} style={{ margin: '10px' }}>Food Recipes</Button>
         )
     }
