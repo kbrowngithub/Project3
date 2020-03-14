@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import { Button } from 'react-bootstrap';
+import { AwesomeButton } from 'react-awesome-button';
+import 'react-awesome-button/dist/themes/theme-blue.css';
 
 
 class RecipeSearch extends Component {
@@ -59,7 +61,18 @@ class RecipeSearch extends Component {
     }
     render() {
         return (
-            <Button variant="info" onClick={this.searchRecipes} style={{ margin: '10px' }}>Food Recipes</Button>
+            <AwesomeButton
+                    variant="info"
+                    onClick={this.searchRecipes}
+                    type="secondary"
+                    size="large"
+                    ripple
+                    href="/"
+                    className='button'
+                  >
+                    Food Recipes
+                  </AwesomeButton>
+            // <Button variant="info" onClick={this.searchRecipes} style={{ margin: '10px' }}>Food Recipes</Button>
         )
     }
 }

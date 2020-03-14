@@ -1,0 +1,10 @@
+.button {
+    margin-left: 10px;
+    font-size: medium;
+    border-style: solid;
+    border-radius:7px;
+    text-shadow: 4px 4px 4px #aaa;
+    border-color: darkgray;
+    font-family: 'Indie Flower', cursive;
+    background-color: red;
+}
