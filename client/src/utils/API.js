@@ -46,6 +46,10 @@ export default {
     return axios.post("/api/spoon", query);
   },
 
+  getInstructions: function(id) {
+    return axios.post("/api/spoonOne/" + id);
+  },
+
   searchDrinks: function(query) {
     return axios.post("/api/drink", query);
   }
