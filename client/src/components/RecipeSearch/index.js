@@ -41,7 +41,7 @@ class RecipeSearch extends Component {
     jsonConverter = json => {
         var array = [];
         json.map(ingredient => {
-            array.push(ingredient.name);
+          return array.push(ingredient.name);
         });
         this.pantryConcatenator(array);
     }
@@ -50,9 +50,9 @@ class RecipeSearch extends Component {
         let pantryQuery = "";
         array.map(ingredient => {
             if (ingredient === finalEl) {
-                pantryQuery += ingredient;
+                return pantryQuery += ingredient;
             } else {
-                pantryQuery += ingredient + ",+";
+                return pantryQuery += ingredient + ",+";
             }
         });
         this.setState({ strQuery: pantryQuery });
