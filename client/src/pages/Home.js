@@ -5,18 +5,37 @@ import RecipeSearch from "../components/RecipeSearch";
 import DrinkSearch from "../components/DrinkSearch";
 import RecipeCard from "../components/RecipeCard";
 import DrinkCard from "../components/DrinkCard";
-
+import API from "../utils/API";
 class Home extends Component {
     constructor(props) {
         super(props) 
         
         this.state = {
             recipeData: [],
-            drinkData: []
-        }
-        this.updateRecipes = this.updateRecipes
-        this.updateDrinks = this.updateDrinks
-        
+            drinkData: [],
+            strQuery: "chicken,+olives"
+        }        
+    }
+
+    componentDidMount() {
+        API.searchRecipes({
+            query: this.state.strQuery
+        })
+            .then(res => {
+                let recipes = res.data;
+                let recipeSumm = [];
+                recipes.map(recipe=> {
+                    API.searchSumms(recipe.id)
+                        .then(res => {
+                            recipe.summary = res.data.summary;
+                            recipeSumm.push(recipe)
+                        })
+                        .catch(err => console.log(err));
+                });
+                console.log("recipeSearch", recipeSumm);
+                this.setState({ recipeData: recipeSumm });
+            })
+            .catch(err => console.log(err));
     }
 
     updateRecipes = (array) => {
@@ -28,6 +47,7 @@ class Home extends Component {
     }
 
     render() {
+        console.log(this.state.recipeData);
         return (
             <div>
                 <h3 className="content-center">Home</h3>
@@ -40,8 +60,9 @@ class Home extends Component {
 
                 <div className="row">
                     <Col size="md-6">
-                        {this.state.recipeData.length ? (
-                            this.state.recipeData.map(recipe => (
+                    
+                            {this.state.recipeData.map(recipe => 
+
                                 <RecipeCard
                                 id={recipe.id}
                                 key={recipe.id}
@@ -51,11 +72,11 @@ class Home extends Component {
                                 missingIngredients={recipe.missedIngredients}
                                 usedIngredients={recipe.usedIngredients}
                                 />
-                            ))
+                            )}
                             
-                        ) : (
-                            <h3>Click the Recipe Buttons to Display New Recipes</h3>
-                        )}
+                        
+                            {/* // <h3>Click the Recipe Buttons to Display New Recipes</h3> */}
+                        
                     </Col>
                 
 
@@ -68,8 +89,7 @@ class Home extends Component {
                                 title={drink.strDrink}
                                 image={drink.strDrinkThumb}
                                 />
-                            ))
-                            
+                            ))  
                         ) : (
                             <h3>Click the Drink Buttons to Display New Drinks</h3>
                         )}

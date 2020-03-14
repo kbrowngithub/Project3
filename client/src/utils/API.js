@@ -45,6 +45,9 @@ export default {
   searchRecipes: function(query) {
     return axios.post("/api/spoon", query);
   },
+  searchSumms: function(id) {
+    return axios.post("/api/spoonSumm/" + id);
+  },
 
   getInstructions: function(id) {
     return axios.post("/api/spoonOne/" + id);

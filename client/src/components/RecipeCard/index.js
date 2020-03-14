@@ -3,6 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 function RecipeCard(props) {
+    console.log(props) 
     var shortText = props.summary.substr(0, 200);
     var cleanText = shortText.replace(/<\/?[^>]+(>|$)/g, "") + "...";
     return (
