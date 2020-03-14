@@ -29,9 +29,7 @@ class RecipeSearch extends Component {
         })
         .then(res => {
             for (let i = 0; i < res.data.query2.length; i++) {
-                var shortText = res.data.query2[i].summary.substr(0, 200);
-                var cleanText = shortText.replace(/<\/?[^>]+(>|$)/g, "");
-                res.data.query1[i].summary = cleanText + "..."
+                res.data.query1[i].summary = res.data.query2[i].summary;
             }
             this.props.updateRecipesCB(res.data.query1);
         })
