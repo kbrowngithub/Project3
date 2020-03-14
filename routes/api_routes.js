@@ -10,9 +10,9 @@ function api_routes(app) {
         res.send("Hello World");
     })
 
-    app.get("/friends", function (req, res) {
-        res.send("Hello World");
-    })
+    // app.get("/friends", function (req, res) {
+    //     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    // })
 
     app.get("/api/users", function(req, res) {
         db.User.find({}).then(function(data) {
