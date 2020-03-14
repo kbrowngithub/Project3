@@ -15,8 +15,8 @@ function api_routes(app) {
         res.send("Hello World");
     })
 
-    app.get("/api/users", function(req, res) {
-        db.User.find({}).then(function(data) {
+    app.get("/api/users", function (req, res) {
+        db.User.find({}).then(function (data) {
             res.json(data)
         })
     })
@@ -26,13 +26,13 @@ function api_routes(app) {
     app.post('/api/login', (req, res, next) => {
         console.log("Login Request Recieved")
         passport.authenticate('local', {
-          successRedirect: '/',
-          failureRedirect: '/login'
+            successRedirect: '/',
+            failureRedirect: '/login'
         })(req, res, next);
-      });
-      
-    
-    app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    });
+
+
+    app.post("/api/login", passport.authenticate("local"), function (req, res) {
         console.log("LOGIN REQUEST RECIEVED")
         res.json(req.user);
     });
@@ -65,10 +65,12 @@ function api_routes(app) {
 
     app.post('/api/pantry', pantryController.create);
 
+    app.get('/api/recipes', recipesController.findAll);
+
     app.post('/api/recipes', recipesController.create);
-    
+
     app.get('/api/pantry', pantryController.findAll);
-    
+
     app.put('/api/pantry/:id', pantryController.update)
 
     app.delete('/api/pantry/:id', pantryController.remove);
@@ -76,28 +78,28 @@ function api_routes(app) {
     app.post('/api/spoon', function (req, res) {
         var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&ranking=2&number=10&ignorePantry=true";
         axios.get(queryURL)
-        .then(response => {
-            var recipeSumms = [];
-            response.data.map(recipe => {
+            .then(response => {
+                var recipeSumms = [];
+                response.data.map(recipe => {
                     var querySumm = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=" + process.env.foodAPIKey;
                     axios.get(querySumm)
-                    .then(data => {
-                        recipeSumms.push(data.data);
-                        if (recipeSumms.length === response.data.length) {
-                            res.json({ query1: response.data, query2: recipeSumms });
-                        }   
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-            });      
-        })
-        .catch(err => {
-            res.json(err);
-        });
+                        .then(data => {
+                            recipeSumms.push(data.data);
+                            if (recipeSumms.length === response.data.length) {
+                                res.json({ query1: response.data, query2: recipeSumms });
+                            }
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                });
+            })
+            .catch(err => {
+                res.json(err);
+            });
     });
-    
-    app.post("/api/spoonOne/:id", function (req,res) {
+
+    app.post("/api/spoonOne/:id", function (req, res) {
         var queryURL = "https://api.spoonacular.com/recipes/" + req.params.id + "/analyzedInstructions?apiKey=" + process.env.foodAPIKey;
         axios.get(queryURL)
             .then(response => {
@@ -106,13 +108,13 @@ function api_routes(app) {
             .catch(err => console.log(err));
     });
 
-    app.post("/api/drink", function(req,res) {
+    app.post("/api/drink", function (req, res) {
         var queryURL = "https://www.thecocktaildb.com/api/json/v1/" + process.env.drinkAPIKey + "/filter.php?i=" + req.body.query;
-            axios.get(queryURL)
-            .then(response=> {
+        axios.get(queryURL)
+            .then(response => {
                 res.json(response.data);
             })
-                .catch(err => console.log(err));
+            .catch(err => console.log(err));
     })
 }
 

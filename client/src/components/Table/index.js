@@ -77,10 +77,10 @@ class Table extends Component {
     renderTableHeader() {
         let header = Object.keys(this.state.ingredients[0])
         return header.map((key, index) => {
-            if (key === "name" || key === "quantity" || key === "unit") {
+            if (index > 0 && index < 4) {
                 return <th key={index}>{key.toUpperCase()}</th>
-            } else {
-                return <th>Nothing Found</th>
+            } else if (index === 4) {
+                return <th>DELETE</th>
             }
             
         })
