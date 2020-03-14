@@ -42,9 +42,9 @@ class Recipes extends Component {
     }
     loadRecipes = () => {
         API.getRecipes()
-            .then(res=> this.setState({ recipes: res.data }))
+            .then(res=> this.setState({ recipes: res.data }, () => {console.log(this.state.recipes)}))
             .catch(err=> console.log(err));
-            console.log(this.state.recipes);
+            
     }
     deleteRecipe = id => {
         API.deleteRecipe(id)
