@@ -13,11 +13,9 @@ class Profile extends Component {
     handleLogout = event => {
         API.logout().then(function(response){
             console.log("Data: ", response) 
-            if (response.data === "Logout!") {
-                sessionStorage.setItem("Logout", true);
-                window.location.href = "/"
-                console.log("User has been logged out client")
-            }
+            sessionStorage.setItem("Logout", true);
+            window.location.href = "/"
+            console.log("User has been logged out client")
         })
     }
 
