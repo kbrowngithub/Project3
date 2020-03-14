@@ -11,6 +11,10 @@ function api_routes(app) {
         res.send("Hello World");
     })
 
+    app.get("/friends", function (req, res) {
+        res.send("Hello World");
+    })
+
     app.get("/api/users", function(req, res) {
         db.User.find({}).then(function(data) {
             res.json(data)

@@ -79,7 +79,9 @@ class Table extends Component {
         return header.map((key, index) => {
             if (key === "name" || key === "quantity" || key === "unit") {
                 return <th key={index}>{key.toUpperCase()}</th>
-            } 
+            } else {
+                return <th>Nothing Found</th>
+            }
             
         })
     }
