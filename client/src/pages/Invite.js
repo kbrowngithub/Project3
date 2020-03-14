@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
+import { Link } from 'react-router-dom';
+import { AwesomeButton } from 'react-awesome-button';
+import 'react-awesome-button/dist/themes/theme-blue.css';
+import './styles.css';
+
+function testing() {
+  alert("Yup")
+}
 
 class Invite extends Component {
   state = {
@@ -111,7 +119,9 @@ class Invite extends Component {
             <Jumbotron>
               <h1>Who should I invite?</h1>
             </Jumbotron>
+        
             <form>
+              
               <div className="form-group">
                 <label htmlFor="to">To:</label>
                 <input
@@ -134,18 +144,30 @@ class Invite extends Component {
                   onChange={this.handleInputChange}
                 />
               </div>
-              <FormBtn
+           
+              <AwesomeButton
                 disabled={!(this.state.message.to)}
                 onClick={this.handleEmailFormSubmit}
+                type="secondary"
+                size="medium"
+                ripple
+                href="/"
+                className='button'
               >
                 Send Email
-              </FormBtn>
-              <FormBtn
+              </AwesomeButton>
+         
+              <AwesomeButton
                 disabled={!(this.state.message.to)}
                 onClick={this.handleFormSubmit}
+                type="secondary"
+                size="medium"
+                ripple
+                href="/"
+                className='button'
               >
                 Send Text
-              </FormBtn>
+              </AwesomeButton>
               
             </form>
           </Col>

@@ -29,7 +29,6 @@ class Recipes extends Component {
         if (obj === undefined) {
             console.log("No data");
         } else {
-            console.log(obj.recipeData)
             let spoonacularObject = obj.recipeData;
             this.setState({ spoonRecipe: spoonacularObject });
             this.setState({ showForm: false });
@@ -37,7 +36,6 @@ class Recipes extends Component {
         }
     }
     loadRecipeInstructions = id => {
-        console.log(id);
         API.getInstructions(id)
             .then(res => this.setState({spoonRecipeSteps: res.data[0].steps}))
             .catch(err => console.log(err));
@@ -46,6 +44,7 @@ class Recipes extends Component {
         API.getRecipes()
             .then(res=> this.setState({ recipes: res.data }))
             .catch(err=> console.log(err));
+            
     }
     deleteRecipe = id => {
         API.deleteRecipe(id)
@@ -53,12 +52,32 @@ class Recipes extends Component {
           .catch(err => console.log(err));
     };
     saveRecipe(obj) {
+        let ingredients = [];
+        let combinedIngredients = obj.ingredients.concat(obj.missingIngredients);
+        combinedIngredients.map(ingredient => {
+            let ingredientObj = {
+                amount: ingredient.amount,
+                unit: ingredient.unit,
+                name: ingredient.name,
+                id: ingredient.id
+            }
+            ingredients.push(ingredientObj);
+        })
+        let instructions = [];
+        obj.instructions.map(instruction => {
+            let instructionObj = {
+                number: instruction.number,
+                step: instruction.step
+            }
+            instructions.push(instructionObj);
+        })
+        
         API.saveRecipe({
             title: obj.title,
             image: obj.image,
             idAPI: obj.id,
-            instructions: obj.instructions,
-            ingredients: obj.ingredients.concat(obj.missingIngredients)
+            instructions: instructions,
+            ingredients: ingredients
         })
         .then(res => window.location.reload(false))
         .catch(err => console.log(err));
@@ -82,7 +101,7 @@ class Recipes extends Component {
             .catch(err => console.log(err));
         }
     }
-
+    
     render() {
         const showForm = this.state.showForm;
         let recipeField = null;
