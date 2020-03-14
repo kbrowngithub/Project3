@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import { Button } from 'react-bootstrap';
+import { AwesomeButton } from 'react-awesome-button';
+import 'react-awesome-button/dist/themes/theme-blue.css';
 
 
 class RecipeSearch extends Component {
@@ -15,7 +17,7 @@ class RecipeSearch extends Component {
     componentDidMount() {
         this.loadIngredients();
     }
-    
+
     loadIngredients = () => {
         API.getIngredients()
             .then(res => {
@@ -27,21 +29,19 @@ class RecipeSearch extends Component {
         API.searchRecipes({
             query: this.state.strQuery
         })
-        .then(res => {
-            for (let i = 0; i < res.data.query2.length; i++) {
-                var shortText = res.data.query2[i].summary.substr(0, 200);
-                var cleanText = shortText.replace(/<\/?[^>]+(>|$)/g, "");
-                res.data.query1[i].summary = cleanText + "..."
-            }
-            this.props.updateRecipesCB(res.data.query1);
-        })
-        .catch(err => console.log(err));
+            .then(res => {
+                for (let i = 0; i < res.data.query2.length; i++) {
+                    res.data.query1[i].summary = res.data.query2[i].summary;
+                }
+                this.props.updateRecipesCB(res.data.query1);
+            })
+            .catch(err => console.log(err));
     }
 
     jsonConverter = json => {
         var array = [];
         json.map(ingredient => {
-          return array.push(ingredient.name);
+            return array.push(ingredient.name);
         });
         this.pantryConcatenator(array);
     }
@@ -59,7 +59,16 @@ class RecipeSearch extends Component {
     }
     render() {
         return (
-            <Button variant="info" onClick={this.searchRecipes} style={{ margin: '10px' }}>Food Recipes</Button>
+            <AwesomeButton
+                variant="info"
+                onPress={this.searchRecipes}
+                type="secondary"
+                size="large"
+                className='button'
+            >
+                Food Recipes
+            </AwesomeButton>
+            // <Button variant="info" onClick={this.searchRecipes} style={{ margin: '10px' }}>Food Recipes</Button>
         )
     }
 }

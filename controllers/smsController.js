@@ -60,10 +60,12 @@ module.exports = {
     }, function(error, info) {
       if (error) {
         console.log(error);
-        res.send(`Email error: ${error}`);
+        // res.send(`Email error: ${error}`);
+        res.send(JSON.stringify({ success: false }));
       } else {
         console.log(`Email sent: ${info.response}`);
-        res.send(info.response);
+        // res.send(info.response);
+        res.send(JSON.stringify({ success: true }));
       }
     });
   }
