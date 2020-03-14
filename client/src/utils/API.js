@@ -1,4 +1,5 @@
 import axios from "axios";
+import { UserInstance } from "twilio/lib/rest/chat/v1/service/user";
 
 export default {
   // Gets all saved recipes

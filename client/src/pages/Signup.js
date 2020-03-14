@@ -24,28 +24,31 @@ class Signup extends Component {
         // "\nPassword: " + this.state.password);
         if (!this.state.fullName || !this.state.email || !this.state.password || !this.state.password2) {
             // errors.push({ msg: 'Please enter all fields' });
-            return alert("Must enter all fields")
+            // return alert("Must enter all fields")
+            return this.setState({signupFlag: 1});
         }
 
         if (this.state.password !== this.state.password2) {
             // errors.push({ msg: 'Passwords do not match' });
-            return alert("Passowrds do not match")
+            // return alert("Passowrds do not match")
+            return this.setState({signupFlag: 2});
         }
 
         // if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(this.state.email)) {
 
         // } else {
-        //     return alert("Please enter valid email")
+        //     // return alert("Please enter valid email")
+        //     return this.setState({signupFlag: 3});
         // }
 
         if (this.state.password.length < 6) {
             // errors.push({ msg: 'Password must be at least 6 characters' });
-            return alert("Password must be at least 6 characters")
+            // return alert("Password must be at least 6 characters")
+            return this.setState({signupFlag: 4});
         }
 
         if (this.state.fullName || this.state.email || this.state.password || this.state.password2) {
-            // errors.push({ msg: 'Please enter all fields' });
-            alert("All Correct")
+            let currentComponent = this;
 
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(this.state.password, salt, (err, hash) => {
@@ -57,9 +60,21 @@ class Signup extends Component {
                         password: this.state.password,
                     })
                         .then(user => {
+                            sessionStorage.setItem("Logout", false);
                             window.location.replace('/profile');
                         })
-                        .catch(err => console.log(err));
+                        .catch(function(error) {
+                            console.log("Error: " + error)
+                            if (error.response.data.code) {
+                                currentComponent.setState({signupFlag: 5});
+                                currentComponent.setState({
+                                    fullName: "",
+                                    email: "",
+                                    password: "",
+                                    password2: ""
+                                })
+                            }
+                        })
                 });
             });
         }
@@ -76,6 +91,11 @@ class Signup extends Component {
                             <i className="fas fa-user-plus"></i> Register
                     </h1>
                         {/* <% include ./partials/messages %> */}
+                        { this.state.signupFlag === 1 && <p>Please enter all fields</p>}
+                        { this.state.signupFlag === 2 && <p>Passwords do not match</p>}
+                        { this.state.signupFlag === 3 && <p>Please enter a valid email</p>}
+                        { this.state.signupFlag === 4 && <p>Password must be at least 6 characters</p>}
+                        { this.state.signupFlag === 5 && <p>Email is already in use</p>}
                         <form noValidate action="/signup" method="POST">
                             <div className="form-group">
                                 <label for="name">Name</label>
