@@ -29,19 +29,13 @@ function api_routes(app) {
             successRedirect: '/',
             failureRedirect: '/login'
         })(req, res, next);
-    });
-
-
-    app.post("/api/login", passport.authenticate("local"), function (req, res) {
-        console.log("LOGIN REQUEST RECIEVED")
-        res.json(req.user);
-    });
+      });
 
     // Logout
     app.get('/logout', (req, res) => {
         console.log("Logout")
-        req.logout();
         res.send("Logout!");
+        req.logout();
     });
 
     app.get("/api/users", function (req, res) {
