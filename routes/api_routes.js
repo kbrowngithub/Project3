@@ -86,6 +86,7 @@ function api_routes(app) {
                         .then(data => {
                             recipeSumms.push(data.data);
                             if (recipeSumms.length === response.data.length) {
+                                console.log({ query1: response.data, query2: recipeSumms })
                                 res.json({ query1: response.data, query2: recipeSumms });
                             }
                         })
