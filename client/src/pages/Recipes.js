@@ -42,7 +42,7 @@ class Recipes extends Component {
     }
     loadRecipes = () => {
         API.getRecipes()
-            .then(res=> this.setState({ recipes: res.data }, () => {console.log(this.state.recipes)}))
+            .then(res=> this.setState({ recipes: res.data }))
             .catch(err=> console.log(err));
             
     }

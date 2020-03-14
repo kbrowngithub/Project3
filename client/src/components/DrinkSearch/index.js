@@ -26,11 +26,10 @@ class DrinkSearch extends Component {
         return (            
             <AwesomeButton
             variant="info"
-            onClick={this.searchDrinks}
+            onPress={this.searchDrinks}
             type="secondary"
             size="large"
             ripple
-            href="/"
             className='button'
           >
             Drink Recipes
