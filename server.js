@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const session = require('express-session');
 const mongoose = require("mongoose");
 const routes = require("./routes/api_routes");
@@ -25,11 +26,15 @@ app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+  // Try line below to fix path issues on Heroku - didn't work
+  // app.use(express.static(path.join(__dirname, '/client/build')));
+  app.get(`*`, function(req, res) {
+    res.sendFile(path.join(__dirname, `client/build`, `index.html`));
+  });
 }
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/recipedb");
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://user1:password1@ds111940.mlab.com:11940/heroku_h7kb0lk7");
 
 // Express session
 app.use(

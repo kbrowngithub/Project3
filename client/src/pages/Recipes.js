@@ -5,128 +5,146 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
-
+import RecipeForm from "../components/RecipeForm"
+import RecipeSlide from "../components/RecipeSlide"
 class Recipes extends Component {
-  state = {
-    recipes: [],
-    label: "",
-    source: "",
-    image: ""
-  };
-
-  componentDidMount() {
-    this.loadRecipes();
-  }
-
-  loadRecipes = () => {
-    API.getRecipes()
-      .then(res =>
-        this.setState({ recipes: res.data, label: "", source: "", image: "" })
-      )
-      .catch(err => console.log(err));
-  };
-
-  deleteRecipe = id => {
-    API.deleteRecipe(id)
-      .then(res => this.loadRecipes())
-      .catch(err => console.log(err));
-  };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  // label: { type: String, required: true },
-  //   image: { type: String, default: "https://ezyvectors.com/wp-content/uploads//edd/2019/05/Colorful-Free-Food-Icon-Vector.jpg" },
-  //   source: { type: String, required: true },
-  //   url: { type: String, required: true },
-  //   ingredientLines: {type: Array, required: true},
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.label && this.state.source) {
-      API.saveRecipe({
-        label: this.state.label,
-        image: this.state.image,
-        source: this.state.source,
-        url: "http://www.edamam.com/recipe/oven-roasted-bbq-chicken-thighs-deb32477acd2ad8c18e6a74df29fd153/bbq",
-        ingredientLines: [
-          "3 cups Your Favorite BBQ Sauce",
-          "1/2 cup Peach Preserves",
-          "1 clove Garlic",
-          "Hot Sauce, Optional",
-          "12 whole Chicken Thighs, Bone-in, Skin-on",
-          "Olive Oil For Brushing"
-          ]
-      })
-        .then(res => this.loadRecipes())
+    state= {
+        recipes: [],
+        title: "",
+        image: "",
+        idAPI: "",
+        ingredients: [],
+        instructions: [],
+        missingIngredients: [],
+        spoonRecipe: [],
+        showForm: true,
+        spoonRecipeSteps: []
+    }
+    componentDidMount() {
+        this.loadRecipes();
+        this.contentChooser(this.props.location.state);
+        
+    }
+    contentChooser (obj) {
+        if (obj === undefined) {
+            console.log("No data");
+        } else {
+            console.log(obj.recipeData)
+            let spoonacularObject = obj.recipeData;
+            this.setState({ spoonRecipe: spoonacularObject });
+            this.setState({ showForm: false });
+            this.loadRecipeInstructions(obj.recipeData.id);
+        }
+    }
+    loadRecipeInstructions = id => {
+        console.log(id);
+        API.getInstructions(id)
+            .then(res => this.setState({spoonRecipeSteps: res.data[0].steps}))
+            .catch(err => console.log(err));
+    }
+    loadRecipes = () => {
+        API.getRecipes()
+            .then(res=> this.setState({ recipes: res.data }))
+            .catch(err=> console.log(err));
+    }
+    deleteRecipe = id => {
+        API.deleteRecipe(id)
+          .then(res => window.location.reload(false))
+          .catch(err => console.log(err));
+    };
+    saveRecipe(obj) {
+        API.saveRecipe({
+            title: obj.title,
+            image: obj.image,
+            idAPI: obj.id,
+            instructions: obj.instructions,
+            ingredients: obj.ingredients.concat(obj.missingIngredients)
+        })
+        .then(res => window.location.reload(false))
         .catch(err => console.log(err));
     }
-  };
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+    };
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.title && this.state.ingredients) {
+            API.saveRecipe({
+                title: this.state.title,
+                image: this.state.image,
+                ingredients: [this.state.ingredients],
+                instructions: this.state.instructions
+            })
+            .then(res => window.location.reload(false))
+            .catch(err => console.log(err));
+        }
+    }
 
-  render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Recipes</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                value={this.state.label}
-                onChange={this.handleInputChange}
-                name="label"
-                placeholder="Label (required)"
-              />
-              <Input
-                value={this.state.source}
-                onChange={this.handleInputChange}
-                name="source"
-                placeholder="Source (required)"
-              />
-              <TextArea
-                value={this.state.image}
-                onChange={this.handleInputChange}
-                name="image"
-                placeholder="Image URL (Optional)"
-              />
-              <FormBtn
-                disabled={!(this.state.source && this.state.label)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Recipe
-              </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Recipe List</h1>
-            </Jumbotron>
-            {this.state.recipes.length ? (
-              <List>
-                {this.state.recipes.map(recipe => (
-                  <ListItem key={recipe._id}>
-                    <Link to={"/recipes/" + recipe._id}>
-                      <strong>
-                        {recipe.label} by {recipe.source}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+    render() {
+        const showForm = this.state.showForm;
+        let recipeField = null;
+        if (showForm) {
+            recipeField = <RecipeForm
+                        handleInputChange={this.handleInputChange}
+                        handleFormSubmit={this.handleFormSubmit}
+                        title={this.state.title}
+                        image={this.state.image}
+                        ingredients={this.state.ingredients}
+                        instructions={this.state.instructions}
+                        />
+        } else {
+            recipeField = <RecipeSlide
+                            title={this.state.spoonRecipe.title}
+                            id={this.state.spoonRecipe.id}
+                            key={this.state.spoonRecipe.id}
+                            image={this.state.spoonRecipe.image}
+                            summary={this.state.spoonRecipe.summary}
+                            instructions={this.state.spoonRecipeSteps}
+                            ingredients={this.state.spoonRecipe.usedIngredients}
+                            missingIngredients={this.state.spoonRecipe.missingIngredients}
+                            saveCB={this.saveRecipe}
+                          />
+        }
+
+        return(
+            <Container fluid>
+                <Row>
+                    <Col size="md-6">
+                        <Jumbotron>
+                            <h1>Recipes</h1>
+                        </Jumbotron>
+                        { recipeField }
+                       
+                    </Col>
+                    <Col size="md-6 sm-12">
+                        <Jumbotron>
+                        <h1>Recipe List</h1>
+                        </Jumbotron>
+                        {this.state.recipes.length ? (
+                        <List>
+                            {this.state.recipes.map(recipe => (
+                            <ListItem key={recipe._id}>
+                                <Link to={"/recipes/" + recipe._id}>
+                                <strong>
+                                    {recipe.title}
+                                </strong>
+                                </Link>
+                                <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
+                            </ListItem>
+                            ))}
+                        </List>
+                        ) : (
+                        <h3>No Results to Display</h3>
+                        )}
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
+
 }
 
 export default Recipes;
