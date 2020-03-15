@@ -30,7 +30,6 @@ class DrinkSearch extends Component {
             type="secondary"
             size="large"
             ripple
-            href="/"
             className='button'
           >
             Drink Recipes

@@ -5,6 +5,7 @@ import RecipeSearch from "../components/RecipeSearch";
 import DrinkSearch from "../components/DrinkSearch";
 import RecipeCard from "../components/RecipeCard";
 import DrinkCard from "../components/DrinkCard";
+import './assets/css/styles.css';
 
 class Home extends Component {
     constructor(props) {
@@ -29,7 +30,10 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <div 
+            // className="background"
+            >
+                 
                 <h3 className="content-center">Home</h3>
                 <div className="row">
                     <DrinkSearch updateDrinksCB={ this.updateDrinks }></DrinkSearch>
