@@ -1,24 +1,24 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import API from "../utils/API";
 
 class Profile extends Component {
     componentDidMount() {
         console.log(sessionStorage.getItem("Logout"))
         if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
-            window.location.href = "/"
+            window.location.href = "/login"
         }
     }
     
     handleLogout = event => {
         API.logout().then(function(response){
             console.log("Data: ", response) 
-            console.log("Logut clientside")
-            if (response.data === "Logout!") {
-                sessionStorage.setItem("Logout", true);
-             window.location.href = "/"
-            }
-        } )
+            sessionStorage.setItem("Logout", true);
+            window.location.href = "/"
+            console.log("User has been logged out client")
+        })
     }
+
 
     render() {
         return (
@@ -26,16 +26,13 @@ class Profile extends Component {
                 <h1 class="mt-4">Dashboard</h1>
                 <p class="lead mb-3">Welcome </p>
                 {/* <%= user.name %> */}
-                <button onClick={this.handleLogout} type="button" className="btn">
-                    Logout
-                        </button>
-                <a href="/" class="btn btn-secondary">Home</a>
+                <button onClick={this.handleLogout} type="button" className="btn">Logout</button>
+                {/* <a href="/" class="btn btn-secondary">Home</a> */}
+                <Link to="/">Home</Link>
             </div>
 
         )
     }
-
-
 }
 
 export default Profile;

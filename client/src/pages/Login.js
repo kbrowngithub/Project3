@@ -9,21 +9,28 @@ class Login extends Component {
 
     handleFormSubmit = event => {
         if (!this.state.email) {
-            return alert("Please enter your email");
+            // return alert("Please enter your email");
+            return this.setState({loginFlag: 1});
         }
         if (!this.state.password) {
-            return alert("Please enter your password")
+            // return alert("Please enter your password")
+            return this.setState({loginFlag: 2});
         }
 
         if (this.state.email && this.state.password) {
-            alert("All correct")
+            let currentComponent = this;
+            
             API.login({
                 email: this.state.email,
                 password: this.state.password
             }).then(function(data){
-                console.log("CLIENT DATA " + data);
+                console.log("CLIENT DATA ",data);
                 sessionStorage.setItem("Logout", false);
                 window.location.href="/profile"
+            }).catch(function(error){
+                if (error) {
+                    return currentComponent.setState({loginFlag: 3})
+                }
             })
         }
     };
@@ -42,6 +49,9 @@ class Login extends Component {
                     <div className="card card-body">
                         <h1 className="text-center mb-3"><i className="fas fa-sign-in-alt"></i>  Login</h1>
                         {/* <% include ./partials/messages %> */}
+                        { this.state.loginFlag === 1 && <p>Please enter your email</p>}
+                        { this.state.loginFlag === 2 && <p>Please enter your password</p>}
+                        { this.state.loginFlag === 3 && <p>Email or password is incorrect</p>}
                         <form action="/login" method="POST">
                             <div className="form-group">
                                 <label for="email">Email</label>
