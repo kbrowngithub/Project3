@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { AwesomeButton } from 'react-awesome-button';
-import 'react-awesome-button/dist/themes/theme-blue.css';
+import 'react-awesome-button/dist/themes/theme-red.css';
 import './styles.css';
 
 function Nav() {
 
     return (
       
-        <nav className="navbar navbar-expand-lg navbar-dark">
+        <nav className="image-blurred-edge navbar navbar-expand-lg navbar-dark">
 
-            <Link to="/" className="navbar-brand">Chuck Wagon</Link>
+            <Link to="/" className="navbar-brand">Woking Title</Link>
             <div className="">
                 <ul className="navbar-nav naving">
                     <AwesomeButton
@@ -22,7 +22,7 @@ function Nav() {
                     >Home
                    </AwesomeButton>
                     <AwesomeButton
-                        type="primary"
+                        type="secondary"
                         size="medium"
                         ripple
                         href="/friends"
@@ -36,7 +36,7 @@ function Nav() {
                         className='button'
                     >Recipes</AwesomeButton>
                     <AwesomeButton
-                        type="primary"
+                        type="secondary"
                         size="medium"
                         ripple
                         href="/create"

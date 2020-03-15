@@ -67,7 +67,6 @@ class RecipeSearch extends Component {
                     type="secondary"
                     size="large"
                     ripple
-                    href="/"
                     className='button'
                   >
                     Food Recipes

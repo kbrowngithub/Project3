@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './SMSForm.css';
+// import './SMSForm.css';
+import './assets/css/SMSForm.css';
 
 export default class SMSForm extends Component {
   constructor(props) {
