@@ -29,19 +29,13 @@ function api_routes(app) {
             successRedirect: '/',
             failureRedirect: '/login'
         })(req, res, next);
-    });
-
-
-    app.post("/api/login", passport.authenticate("local"), function (req, res) {
-        console.log("LOGIN REQUEST RECIEVED")
-        res.json(req.user);
-    });
+      });
 
     // Logout
     app.get('/logout', (req, res) => {
         console.log("Logout")
-        req.logout();
         res.send("Logout!");
+        req.logout();
     });
 
     app.get("/api/users", function (req, res) {
@@ -76,7 +70,7 @@ function api_routes(app) {
     app.delete('/api/pantry/:id', pantryController.remove);
 
     app.post('/api/spoon', function (req, res) {
-        var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&ranking=2&number=10&ignorePantry=true";
+        var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&limitLicense=true&ranking=2&number=3&ignorePantry=true";
         axios.get(queryURL)
             .then(response => {
                 var recipeSumms = [];
@@ -86,6 +80,7 @@ function api_routes(app) {
                         .then(data => {
                             recipeSumms.push(data.data);
                             if (recipeSumms.length === response.data.length) {
+                                console.log({ query1: response.data, query2: recipeSumms })
                                 res.json({ query1: response.data, query2: recipeSumms });
                             }
                         })

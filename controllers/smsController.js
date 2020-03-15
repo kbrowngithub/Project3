@@ -44,7 +44,7 @@ module.exports = {
   },
   emailInvite: function (req, res) {
     console.log(`recipesController:emailInvite(): from=<session-uid-here>, to=${req.body.to}, body=${req.body.body}`);
-    const msgText = "Dinner invite from <session-uid-here>\n" + req.body.body + "\nTo accept go to: https://bachelor-helper-recipes.herokuapp.com/"
+    const msgText = "Dinner invite from <session-uid-here>\n" + req.body.body + "\nTo accept go to: https://chuck-wagon.herokuapp.com/"
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -60,10 +60,12 @@ module.exports = {
     }, function(error, info) {
       if (error) {
         console.log(error);
-        res.send(`Email error: ${error}`);
+        // res.send(`Email error: ${error}`);
+        res.send(JSON.stringify({ success: false }));
       } else {
         console.log(`Email sent: ${info.response}`);
-        res.send(info.response);
+        // res.send(info.response);
+        res.send(JSON.stringify({ success: true }));
       }
     });
   }
