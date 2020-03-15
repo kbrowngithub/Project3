@@ -5,8 +5,8 @@
     border-radius:7px;
     text-shadow: 4px 4px 4px #aaa;
     border-color: darkgray;
-    
-    background-color: red;
+    background-color: rgb(36, 27, 23);
+    color: rgb(36, 27, 23);
 }
 
 body {
@@ -16,6 +16,42 @@ body {
     background-color: rgb(36, 27, 23);
     margin-left: 50px;
     margin-right: 50px;
-    font-family: 'Acme', sans-serif;
+    font-family: 'Fredericka the Great', cursive;
 }
 
+.drinkButton {
+    position: relative;
+    left: 42.5%;
+    margin-top: 14%;
+    width: 20%;
+    height: 100px;
+    font-size: xx-large;
+    font-family: 'Fredericka the Great', cursive;
+    background-color: brown;
+    text-shadow: 4px 4px 4px rgb(36, 27, 23);
+    border-color: rgb(36, 27, 23);
+    border-radius: 20px;
+    border-width: 3px;
+    opacity: 85%;
+}
+
+.foodButton {
+    position: relative;
+  left: 22.5%;
+    margin-top: 22%;
+    width: 20%;
+    height: 100px;
+    font-size: xx-large;
+    font-family: 'Fredericka the Great', cursive;
+    background-color: brown;
+    text-shadow: 4px 4px 4px rgb(36, 27, 23);
+    border-color: rgb(36, 27, 23);
+    border-radius: 20px;
+    border-width: 3px;
+    opacity: 85%;
+}
+
+.drinkButton:hover, .foodButton:hover {
+    background-color: rgb(104, 29, 29);
+    text-decoration: underline;
+  }

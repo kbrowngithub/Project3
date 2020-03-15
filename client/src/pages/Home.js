@@ -58,7 +58,7 @@ class Home extends Component {
                             ))
                             
                         ) : (
-                            <h3>Click the Recipe Buttons to Display New Recipes</h3>
+                            <h3></h3>
                         )}
                     </Col>
                 
@@ -74,9 +74,11 @@ class Home extends Component {
                                 />
                             ))
                             
-                        ) : (
-                            <h3>Click the Drink Buttons to Display New Drinks</h3>
-                        )}
+                        ) : 
+                        (
+                            <h3></h3>
+                        )
+                        }
                     </Col>
                 </div>
             </div>

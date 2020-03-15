@@ -30,5 +30,5 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 }
 
 .image-blurred-edge {
-    box-shadow: 0 0 8px 8px rgb(36, 27, 23) inset;
+    box-shadow: 0 0 4px 8px rgb(36, 27, 23) inset;
 }
