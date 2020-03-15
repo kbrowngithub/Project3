@@ -5,7 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import { Link } from 'react-router-dom';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/themes/theme-blue.css';
-import './styles.css';
+import './assets/css/styles.css';
 
 function testing() {
   alert("Yup")
@@ -151,7 +151,6 @@ class Invite extends Component {
                 type="secondary"
                 size="medium"
                 ripple
-                href="/"
                 className='button'
               >
                 Send Email
@@ -163,7 +162,6 @@ class Invite extends Component {
                 type="secondary"
                 size="medium"
                 ripple
-                href="/"
                 className='button'
               >
                 Send Text

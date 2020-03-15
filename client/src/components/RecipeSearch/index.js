@@ -60,14 +60,15 @@ class RecipeSearch extends Component {
     render() {
         return (
             <AwesomeButton
-                variant="info"
-                onPress={this.searchRecipes}
-                type="secondary"
-                size="large"
-                className='button'
-            >
-                Food Recipes
-            </AwesomeButton>
+                    variant="info"
+                    onClick={this.searchRecipes}
+                    type="secondary"
+                    size="large"
+                    ripple
+                    className='button'
+                  >
+                    Food Recipes
+                  </AwesomeButton>
             // <Button variant="info" onClick={this.searchRecipes} style={{ margin: '10px' }}>Food Recipes</Button>
         )
     }

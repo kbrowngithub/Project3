@@ -1,0 +1,21 @@
+.button {
+    margin-left: 10px;
+    font-size: medium;
+    border-style: solid;
+    border-radius:7px;
+    text-shadow: 4px 4px 4px #aaa;
+    border-color: darkgray;
+    
+    background-color: red;
+}
+
+body {
+    background-image: url(../images/silhouette.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-color: rgb(36, 27, 23);
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: 'Acme', sans-serif;
+}
+
