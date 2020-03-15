@@ -24,16 +24,13 @@ class DrinkSearch extends Component {
     }
     render() {
         return (            
-            <AwesomeButton
-            variant="info"
-            onPress={this.searchDrinks}
-            type="secondary"
-            size="large"
-            ripple
-            className='button'
+
+            <Button
+            onClick={this.searchDrinks}
+            className='drinkButton'
           >
             Drink Recipes
-          </AwesomeButton>
+          </Button>
         )
     }
 }
