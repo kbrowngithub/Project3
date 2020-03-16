@@ -34,13 +34,13 @@ class Home extends Component {
             // className="background"
             >
                  
-                <h3 className="content-center">Home</h3>
+               
                 <div className="row">
                     <DrinkSearch updateDrinksCB={ this.updateDrinks }></DrinkSearch>
 
                     <RecipeSearch updateRecipesCB={ this.updateRecipes }></RecipeSearch>
                 </div>
-                <h4>Found Recipes</h4>
+                
 
                 <div className="row">
                     <Col size="md-6">

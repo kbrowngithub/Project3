@@ -14,15 +14,14 @@ body {
     background-repeat: no-repeat;
     background-position-x: center;
     background-color: rgb(36, 27, 23);
-    margin-left: 50px;
-    margin-right: 50px;
+
     font-family: 'Fredericka the Great', cursive;
 }
 
 .drinkButton {
     position: relative;
     left: 42.5%;
-    margin-top: 14%;
+    margin-top: 16%;
     width: 20%;
     height: 100px;
     font-size: xx-large;
@@ -54,4 +53,31 @@ body {
 .drinkButton:hover, .foodButton:hover {
     background-color: rgb(104, 29, 29);
     text-decoration: underline;
+    transition: 0.7s;
   }
+
+@media only screen and (min-width: 600px) {
+      
+}
+
+@media only screen and (min-width: 768px) {
+    .button{
+        margin-left: 10px;
+        font-size: small;
+        width: 90px;
+        height: 40px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .button{
+        margin-left: 10px;
+        font-size: small;
+        width: 90px;
+        height: 40px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+      
+}

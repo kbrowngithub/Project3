@@ -1,21 +1,18 @@
 .navbar-brand {
-font-size: xx-large;
-font-size: 60px;
-text-shadow: 4px 4px 4px #62a1f3;
-margin-left: 30px;
-margin-right: 20px;
-
+    font-size: 60px;
+    text-shadow: 4px 4px 4px #62a1f3;
+    margin-left: 30px;
+    margin-right: 20px;
 }
 
 .navbar {
     font-family: 'Fredericka the Great', cursive;
     max-height: 80px;
-background: rgb(125,126,125);
-background: -moz-radial-gradient(center, ellipse cover,  rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
-background: -webkit-radial-gradient(center, ellipse cover,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: radial-gradient(ellipse at center,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+    background: rgb(125,126,125);
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .searchBar {
@@ -31,4 +28,68 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 
 .image-blurred-edge {
     box-shadow: 0 0 4px 8px rgb(36, 27, 23) inset;
+}
+
+@media only screen and (min-width: 600px) {
+    .navbar-brand {
+        text-shadow: 4px 4px 4px orange;
+        }
+}
+
+@media only screen and (min-width: 768px) {
+    .navbar-brand {
+        margin-left: 5px;
+        margin-right: 5px;
+        text-shadow: 4px 4px 4px blue;
+        font-size: 35px;
+    }
+    .navbar {
+        max-height: 70px;
+        }
+    .searchBar {
+        margin-left: 10px;
+        font-size: small;
+        width: 185px;
+        height: 40px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .navbar-brand {
+        margin-left: 5px;
+        margin-right: 5px;
+        text-shadow: 4px 4px 4px yellow;
+        font-size: 35px;
+    }
+    .navbar {
+        max-height: 70px;
+        }
+    .searchBar {
+        margin-left: 10px;
+        font-size: small;
+        width: 185px;
+        height: 40px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .navbar-brand {
+        text-shadow: 4px 4px 4px green;
+        font-size: 50px;
+        }
+    .navbar {
+        max-height: 70px;
+        }
+    .searchBar {
+        margin-left: 50px;
+        font-size: large;
+        width: 250px;
+    }
+}
+
+@media only screen and (min-width: 1680px) {
+    .navbar-brand {
+        text-shadow: 4px 4px 4px blue;
+        }
+    
 }
