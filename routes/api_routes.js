@@ -75,25 +75,20 @@ function api_routes(app) {
         var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&limitLicense=true&ranking=2&number=3&ignorePantry=true";
         axios.get(queryURL)
             .then(response => {
-                var recipeSumms = [];
-                response.data.map(recipe => {
-                    var querySumm = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=" + process.env.foodAPIKey;
-                    axios.get(querySumm)
-                        .then(data => {
-                            recipeSumms.push(data.data);
-                            if (recipeSumms.length === response.data.length) {
-                                console.log({ query1: response.data, query2: recipeSumms })
-                                res.json({ query1: response.data, query2: recipeSumms });
-                            }
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        })
-                });
+                res.json(response.data);
             })
             .catch(err => {
                 res.json(err);
             });
+    });
+
+    app.post("/api/spoonSumm/:id", function (req, res) {
+        var queryURL = "https://api.spoonacular.com/recipes/" + req.params.id + "/summary?apiKey=" + process.env.foodAPIKey;
+        axios.get(queryURL)
+            .then(response => {
+                res.json(response.data);
+            })
+            .catch(err => console.log(err));
     });
 
     app.post("/api/spoonOne/:id", function (req, res) {

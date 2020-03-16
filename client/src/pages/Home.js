@@ -1,27 +1,37 @@
-import React, { Component } from 'react';
-import Grid, { Col } from "../components/Grid"
+import React, { Component, useState } from 'react';
+import Grid, { Col, Row } from "../components/Grid"
 import { Button, Card } from 'react-bootstrap';
+import API from "../utils/API";
 import RecipeSearch from "../components/RecipeSearch";
 import DrinkSearch from "../components/DrinkSearch";
+
 import RecipeCard from "../components/RecipeCard";
 import DrinkCard from "../components/DrinkCard";
 import './assets/css/styles.css';
 
 class Home extends Component {
     constructor(props) {
-        super(props) 
-        
+        super(props)
         this.state = {
             recipeData: [],
             drinkData: []
         }
-        this.updateRecipes = this.updateRecipes
-        this.updateDrinks = this.updateDrinks
-        
     }
 
     updateRecipes = (array) => {
-        this.setState({ recipeData: array });
+        let recipes = [];
+        array.map(recipe => {
+            API.getSumms(recipe.id)
+                .then(res => {
+                    recipe.summary = res.data.summary;
+                    recipes.push(recipe);
+                })
+                .catch(err => console.log(err))
+
+        })
+        this.setState({ recipeData: recipes }, () => {
+            console.log(this.state.recipeData)
+        });
     }
 
     updateDrinks = (array) => {
@@ -30,21 +40,33 @@ class Home extends Component {
 
     render() {
         return (
-            <div 
-            // className="background"
-            >
-                 
+            
+            <div>
+
                 <h3 className="content-center">Home</h3>
                 <div className="row">
-                    <DrinkSearch updateDrinksCB={ this.updateDrinks }></DrinkSearch>
+                    <DrinkSearch updateDrinksCB={this.updateDrinks}></DrinkSearch>
 
-                    <RecipeSearch updateRecipesCB={ this.updateRecipes }></RecipeSearch>
+                    <RecipeSearch updateRecipesCB={this.updateRecipes}></RecipeSearch>
                 </div>
-                <h4>Found Recipes</h4>
 
-                <div className="row">
+                <Row>
                     <Col size="md-6">
-                        {this.state.recipeData.length ? (
+                
+                            {this.state.recipeData.map(recipe => (
+                                <p>{recipe.title}</p>
+                                // <RecipeCard
+                                // id={recipe.id}
+                                // key={recipe.id}
+                                // image={recipe.image}
+                                // summary={recipe.summary}
+                                // title={recipe.title}
+                                // missingIngredients={recipe.missedIngredients}
+                                // usedIngredients={recipe.usedIngredients}
+                                // />
+                            ))}
+    
+                        {/* {this.state.recipeData.length ? (
                             this.state.recipeData.map(recipe => (
                                 <RecipeCard
                                 id={recipe.id}
@@ -78,9 +100,9 @@ class Home extends Component {
                         (
                             <h3></h3>
                         )
-                        }
+                        } */}
                     </Col>
-                </div>
+                </Row>
             </div>
         )
     }
