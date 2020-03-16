@@ -48,13 +48,15 @@ class Table extends Component {
     }
 
     sendIngredient() {
-        API.saveIngredient({
-            name: this.state.newIngredient,
-            quantity: this.state.newQuantity,
-            unit: this.state.newUnit
-        })
-        .then(res => window.location.reload(false))
-        .catch(err => console.log(err));
+        if (this.state.newIngredient && this.state.newQuantity) {
+            API.saveIngredient({
+                name: this.state.newIngredient,
+                quantity: this.state.newQuantity,
+                unit: this.state.newUnit
+            })
+            .then(res => window.location.reload(false))
+            .catch(err => console.log(err));
+        }
     }
 
     renderTableData() {
