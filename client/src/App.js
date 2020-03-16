@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Recipes from "./pages/Recipes";
 import Detail from "./pages/Detail";
+import NewRecipe from "./pages/NewRecipe";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Pantry from './pages/Pantry';
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/recipes" component={Recipes} />
           <Route exact path="/recipes/:id" component={Detail} />
+          <Route exact path="/recipes/new/:id" component={NewRecipe} />
           <Route exact path="/pantry" component={Pantry} />
           <Route exact path="/friends" component={Friends} />
           <Route exact path="/create" component={CreateUser} />

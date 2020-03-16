@@ -61,6 +61,8 @@ function api_routes(app) {
 
     app.get('/api/recipes', recipesController.findAll);
 
+    app.get('/api/recipes/:id', recipesController.findById);
+
     app.post('/api/recipes', recipesController.create);
 
     app.get('/api/pantry', pantryController.findAll);
