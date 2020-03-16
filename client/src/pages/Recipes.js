@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import RecipeForm from "../components/RecipeForm"
-import RecipeSlide from "../components/RecipeSlide"
 class Recipes extends Component {
     state= {
         recipes: [],
