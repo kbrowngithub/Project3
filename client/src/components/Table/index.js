@@ -48,8 +48,9 @@ class Table extends Component {
     }
 
     sendIngredient() {
-        var regex=/^[0-9]+$/;
-        if (this.state.newIngredient && this.state.newQuantity.match(regex)) {
+        var regNum=/^[0-9]+$/;
+        var regex=/[A-Za-z]/g;
+        if (this.state.newIngredient.match(regex) && this.state.newQuantity.match(regNum)) {
             API.saveIngredient({
                 name: this.state.newIngredient,
                 quantity: this.state.newQuantity,
@@ -57,8 +58,10 @@ class Table extends Component {
             })
             .then(res => window.location.reload(false))
             .catch(err => console.log(err));
-        } else if (this.state.newIngredient && !this.state.newQuantity.match(regex)) {
+        } else if (this.state.newIngredient.match(regex) && !this.state.newQuantity.match(regNum)) {
             alert("Please enter an integer for quantity");
+        } else if (!this.state.newIngredient.match(regex) && this.state.newQuantity.match(regNum)) {
+            alert("Please enter an ingredient with letters");
         } else {
             alert("Please fill out all fields")
         }
