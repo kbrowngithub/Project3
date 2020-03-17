@@ -25,15 +25,12 @@ class RecipeSearch extends Component {
             })
             .catch(err => console.log(err));
     }
-    searchRecipes() {
+    searchRecipes = () => {
         API.searchRecipes({
             query: this.state.strQuery
         })
             .then(res => {
-                for (let i = 0; i < res.data.query2.length; i++) {
-                    res.data.query1[i].summary = res.data.query2[i].summary;
-                }
-                this.props.updateRecipesCB(res.data.query1);
+                this.props.updateRecipesCB(res.data);
             })
             .catch(err => console.log(err));
     }
@@ -60,11 +57,11 @@ class RecipeSearch extends Component {
     render() {
         return (
             <Button
-                    onClick={this.searchRecipes}
-                    className='foodButton'
-                  >
-                    Food Recipes
-                  </Button>
+                onClick={this.searchRecipes}
+                className='foodButton'
+            >
+                Food Recipes
+            </Button>
             // <Button variant="info" onClick={this.searchRecipes} style={{ margin: '10px' }}>Food Recipes</Button>
         )
     }
