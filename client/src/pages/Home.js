@@ -33,8 +33,7 @@ class Home extends Component {
             <div 
             // className="background"
             >
-                 
-                
+ 
                 <div className="row">
                     <DrinkSearch updateDrinksCB={ this.updateDrinks }></DrinkSearch>
 
