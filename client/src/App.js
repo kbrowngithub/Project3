@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/invite" component={Invite} />
-          <Route component={NoMatch} />
+          {/* <Route component={NoMatch} /> */}
         </Switch>
       </div>
     </Router>
