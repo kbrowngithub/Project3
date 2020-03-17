@@ -14,7 +14,6 @@ body {
     background-repeat: no-repeat;
     background-position-x: center;
     background-color: rgb(36, 27, 23);
-
     font-family: 'Fredericka the Great', cursive;
 }
 
@@ -70,14 +69,79 @@ body {
 }
 
 @media only screen and (min-width: 992px) {
+
     .button{
         margin-left: 10px;
         font-size: small;
         width: 90px;
         height: 40px;
     }
+
+    body {
+        background-image: url(../images/silhouette.png);
+        background-size: 80%;
+    }
+    .drinkButton {
+        left: 43.5%;
+        margin-top: 15%;
+        width: 18%;
+        height: 90px;
+        font-size: x-large;
+    }
+    
+    .foodButton {
+        left: 25.5%;
+        margin-top: 24%;
+        width: 18%;
+        height: 90px;
+        font-size: x-large;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
-      
+
+    .button{
+        margin-left: 10px;
+        font-size: medium;
+        width: 120px;
+        height: 40px;
+    }
+
+    body {
+        background-image: url(../images/silhouette.png);
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-color: rgb(36, 27, 23);
+        font-family: 'Fredericka the Great', cursive;
+    }
+    
+    .drinkButton {
+        left: 43.5%;
+        margin-top: 15%;
+        width: 18%;
+        height: 90px;
+        font-size: x-large;
+    }
+    
+    .foodButton {
+        left: 25.5%;
+        margin-top: 24%;
+        width: 18%;
+        height: 90px;
+        font-size: x-large;
+    }
+    
+    .drinkButton:hover, .foodButton:hover {
+        background-color: rgb(104, 29, 29);
+        text-decoration: underline;
+        transition: 0.7s;
+      }
+
+}
+
+@media only screen and (min-width: 1680px) {
+    .navbar-brand {
+        text-shadow: 4px 4px 4px blue;
+        }
+    
 }
