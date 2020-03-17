@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import Grid, { Col } from "../components/Grid"
-import { Button, Card } from 'react-bootstrap';
+import React, { Component, useState } from 'react';
+import Grid, { Col, Row } from "../components/Grid";
 import RecipeSearch from "../components/RecipeSearch";
 import DrinkSearch from "../components/DrinkSearch";
 import RecipeCard from "../components/RecipeCard";
@@ -9,18 +8,14 @@ import './assets/css/styles.css';
 
 class Home extends Component {
     constructor(props) {
-        super(props) 
-        
+        super(props)
         this.state = {
             recipeData: [],
             drinkData: []
         }
-        this.updateRecipes = this.updateRecipes
-        this.updateDrinks = this.updateDrinks
-        
     }
 
-    updateRecipes = (array) => {
+    updateRecipes = (array) => {       
         this.setState({ recipeData: array });
     }
 
@@ -30,19 +25,18 @@ class Home extends Component {
 
     render() {
         return (
+
             <div 
             // className="background"
             >
-                 
-                
-                <div className="row">
-                    <DrinkSearch updateDrinksCB={ this.updateDrinks }></DrinkSearch>
 
-                    <RecipeSearch updateRecipesCB={ this.updateRecipes }></RecipeSearch>
+                <div className="row">
+                    <DrinkSearch updateDrinksCB={this.updateDrinks}></DrinkSearch>
+
+                    <RecipeSearch updateRecipesCB={this.updateRecipes}></RecipeSearch>
                 </div>
-                
 
-                <div className="row">
+                <Row>
                     <Col size="md-6">
                         {this.state.recipeData.length ? (
                             this.state.recipeData.map(recipe => (
@@ -73,14 +67,12 @@ class Home extends Component {
                                 image={drink.strDrinkThumb}
                                 />
                             ))
-                            
                         ) : 
                         (
                             <h3></h3>
-                        )
-                        }
+                        )}
                     </Col>
-                </div>
+                </Row>
             </div>
         )
     }
