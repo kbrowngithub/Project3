@@ -39,10 +39,10 @@ class RecipeSearch extends Component {
     jsonConverter = json => {
         var array = [];
         if (json.length > 0) {
-        json.map(ingredient => {
-            return array.push(ingredient.name);
-        });
-        this.pantryConcatenator(array);
+            json.map(ingredient => {
+                return array.push(ingredient.name);
+            });
+            this.pantryConcatenator(array);
         } else {
             console.log("No data to map");
         }
