@@ -21,6 +21,7 @@ class RecipeSearch extends Component {
     loadIngredients = () => {
         API.getIngredients()
             .then(res => {
+                console.log("RecipeSearch:24", res.data);
                 this.jsonConverter(res.data);
             })
             .catch(err => console.log(err));
@@ -37,10 +38,14 @@ class RecipeSearch extends Component {
 
     jsonConverter = json => {
         var array = [];
+        if (json.length > 0) {
         json.map(ingredient => {
             return array.push(ingredient.name);
         });
         this.pantryConcatenator(array);
+        } else {
+            console.log("No data to map");
+        }
     }
     pantryConcatenator = array => {
         let finalEl = array[array.length - 1];
