@@ -1,10 +1,7 @@
 import React, { Component, useState } from 'react';
-import Grid, { Col, Row } from "../components/Grid"
-import { Button, Card } from 'react-bootstrap';
-import API from "../utils/API";
+import Grid, { Col, Row } from "../components/Grid";
 import RecipeSearch from "../components/RecipeSearch";
 import DrinkSearch from "../components/DrinkSearch";
-import CardDealer from "../components/CardDealer";
 import RecipeCard from "../components/RecipeCard";
 import DrinkCard from "../components/DrinkCard";
 import './assets/css/styles.css';
@@ -18,12 +15,8 @@ class Home extends Component {
         }
     }
 
-    updateRecipes = (array) => {
-        console.log(array);
-       
-        this.setState({ recipeData: array }, () => {
-            //console.log(this.state.recipeData)
-        });
+    updateRecipes = (array) => {       
+        this.setState({ recipeData: array });
     }
 
     updateDrinks = (array) => {
@@ -73,7 +66,6 @@ class Home extends Component {
                                 image={drink.strDrinkThumb}
                                 />
                             ))
-                            
                         ) : 
                         (
                             <h3></h3>
