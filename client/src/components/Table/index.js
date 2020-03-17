@@ -57,7 +57,7 @@ class Table extends Component {
                 quantity: this.state.newQuantity,
                 unit: this.state.newUnit
             })
-            .then(res => window.location.reload(false))
+            .then(res => window.location.reload(false)) //Use browser history to reroute with react router
             .catch(err => console.log(err));
         } else if (this.state.newIngredient.match(regex) && !this.state.newQuantity.match(regNum)) {
             alert("Please enter an integer for quantity");
