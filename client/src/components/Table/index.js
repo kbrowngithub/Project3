@@ -50,6 +50,7 @@ class Table extends Component {
     sendIngredient() {
         var regNum=/^[0-9]+$/;
         var regex=/[A-Za-z]/g;
+
         if (this.state.newIngredient.match(regex) && this.state.newQuantity.match(regNum)) {
             API.saveIngredient({
                 name: this.state.newIngredient,
@@ -68,6 +69,7 @@ class Table extends Component {
     }
 
     renderTableData() {
+        if (this.state.ingredients.length > 0) {
         return this.state.ingredients.map((ingredient, index) => {
           return(
             <tr key={ingredient._id}>
@@ -83,9 +85,11 @@ class Table extends Component {
             </tr>
           )
         });
+        }
     }
     renderTableHeader() {
         let header = Object.keys(this.state.ingredients[0])
+        
         return header.map((key, index) => {
             if (index > 0 && index < 4) {
                 return <th key={index}>{key.toUpperCase()}</th>
