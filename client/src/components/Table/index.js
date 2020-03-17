@@ -8,9 +8,9 @@ class Table extends Component {
         super(props) 
         this.state = {
             ingredients: [],
-            newIngredient: null,
-            newQuantity: null,
-            newUnit: null
+            newIngredient: "",
+            newQuantity: "",
+            newUnit: ""
         }
         this.addIngredient = this.addIngredient.bind(this);
         this.sendIngredient = this.sendIngredient.bind(this);
@@ -48,13 +48,23 @@ class Table extends Component {
     }
 
     sendIngredient() {
-        API.saveIngredient({
-            name: this.state.newIngredient,
-            quantity: this.state.newQuantity,
-            unit: this.state.newUnit
-        })
-        .then(res => window.location.reload(false))
-        .catch(err => console.log(err));
+        var regNum=/^[0-9]+$/;
+        var regex=/[A-Za-z]/g;
+        if (this.state.newIngredient.match(regex) && this.state.newQuantity.match(regNum)) {
+            API.saveIngredient({
+                name: this.state.newIngredient,
+                quantity: this.state.newQuantity,
+                unit: this.state.newUnit
+            })
+            .then(res => window.location.reload(false))
+            .catch(err => console.log(err));
+        } else if (this.state.newIngredient.match(regex) && !this.state.newQuantity.match(regNum)) {
+            alert("Please enter an integer for quantity");
+        } else if (!this.state.newIngredient.match(regex) && this.state.newQuantity.match(regNum)) {
+            alert("Please enter an ingredient with letters");
+        } else {
+            alert("Please fill out all fields")
+        }
     }
 
     renderTableData() {
@@ -90,18 +100,18 @@ class Table extends Component {
             <div>
                 <h1 id='title'>Pantry</h1>
                 {this.state.ingredients.length ? (
-                <table id='ingredients'>
-                    <tbody>
-                        <tr>{this.renderTableHeader()}</tr>
-                        {this.renderTableData()}
-                    </tbody>
-                </table>
+                    <table id='ingredients'>
+                        <tbody>
+                            <tr>{this.renderTableHeader()}</tr>
+                            {this.renderTableData()}
+                        </tbody>
+                    </table>
                 ) : (
                     <h3>No ingredients to display, add some below!</h3>
                 )}
          
-                <input name="newIngredient" type="text" placeholder="Add Ingredient" value={this.state.newIngredient} onChange={this.addIngredient}></input>
-                <input name="newQuantity" type="text" placeholder="Add Quantity" value={this.state.newQuantity} onChange={this.addIngredient}></input>
+                <input name="newIngredient" type="text" placeholder="Add Ingredient(Required)" value={this.state.newIngredient} onChange={this.addIngredient}></input>
+                <input name="newQuantity" type="text" placeholder="Add Quantity(Required)" value={this.state.newQuantity} onChange={this.addIngredient}></input>
                 <input name="newUnit" type="text" placeholder="Add Unit" value={this.state.newUnit} onChange={this.addIngredient}></input>
                 <button value="Send" onClick={this.sendIngredient}>Submit Ingredient</button>
              
