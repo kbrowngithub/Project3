@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap';
 import API from "../utils/API";
 import RecipeSearch from "../components/RecipeSearch";
 import DrinkSearch from "../components/DrinkSearch";
-
+import CardDealer from "../components/CardDealer";
 import RecipeCard from "../components/RecipeCard";
 import DrinkCard from "../components/DrinkCard";
 import './assets/css/styles.css';
@@ -19,18 +19,10 @@ class Home extends Component {
     }
 
     updateRecipes = (array) => {
-        let recipes = [];
-        array.map(recipe => {
-            API.getSumms(recipe.id)
-                .then(res => {
-                    recipe.summary = res.data.summary;
-                    recipes.push(recipe);
-                })
-                .catch(err => console.log(err))
-
-        })
-        this.setState({ recipeData: recipes }, () => {
-            console.log(this.state.recipeData)
+        console.log(array);
+       
+        this.setState({ recipeData: array }, () => {
+            //console.log(this.state.recipeData)
         });
     }
 
@@ -52,21 +44,7 @@ class Home extends Component {
 
                 <Row>
                     <Col size="md-6">
-                
-                            {this.state.recipeData.map(recipe => (
-                                <p>{recipe.title}</p>
-                                // <RecipeCard
-                                // id={recipe.id}
-                                // key={recipe.id}
-                                // image={recipe.image}
-                                // summary={recipe.summary}
-                                // title={recipe.title}
-                                // missingIngredients={recipe.missedIngredients}
-                                // usedIngredients={recipe.usedIngredients}
-                                // />
-                            ))}
-    
-                        {/* {this.state.recipeData.length ? (
+                        {this.state.recipeData.length ? (
                             this.state.recipeData.map(recipe => (
                                 <RecipeCard
                                 id={recipe.id}
@@ -99,8 +77,7 @@ class Home extends Component {
                         ) : 
                         (
                             <h3></h3>
-                        )
-                        } */}
+                        )}
                     </Col>
                 </Row>
             </div>

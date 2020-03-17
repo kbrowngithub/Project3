@@ -25,7 +25,7 @@ class RecipeSearch extends Component {
             })
             .catch(err => console.log(err));
     }
-    searchRecipes() {
+    searchRecipes = () => {
         API.searchRecipes({
             query: this.state.strQuery
         })
