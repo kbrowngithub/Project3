@@ -49,6 +49,7 @@ function Nav() {
                         href="/pantry"
                         className='button'
                     >Pantry</AwesomeButton>
+                    <Link to="/pantry" className="navbar-brand">Pantry</Link>
                 </ul>
 
             </div>
