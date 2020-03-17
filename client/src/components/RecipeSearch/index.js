@@ -30,7 +30,7 @@ class RecipeSearch extends Component {
             query: this.state.strQuery
         })
             .then(res => {
-                this.props.updateRecipesCB(res.data);                
+                this.props.updateRecipesCB(res.data);
             })
             .catch(err => console.log(err));
     }
@@ -57,11 +57,11 @@ class RecipeSearch extends Component {
     render() {
         return (
             <Button
-                    onClick={this.searchRecipes}
-                    className='foodButton'
-                  >
-                    Food Recipes
-                  </Button>
+                onClick={this.searchRecipes}
+                className='foodButton'
+            >
+                Food Recipes
+            </Button>
             // <Button variant="info" onClick={this.searchRecipes} style={{ margin: '10px' }}>Food Recipes</Button>
         )
     }
