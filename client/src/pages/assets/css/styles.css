@@ -56,6 +56,7 @@ body {
     text-decoration: underline;
   }
 
+<<<<<<< HEAD
 .form-check {
     margin-left: 20px;
 }
@@ -91,3 +92,106 @@ body {
     margin-bottom: 10px;
     color: #EB6864;
 }
+=======
+@media only screen and (max-width: 600px) {
+    .button{
+        margin-left: 10px;
+        font-size: small;
+        width: 70px;
+        height: 40px;
+    }
+
+    body {
+        background-image: url(../images/silhouette.png);
+        background-size: 120% 190%;
+    }
+    .drinkButton {
+        left: 40%;
+        margin-top: 40%;
+        width: 30%;
+        height: 60px;
+        font-size: small;
+    }
+    
+    .foodButton {
+        left: 10%;
+        margin-top: 60%;
+        width: 30%;
+        height: 60px;
+        font-size: small;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .button{
+        margin-left: 10px;
+        font-size: small;
+        width: 90px;
+        height: 40px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+
+    .button{
+        margin-left: 10px;
+        font-size: small;
+        width: 70px;
+        height: 40px;
+    }
+
+    body {
+        background-image: url(../images/silhouette.png);
+        background-size: 120% 190%;
+    }
+    .drinkButton {
+        left: 43.5%;
+        margin-top: 19%;
+        width: 20%;
+        height: 60px;
+        font-size: large;
+    }
+    
+    .foodButton {
+        left: 23.5%;
+        margin-top: 26%;
+        width: 20%;
+        height: 60px;
+        font-size: large;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+
+    .button{
+        margin-left: 10px;
+        font-size: medium;
+        width: 120px;
+        height: 40px;
+    }
+    
+    .drinkButton {
+        margin-top: 16%;
+        height: 80px;
+        left: 42.5%;
+    }
+    
+    .foodButton {
+        margin-top: 23%;
+        height: 80px;
+        left: 22.5%;
+    }
+
+    body {
+        background-image: url(../images/silhouette.png);
+        background-size: 80%;
+    }
+
+}
+
+/* @media only screen and (min-width: 1680px) {
+    .navbar-brand {
+        text-shadow: 4px 4px 4px blue;
+        }
+} */
+>>>>>>> da42504e25c7112fdd3c3d27d90786b7749b800c
