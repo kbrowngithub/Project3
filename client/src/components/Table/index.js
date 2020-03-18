@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import "./style.css";
 import API from "../../utils/API";
 import QuantityBtn from '../QuantityBtn'
@@ -43,7 +44,7 @@ class Table extends Component {
     
     deleteIngredient (id) {
         API.deleteIngredient(id)
-            .then(res => window.location.reload(false))
+            .then(res => this.loadIngredients())
             .catch(err => console.log(err));
     }
 
@@ -57,7 +58,10 @@ class Table extends Component {
                 quantity: this.state.newQuantity,
                 unit: this.state.newUnit
             })
-            .then(res => window.location.reload(false))
+            .then(res => {
+                this.loadIngredients();
+                this.setState({ newIngredient: "", newQuantity: "", newUnit: "" })
+            })
             .catch(err => console.log(err));
         } else if (this.state.newIngredient.match(regex) && !this.state.newQuantity.match(regNum)) {
             alert("Please enter an integer for quantity");
