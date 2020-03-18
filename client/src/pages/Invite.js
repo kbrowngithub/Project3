@@ -13,6 +13,8 @@ function testing() {
 
 class Invite extends Component {
   state = {
+    selectedOption: "Cell#",
+    placeholder: "10-digit cell num or email address",
     to: '',
     from: '<username goes here>',
     note: '',
@@ -33,8 +35,44 @@ class Invite extends Component {
     });
   };
 
+  // handleRadioButtonChange = event => {
+  //   console.log(`selectedOption = ${event.target.value}`);
+  //   this.setState({
+  //     selectedOption: event.target.value,
+  //     placeholder: event.target.value
+  //   })
+  // }
+  
   handleFormSubmit = event => {
     event.preventDefault();
+
+    const addr = this.state.message.to;
+    if(!addr) {
+      alert(`Must enter a valid \'To\' address (email or 10-digit cell)`);
+    } else if (/^\d{10}$/.test(addr)) {
+      alert(`Valid cell number`);
+      this.handleCellFormSubmit(event);
+    } else if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(addr)) {
+      alert(`Sending email to ${this.state.message.to}`);
+      this.handleEmailFormSubmit(event);
+    } else {
+      alert(`Invalid \'To\' address: ${addr}; Must be either 10 digit cell or valid email.`);
+      this.setState({
+        selectedOption: "Cell#",
+        placeholder: "10-digit cell num or email address",
+        to: '',
+        from: '<username goes here>',
+        message: {
+          to: ''
+        },
+        submitting: false,
+        error: false
+      });
+    }
+  };
+
+  handleCellFormSubmit = event => {
+    // event.preventDefault();
     if (this.state.message.to) {
       // alert(`Sending Invite to ${this.state.to}`);
       console.log(`Sending sms to ${this.state.message.to}`);
@@ -55,10 +93,15 @@ class Invite extends Component {
             this.setState({
               error: false,
               submitting: false,
+              to: '',
+              from: '<username goes here>',
               message: {
                 to: '',
                 body: ''
-              }
+              },
+              placeholder: "10-digit cell num or email address",
+              submitting: false,
+              error: false
             });
           } else {
             this.setState({
@@ -73,7 +116,7 @@ class Invite extends Component {
   };
 
   handleEmailFormSubmit = event => {
-    event.preventDefault();
+    // event.preventDefault();
     if (this.state.message.to) {
       // alert(`Sending Invite to ${this.state.to}`);
       console.log(`Sending email to ${this.state.message.to}`);
@@ -116,58 +159,75 @@ class Invite extends Component {
       <Container fluid>
         <Row>
           <Col size="md-12">
-            <Jumbotron>
+            {/* <Jumbotron>
               <h1>Who should I invite?</h1>
-            </Jumbotron>
-        
-            <form>
-              
-              <div className="form-group">
-                <label htmlFor="to">To:</label>
-                <input
-                  className="form-control"
-                  type="tel"
-                  name="to"
-                  id="to"
-                  value={this.state.message.to}
-                  onChange={this.handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="body">Body:</label>
-                <textarea
-                  className="form-control" 
-                  rows="4"
-                  name="body"
-                  id="body"
-                  value={this.state.message.body}
-                  onChange={this.handleInputChange}
-                />
-              </div>
-           
-              <AwesomeButton
-                disabled={!(this.state.message.to)}
-                onClick={this.handleEmailFormSubmit}
-                type="secondary"
-                size="medium"
-                ripple
-                className='button'
-              >
-                Send Email
-              </AwesomeButton>
-         
-              <AwesomeButton
-                disabled={!(this.state.message.to)}
-                onClick={this.handleFormSubmit}
-                type="secondary"
-                size="medium"
-                ripple
-                className='button'
-              >
-                Send Text
-              </AwesomeButton>
-              
-            </form>
+            </Jumbotron> */}
+            <div className="radioContainer">
+              <form>
+
+                {/* <div className="form-check fc1">
+                  <label>
+                    <input
+                      type="radio"
+                      name="msgType"
+                      value="Cell#"
+                      checked={this.state.selectedOption === "Cell#"}
+                      onChange={this.handleRadioButtonChange}
+                      className="form-check-input"
+                    />
+                      Send Text Msg
+                    </label>
+                </div>
+
+                <div className="form-check fc2">
+                  <label>
+                    <input
+                      type="radio"
+                      name="msgType"
+                      value="Email Addr"
+                      checked={this.state.selectedOption === "Email Addr"}
+                      onChange={this.handleRadioButtonChange}
+                      className="form-check-input"
+                    />
+                      Send Email
+                    </label>
+                </div> */}
+
+                <div className="form-group">
+                  <label htmlFor="to">To:</label>
+                  <input
+                    className="form-control"
+                    type="tel"
+                    name="to"
+                    id="to"
+                    placeholder={this.state.placeholder}
+                    value={this.state.message.to}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="body">Body:</label>
+                  <textarea
+                    className="form-control"
+                    rows="4"
+                    name="body"
+                    id="body"
+                    placeholder="Message Text Here"
+                    value={this.state.message.body}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+
+                <button
+                  // disabled={!(this.state.message.to)}
+                  onClick={this.handleFormSubmit}
+                  className='sendButton'
+                >
+                  Send
+                </button>
+
+              </form>
+            </div>
           </Col>
         </Row>
       </Container>
