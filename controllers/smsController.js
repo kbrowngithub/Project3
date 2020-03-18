@@ -9,13 +9,13 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 module.exports = {
   invite: function (req, res) {
-    console.log(`recipesController:invite(): from=${process.env.TWILIO_PHONE_NUMBER}, to=${req.body.to}, body=${req.body.body}`);
+    console.log(`recipesController:invite(): from=${process.env.TWILIO_PHONE_NUMBER}, to=+1${req.body.to}, body=${req.body.body}`);
     const msgText = req.body.body + " Respond with YES to accept or NO to decline."
     res.header('Content-Type', 'application/json');
     client.messages
       .create({
         from: process.env.TWILIO_PHONE_NUMBER,
-        to: req.body.to,
+        to: "+1" + req.body.to,
         body: msgText
       })
       .then(() => {

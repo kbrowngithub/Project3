@@ -4,6 +4,7 @@ const usersController = require("../controllers/usersController");
 const smsController = require("../controllers/smsController");
 const pantryController = require("../controllers/pantryController");
 const recipesController = require("../controllers/recipesController");
+const sessionsController = require("../controllers/sessionsController");
 const axios = require("axios");
 
 function api_routes(app) {
@@ -11,9 +12,11 @@ function api_routes(app) {
         res.send("Hello World");
     })
 
-    // app.get("/friends", function (req, res) {
-    //     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-    // })
+    // Get all sessions for a user
+    app.get('/api/sessions', sessionsController.findAll);
+
+    // Get a specific session for a user
+    app.get('/api/sessions/:id', sessionsController.findBySession);
 
     app.get("/api/users", function (req, res) {
         db.User.find({}).then(function (data) {
