@@ -25,10 +25,11 @@ class Home extends Component {
 
     render() {
         return (
-            
-            <div>
 
-                <h3 className="content-center">Home</h3>
+            <div 
+            // className="background"
+            >
+
                 <div className="row">
                     <DrinkSearch updateDrinksCB={this.updateDrinks}></DrinkSearch>
 
