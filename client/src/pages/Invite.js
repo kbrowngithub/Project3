@@ -42,15 +42,19 @@ class Invite extends Component {
   //     placeholder: event.target.value
   //   })
   // }
-  
+
+  normalizeCell = cellNum => {
+    return cellNum.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '+1$1$2$3');
+  }
+
   handleFormSubmit = event => {
     event.preventDefault();
 
     const addr = this.state.message.to;
-    if(!addr) {
+    if (!addr) {
       alert(`Must enter a valid \'To\' address (email or 10-digit cell)`);
-    } else if (/^\d{10}$/.test(addr)) {
-      alert(`Valid cell number`);
+    } else if (/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/.test(addr)) {
+      alert(`Valid cell number: ${addr}\nNormalized: ${this.normalizeCell(addr)}`);
       this.handleCellFormSubmit(event);
     } else if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(addr)) {
       alert(`Sending email to ${this.state.message.to}`);
