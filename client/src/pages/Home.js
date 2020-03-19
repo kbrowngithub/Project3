@@ -15,7 +15,7 @@ class Home extends Component {
         }
     }
 
-    updateRecipes = (array) => {       
+    updateRecipes = (array) => {
         this.setState({ recipeData: array });
     }
 
@@ -26,10 +26,9 @@ class Home extends Component {
     render() {
         return (
 
-            <div 
+            <div
             // className="background"
             >
-
                 <div className="row">
                     <DrinkSearch updateDrinksCB={this.updateDrinks}></DrinkSearch>
 
@@ -38,40 +37,50 @@ class Home extends Component {
 
                 <Row>
                     <Col size="md-6">
-                        {this.state.recipeData.length ? (
-                            this.state.recipeData.map(recipe => (
-                                <RecipeCard
-                                id={recipe.id}
-                                key={recipe.id}
-                                image={recipe.image}
-                                summary={recipe.summary}
-                                title={recipe.title}
-                                missingIngredients={recipe.missedIngredients}
-                                usedIngredients={recipe.usedIngredients}
-                                />
-                            ))
-                            
-                        ) : (
-                            <h3></h3>
-                        )}
+                    <div class="containerRecipe">
+                            <div class="row">
+                            {this.state.recipeData.length ? (
+                                this.state.recipeData.map(recipe => (
+                                    <RecipeCard
+                                        id={recipe.id}
+                                        key={recipe.id}
+                                        image={recipe.image}
+                                        summary={recipe.summary}
+                                        title={recipe.title}
+                                        missingIngredients={recipe.missedIngredients}
+                                        usedIngredients={recipe.usedIngredients}
+                                    />
+                                ))
+
+                            ) : (
+                                    <h3></h3>
+                                )}
+                        </div>
+                        </div>
                     </Col>
-                
+
 
                     <Col size="md-6">
-                        {this.state.drinkData.length ? (
-                            this.state.drinkData.map(drink => (
-                                <DrinkCard
-                                id={drink.idDrink}
-                                key={drink.idDrink}
-                                title={drink.strDrink}
-                                image={drink.strDrinkThumb}
-                                />
-                            ))
-                        ) : 
-                        (
-                            <h3></h3>
-                        )}
+                        <div class="containerDrink">
+                            <div class="row">
+                                {this.state.drinkData.length ? (
+                                    this.state.drinkData.map(drink => (
+                                        <DrinkCard
+                                            id={drink.idDrink}
+                                            key={drink.idDrink}
+                                            title={drink.strDrink}
+                                            image={drink.strDrinkThumb}
+                                        />
+                                    ))
+                                ) :
+                                    (
+                                        <h3></h3>
+                                    )}
+                            </div>
+                        </div>
+
                     </Col>
+
                 </Row>
             </div>
         )
