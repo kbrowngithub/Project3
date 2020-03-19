@@ -7,7 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import RecipeForm from "../components/RecipeForm"
 class Recipes extends Component {
-    state= {
+    state = {
         recipes: [],
         title: "",
         image: "",
@@ -16,43 +16,41 @@ class Recipes extends Component {
         instructions: []
     }
     componentDidMount() {
-        this.loadRecipes();        
+        this.loadRecipes();
     }
 
     loadRecipes = () => {
         API.getRecipes()
-            .then(res=> this.setState({ recipes: res.data }))
-            .catch(err=> console.log(err));     
+            .then(res => this.setState({ recipes: res.data }))
+            .catch(err => console.log(err));
     }
     deleteRecipe = id => {
         API.deleteRecipe(id)
-          .then(res => window.location.reload(false))
-          .catch(err => console.log(err));
+            .then(res => window.location.reload(false))
+            .catch(err => console.log(err));
     };
-   
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
     };
     handleFormSubmit = data => {
-        if (data.length > 0) {
-            if (this.state.title && this.state.ingredients) {
-                API.saveRecipe({
-                    title: this.state.title,
-                    image: this.state.image,
-                    ingredients: [this.state.ingredients],
-                    instructions: [this.state.instructions]
-                })
-                .then(res => window.location.reload(false))
+        console.log(data);
+            API.saveRecipe({
+                title: data.title,
+                image: data.image,
+                ingredients: [data.ingredients],
+                instructions: [data.instructions]
+            })
+                .then(res => this.loadRecipes())
                 .catch(err => console.log(err));
-            }
-        }      
+
     }
-    
+
     render() {
-        return(
+        return (
             <Container fluid>
                 <Row>
                     <Col size="md-6">
@@ -60,35 +58,35 @@ class Recipes extends Component {
                             <h1>Recipes</h1>
                         </Jumbotron>
                         <RecipeForm
-                        handleInputChange={this.handleInputChange}
-                        handleFormSubmit={this.handleFormSubmit}
-                        title={this.state.title}
-                        image={this.state.image}
-                        ingredients={this.state.ingredients}
-                        instructions={this.state.instructions}
+                            handleInputChange={this.handleInputChange}
+                            handleFormSubmit={this.handleFormSubmit}
+                            title={this.state.title}
+                            image={this.state.image}
+                            ingredients={this.state.ingredients}
+                            instructions={this.state.instructions}
                         />
-                       
+
                     </Col>
                     <Col size="md-6 sm-12">
                         <Jumbotron>
-                        <h1>Recipe List</h1>
+                            <h1>Recipe List</h1>
                         </Jumbotron>
                         {this.state.recipes.length ? (
-                        <List>
-                            {this.state.recipes.map(recipe => (
-                            <ListItem key={recipe._id}>
-                                <Link to={"/recipes/" + recipe._id}>
-                                <strong>
-                                    {recipe.title}
-                                </strong>
-                                </Link>
-                                <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
-                            </ListItem>
-                            ))}
-                        </List>
+                            <List>
+                                {this.state.recipes.map(recipe => (
+                                    <ListItem key={recipe._id}>
+                                        <Link to={"/recipes/" + recipe._id}>
+                                            <strong>
+                                                {recipe.title}
+                                            </strong>
+                                        </Link>
+                                        <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
+                                    </ListItem>
+                                ))}
+                            </List>
                         ) : (
-                        <h3>No Results to Display</h3>
-                        )}
+                                <h3>No Results to Display</h3>
+                            )}
                     </Col>
                 </Row>
             </Container>

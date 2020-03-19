@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 export default function RecipeForm(props) {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
-        console.log(data);
         props.handleFormSubmit(data);
     };
 
