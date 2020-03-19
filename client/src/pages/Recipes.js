@@ -26,7 +26,7 @@ class Recipes extends Component {
     }
     deleteRecipe = id => {
         API.deleteRecipe(id)
-            .then(res => window.location.reload(false))
+            .then(res => this.loadRecipes())
             .catch(err => console.log(err));
     };
 

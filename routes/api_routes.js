@@ -24,17 +24,15 @@ function api_routes(app) {
         })
     })
 
-    app.post("/api/users", usersController.create);
+ 
 
-    app.post('/api/login', (req, res, next) => {
-        console.log("Login Request Recieved")
-        passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login'
-        })(req, res, next);
-      });
 
-    // Logout
+    
+
+
+    //User Routes
+    app.post("/api/users", usersController.create);   
+   
     app.get('/logout', (req, res) => {
         console.log("Logout")
         res.send("Logout!");
@@ -46,8 +44,21 @@ function api_routes(app) {
             res.json(data)
         })
     });
-
+    
     app.post("/api/users", usersController.create);
+
+    app.post('/api/login', (req, res, next) => {
+        console.log("Login Request Recieved")
+        passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+        })(req, res, next);
+    });
+
+    //Communication Routes
+    app.post('/api/sms', smsController.inviteResponse);
+
+    app.post('/api/email', smsController.emailInvite);
 
     app.post("/api/messages", smsController.invite);
 
@@ -56,17 +67,20 @@ function api_routes(app) {
         res.send("Hello SMS");
     });
 
-    app.post('/api/sms', smsController.inviteResponse);
-
-    app.post('/api/email', smsController.emailInvite);
-
-    app.post('/api/pantry', pantryController.create);
+    //Recipe Routes
 
     app.get('/api/recipes', recipesController.findAll);
 
     app.get('/api/recipes/:id', recipesController.findById);
 
+    app.put('/api/recipes/:id', recipesController.update);
+
+    app.delete('/api/recipes/:id', recipesController.remove);
+
     app.post('/api/recipes', recipesController.create);
+
+
+    //Pantry Routes
 
     app.get('/api/pantry', pantryController.findAll);
 
@@ -74,13 +88,17 @@ function api_routes(app) {
 
     app.delete('/api/pantry/:id', pantryController.remove);
 
+    app.post('/api/pantry', pantryController.create);
+
+    //External API Routes
+
     app.post('/api/spoon', function (req, res) {
         var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&limitLicense=true&ranking=2&number=10&ignorePantry=true";
         axios.get(queryURL)
             .then(response => {
                 recipes = response.data;
-                newRecipes= [];
-                recipes.map(recipe=> {
+                newRecipes = [];
+                recipes.map(recipe => {
                     var querySumm = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=" + process.env.foodAPIKey;
                     axios.get(querySumm)
                         .then(response2 => {
@@ -114,7 +132,7 @@ function api_routes(app) {
                 res.json(response.data);
             })
             .catch(err => console.log(err));
-    })
+    });
 }
 
 module.exports = api_routes;
