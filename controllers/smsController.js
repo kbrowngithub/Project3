@@ -15,7 +15,7 @@ module.exports = {
     client.messages
       .create({
         from: process.env.TWILIO_PHONE_NUMBER,
-        to: "+1" + req.body.to,
+        to: req.body.to,
         body: msgText
       })
       .then(() => {

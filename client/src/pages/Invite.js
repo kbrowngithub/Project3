@@ -13,7 +13,6 @@ function testing() {
 
 class Invite extends Component {
   state = {
-    selectedOption: "Cell#",
     placeholder: "10-digit cell num or email address",
     to: '',
     from: '<username goes here>',
@@ -36,29 +35,32 @@ class Invite extends Component {
   };
 
   // handleRadioButtonChange = event => {
-  //   console.log(`selectedOption = ${event.target.value}`);
   //   this.setState({
-  //     selectedOption: event.target.value,
   //     placeholder: event.target.value
   //   })
   // }
-  
+
+  normalizeCell = cellNum => {
+    this.state.message.to = cellNum.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '+1$1$2$3');
+    // alert(`cellNum: ${cellNum}\nnormalized: ${this.state.message.to}`);
+  }
+
   handleFormSubmit = event => {
     event.preventDefault();
 
     const addr = this.state.message.to;
-    if(!addr) {
+    if (!addr) {
       alert(`Must enter a valid \'To\' address (email or 10-digit cell)`);
-    } else if (/^\d{10}$/.test(addr)) {
-      alert(`Valid cell number`);
+    } else if (/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/.test(addr)) {
+      this.normalizeCell(addr);
+      alert(`Sent text to ${addr}`);
       this.handleCellFormSubmit(event);
     } else if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(addr)) {
-      alert(`Sending email to ${this.state.message.to}`);
+      alert(`Sent email to ${this.state.message.to}`);
       this.handleEmailFormSubmit(event);
     } else {
       alert(`Invalid \'To\' address: ${addr}; Must be either 10 digit cell or valid email.`);
       this.setState({
-        selectedOption: "Cell#",
         placeholder: "10-digit cell num or email address",
         to: '',
         from: '<username goes here>',
@@ -164,34 +166,6 @@ class Invite extends Component {
             </Jumbotron> */}
             <div className="radioContainer">
               <form>
-
-                {/* <div className="form-check fc1">
-                  <label>
-                    <input
-                      type="radio"
-                      name="msgType"
-                      value="Cell#"
-                      checked={this.state.selectedOption === "Cell#"}
-                      onChange={this.handleRadioButtonChange}
-                      className="form-check-input"
-                    />
-                      Send Text Msg
-                    </label>
-                </div>
-
-                <div className="form-check fc2">
-                  <label>
-                    <input
-                      type="radio"
-                      name="msgType"
-                      value="Email Addr"
-                      checked={this.state.selectedOption === "Email Addr"}
-                      onChange={this.handleRadioButtonChange}
-                      className="form-check-input"
-                    />
-                      Send Email
-                    </label>
-                </div> */}
 
                 <div className="form-group">
                   <label htmlFor="to">To:</label>
