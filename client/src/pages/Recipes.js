@@ -44,7 +44,12 @@ class Recipes extends Component {
                 ingredients: [data.ingredients],
                 instructions: [data.instructions]
             })
-                .then(res => this.loadRecipes())
+                .then(res => {
+                    this.loadRecipes();
+                    this.state.image = "";
+                    this.state.ingredients = [];
+                    this.state.instructions = []
+                })
                 .catch(err => console.log(err));
 
     }
