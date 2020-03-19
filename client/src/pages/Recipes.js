@@ -36,18 +36,19 @@ class Recipes extends Component {
           [name]: value
         });
     };
-    handleFormSubmit = event => {
-        event.preventDefault();
-        if (this.state.title && this.state.ingredients) {
-            API.saveRecipe({
-                title: this.state.title,
-                image: this.state.image,
-                ingredients: [this.state.ingredients],
-                instructions: this.state.instructions
-            })
-            .then(res => window.location.reload(false))
-            .catch(err => console.log(err));
-        }
+    handleFormSubmit = data => {
+        if (data.length > 0) {
+            if (this.state.title && this.state.ingredients) {
+                API.saveRecipe({
+                    title: this.state.title,
+                    image: this.state.image,
+                    ingredients: [this.state.ingredients],
+                    instructions: [this.state.instructions]
+                })
+                .then(res => window.location.reload(false))
+                .catch(err => console.log(err));
+            }
+        }      
     }
     
     render() {
