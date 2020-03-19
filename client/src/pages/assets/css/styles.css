@@ -56,7 +56,6 @@ body {
     text-decoration: underline;
   }
 
-<<<<<<< HEAD
 .form-check {
     margin-left: 20px;
 }
@@ -92,7 +91,6 @@ body {
     margin-bottom: 10px;
     color: #EB6864;
 }
-=======
 @media only screen and (max-width: 600px) {
     .button{
         margin-left: 10px;
@@ -194,4 +192,3 @@ body {
         text-shadow: 4px 4px 4px blue;
         }
 } */
->>>>>>> da42504e25c7112fdd3c3d27d90786b7749b800c
