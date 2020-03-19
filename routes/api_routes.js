@@ -8,9 +8,35 @@ const sessionsController = require("../controllers/sessionsController");
 const axios = require("axios");
 
 function api_routes(app) {
+    //Init Route
     app.get("/", function (req, res) {
         res.send("Hello World");
-    })
+    });
+
+    //User Routes
+    app.post("/api/users", usersController.create);
+
+    app.get('/logout', (req, res) => {
+        console.log("Logout")
+        res.send("Logout!");
+        req.logout();
+    });
+
+    app.get("/api/users", function (req, res) {
+        db.User.find({}).then(function (data) {
+            res.json(data)
+        })
+    });
+
+    app.post("/api/users", usersController.create);
+
+    app.post('/api/login', (req, res, next) => {
+        console.log("Login Request Recieved")
+        passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+        })(req, res, next);
+    });
 
     // Get all sessions for a user
     app.get('/api/sessions', sessionsController.findAll);
@@ -23,37 +49,6 @@ function api_routes(app) {
             res.json(data)
         })
     })
-
- 
-
-
-    
-
-
-    //User Routes
-    app.post("/api/users", usersController.create);   
-   
-    app.get('/logout', (req, res) => {
-        console.log("Logout")
-        res.send("Logout!");
-        req.logout();
-    });
-
-    app.get("/api/users", function (req, res) {
-        db.User.find({}).then(function (data) {
-            res.json(data)
-        })
-    });
-    
-    app.post("/api/users", usersController.create);
-
-    app.post('/api/login', (req, res, next) => {
-        console.log("Login Request Recieved")
-        passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login'
-        })(req, res, next);
-    });
 
     //Communication Routes
     app.post('/api/sms', smsController.inviteResponse);

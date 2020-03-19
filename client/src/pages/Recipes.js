@@ -46,6 +46,7 @@ class Recipes extends Component {
             })
                 .then(res => {
                     this.loadRecipes();
+                    this.state.title = "";
                     this.state.image = "";
                     this.state.ingredients = [];
                     this.state.instructions = []

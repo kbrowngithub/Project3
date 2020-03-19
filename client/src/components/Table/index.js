@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
 import "./style.css";
 import API from "../../utils/API";
 import QuantityBtn from '../QuantityBtn'
