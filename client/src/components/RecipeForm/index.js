@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, TextArea, FormBtn } from "../Form";
+import { FormBtn } from "../Form";
 import { useForm } from 'react-hook-form'
 
 export default function RecipeForm(props) {
@@ -20,7 +20,7 @@ export default function RecipeForm(props) {
                         required: true,
                         pattern: /^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/,
                         minLength: 2,
-                        maxLength: 30
+                        maxLength: 60
                     })}
                     placeholder="Title (Required)"
                 />

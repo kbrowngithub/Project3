@@ -26,7 +26,7 @@ class Recipes extends Component {
     }
     deleteRecipe = id => {
         API.deleteRecipe(id)
-            .then(res => window.location.reload(false))
+            .then(res => this.loadRecipes())
             .catch(err => console.log(err));
     };
 
@@ -46,6 +46,7 @@ class Recipes extends Component {
             })
                 .then(res => {
                     this.loadRecipes();
+                    this.state.title = "";
                     this.state.image = "";
                     this.state.ingredients = [];
                     this.state.instructions = []

@@ -7,26 +7,26 @@ const recipeSchema = new Schema({
         required: true,
         trim: true,
         minlength: 2,
-        maxlength: 30
+        maxlength: 60
     },
     image: { 
         type: String, 
         default: "https://ezyvectors.com/wp-content/uploads//edd/2019/05/Colorful-Free-Food-Icon-Vector.jpg",
         trim: true,
-        minlength: 5,
         maxlength: 150
     },
     idAPI: { 
         type: Number 
     },
+    summary: {
+        type: String
+    },
     ingredients: { 
         type: Array, 
-        required: true,
-        minlength: 5 
+        required: true
     },
     instructions: { 
-        type: Array,
-        minlength: 5 
+        type: Array
     },
     date: { type: Date, default: Date.now }
 });
