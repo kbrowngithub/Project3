@@ -53,10 +53,10 @@ class Invite extends Component {
       alert(`Must enter a valid \'To\' address (email or 10-digit cell)`);
     } else if (/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/.test(addr)) {
       this.normalizeCell(addr);
-      alert(`Sent text to ${addr}`);
+      // alert(`Sent text to ${addr}`);
       this.handleCellFormSubmit(event);
     } else if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(addr)) {
-      alert(`Sent email to ${this.state.message.to}`);
+      // alert(`Sent email to ${this.state.message.to}`);
       this.handleEmailFormSubmit(event);
     } else {
       alert(`Invalid \'To\' address: ${addr}; Must be either 10 digit cell or valid email.`);
