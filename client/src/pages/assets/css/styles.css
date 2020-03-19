@@ -1,4 +1,4 @@
-.button {
+.button, .sendButton {
     margin-left: 10px;
     font-size: medium;
     border-style: solid;
@@ -56,6 +56,41 @@ body {
     text-decoration: underline;
   }
 
+.form-check {
+    margin-left: 20px;
+}
+
+.form-check,.form-group {
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.form-control {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+.form-check1 {
+    float: left;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+/* .form-group {
+    position: unset;
+} */
+
+.radioContainer {
+    background: white;
+    margin-top: 10px;
+    border-radius: 25px;
+    background: url(../images/paperboard-texture_95678-72.jpg);
+}
+
+.sendButton {
+    margin-bottom: 10px;
+    color: #EB6864;
+}
 @media only screen and (max-width: 600px) {
     .button{
         margin-left: 10px;

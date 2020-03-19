@@ -17,38 +17,39 @@ function Nav() {
                         type="secondary"
                         size="medium"
                         ripple
-                        href="/"
+                        element="Link"
                         className='button'
-                    >Home
+                    ><Link to="/">Home</Link>
                    </AwesomeButton>
                     <AwesomeButton
                         type="secondary"
                         size="medium"
                         ripple
-                        href="/friends"
+                        element="Link"
                         className='button'
-                    >Friends</AwesomeButton>
+                    ><Link to="/friends">Friends</Link></AwesomeButton>
                     <AwesomeButton
                         type="secondary"
                         size="medium"
                         ripple
-                        href="/recipes"
+                        element="Link"
                         className='button'
-                    >Recipes</AwesomeButton>
+                    ><Link to="/recipes">Recipes</Link></AwesomeButton>
                     <AwesomeButton
                         type="secondary"
                         size="medium"
                         ripple
-                        href="/create"
+                        element="Link"
                         className='button'
-                    >NewUser</AwesomeButton>
+                    ><Link to="/create">New User</Link></AwesomeButton>
                     <AwesomeButton
                         type="secondary"
                         size="medium"
                         ripple
-                        href="/pantry"
+                        element="Link"
                         className='button'
-                    >Pantry</AwesomeButton>
+                    ><Link to="/pantry">Pantry</Link></AwesomeButton>
+                    
                 </ul>
 
             </div>

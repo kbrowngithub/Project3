@@ -7,31 +7,32 @@ import { AwesomeButton } from 'react-awesome-button';
 //class component
 export default class Friends extends Component {
 
-    render(){
+    render() {
         return (
             <div>
-               <h3>Friends</h3>
-               <table className="table">
-                   <thead className="thead-light">
-                       <tr>
-                           <th>Username</th>
-                           <th>Mobile#</th>
-                           <th>Email</th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                       {/* returns rows of table */}
-                       {/* friends go here */}
-                   </tbody>
-               </table>
-               {/* <input type='button' value='Invite Friend' href="invite" className='btn btn-info' /> */}
-               <AwesomeButton
+                <h3>Friends</h3>
+                <table className="table">
+                    <thead className="thead-light">
+                        <tr>
+                            <th>Username</th>
+                            <th>Mobile#</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* returns rows of table */}
+                        {/* friends go here */}
+                    </tbody>
+                </table>
+                {/* <input type='button' value='Invite Friend' href="invite" className='btn btn-info' /> */}
+                <AwesomeButton
                     type="primary"
                     size="medium"
                     ripple
-                    href="/invite"
+                    element="Link"
                     className='button'
-                >NewFriend</AwesomeButton>
+                ><Link to="/invite">NewFriend</Link>
+                </AwesomeButton>
             </div>
         )
     }

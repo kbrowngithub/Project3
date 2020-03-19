@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import "./style.css";
 import API from "../../utils/API";
 import QuantityBtn from '../QuantityBtn'
@@ -43,20 +44,24 @@ class Table extends Component {
     
     deleteIngredient (id) {
         API.deleteIngredient(id)
-            .then(res => window.location.reload(false))
+            .then(res => this.loadIngredients())
             .catch(err => console.log(err));
     }
 
     sendIngredient() {
         var regNum=/^[0-9]+$/;
         var regex=/[A-Za-z]/g;
+
         if (this.state.newIngredient.match(regex) && this.state.newQuantity.match(regNum)) {
             API.saveIngredient({
                 name: this.state.newIngredient,
                 quantity: this.state.newQuantity,
                 unit: this.state.newUnit
             })
-            .then(res => window.location.reload(false))
+            .then(res => {
+                this.loadIngredients();
+                this.setState({ newIngredient: "", newQuantity: "", newUnit: "" })
+            })
             .catch(err => console.log(err));
         } else if (this.state.newIngredient.match(regex) && !this.state.newQuantity.match(regNum)) {
             alert("Please enter an integer for quantity");
@@ -68,6 +73,7 @@ class Table extends Component {
     }
 
     renderTableData() {
+        if (this.state.ingredients.length > 0) {
         return this.state.ingredients.map((ingredient, index) => {
           return(
             <tr key={ingredient._id}>
@@ -83,9 +89,11 @@ class Table extends Component {
             </tr>
           )
         });
+        }
     }
     renderTableHeader() {
         let header = Object.keys(this.state.ingredients[0])
+        
         return header.map((key, index) => {
             if (index > 0 && index < 4) {
                 return <th key={index}>{key.toUpperCase()}</th>

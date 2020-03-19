@@ -4,6 +4,7 @@ const usersController = require("../controllers/usersController");
 const smsController = require("../controllers/smsController");
 const pantryController = require("../controllers/pantryController");
 const recipesController = require("../controllers/recipesController");
+const sessionsController = require("../controllers/sessionsController");
 const axios = require("axios");
 
 function api_routes(app) {
@@ -11,9 +12,11 @@ function api_routes(app) {
         res.send("Hello World");
     })
 
-    // app.get("/friends", function (req, res) {
-    //     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-    // })
+    // Get all sessions for a user
+    app.get('/api/sessions', sessionsController.findAll);
+
+    // Get a specific session for a user
+    app.get('/api/sessions/:id', sessionsController.findBySession);
 
     app.get("/api/users", function (req, res) {
         db.User.find({}).then(function (data) {
@@ -61,6 +64,8 @@ function api_routes(app) {
 
     app.get('/api/recipes', recipesController.findAll);
 
+    app.get('/api/recipes/:id', recipesController.findById);
+
     app.post('/api/recipes', recipesController.create);
 
     app.get('/api/pantry', pantryController.findAll);
@@ -73,21 +78,20 @@ function api_routes(app) {
         var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&limitLicense=true&ranking=2&number=3&ignorePantry=true";
         axios.get(queryURL)
             .then(response => {
-                var recipeSumms = [];
-                response.data.map(recipe => {
+                recipes = response.data;
+                newRecipes= [];
+                recipes.map(recipe=> {
                     var querySumm = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=" + process.env.foodAPIKey;
                     axios.get(querySumm)
-                        .then(data => {
-                            recipeSumms.push(data.data);
-                            if (recipeSumms.length === response.data.length) {
-                                console.log({ query1: response.data, query2: recipeSumms })
-                                res.json({ query1: response.data, query2: recipeSumms });
+                        .then(response2 => {
+                            recipe.summary = response2.data.summary;
+                            newRecipes.push(recipe);
+                            if (newRecipes.length === recipes.length) {
+                                res.json(newRecipes);
                             }
                         })
-                        .catch(err => {
-                            console.log(err);
-                        })
-                });
+                        .catch(err => console.log(err));
+                })
             })
             .catch(err => {
                 res.json(err);

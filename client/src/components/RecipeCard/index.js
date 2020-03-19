@@ -14,8 +14,13 @@ function RecipeCard(props) {
                 <Card.Text>
                     {cleanText}
                 </Card.Text>
+<<<<<<< HEAD
                 <Link className="cardButton" to={{
                     pathname:'/Recipes',
+=======
+                <Link variant="primary" to={{
+                    pathname:'/recipes/new/' + props.id,
+>>>>>>> f64053299bfa6278c60393bf9ac491501262c94e
                     state: {
                         recipeData: props
                     }
