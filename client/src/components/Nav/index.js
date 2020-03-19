@@ -19,7 +19,7 @@ function Nav() {
                         ripple
                         element="Link"
                         className='button'
-                    ><Link to="/">Home</Link>
+                    ><Link className ="btnFontClr" to="/">Home</Link>
                    </AwesomeButton>
                     <AwesomeButton
                         type="secondary"
@@ -27,28 +27,32 @@ function Nav() {
                         ripple
                         element="Link"
                         className='button'
-                    ><Link to="/friends">Friends</Link></AwesomeButton>
+                    ><Link className ="btnFontClr" to="/friends">Friends</Link></AwesomeButton>
                     <AwesomeButton
                         type="secondary"
                         size="medium"
                         ripple
                         element="Link"
                         className='button'
-                    ><Link to="/recipes">Recipes</Link></AwesomeButton>
+                    ><Link className ="btnFontClr" to="/recipes">Recipes</Link></AwesomeButton>
                     <AwesomeButton
                         type="secondary"
                         size="medium"
                         ripple
                         element="Link"
                         className='button'
+<<<<<<< HEAD
                     ><Link to="/signup">New User</Link></AwesomeButton>
+=======
+                    ><Link className ="btnFontClr" to="/create">New User</Link></AwesomeButton>
+>>>>>>> f711c196dbe18fc39d794f3dc1868492c3a568f7
                     <AwesomeButton
                         type="secondary"
                         size="medium"
                         ripple
                         element="Link"
                         className='button'
-                    ><Link to="/pantry">Pantry</Link></AwesomeButton>
+                    ><Link className ="btnFontClr" to="/pantry">Pantry</Link></AwesomeButton>
                     
                 </ul>
 
