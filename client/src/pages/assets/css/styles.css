@@ -6,7 +6,6 @@
     text-shadow: 4px 4px 4px #aaa;
     border-color: darkgray;
     background-color: rgb(36, 27, 23);
-    color: rgb(36, 27, 23);
 }
 
 body {
@@ -192,3 +191,32 @@ body {
         text-shadow: 4px 4px 4px blue;
         }
 } */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+ }
+ 
+ .row > div[class*='col-'] {
+   display: flex;
+ }
+
+.containerDrink {
+    height: 300px;
+    overflow-y: scroll;
+    margin-left: 60px;
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; 
+}
+
+.containerRecipe {
+    height: 300px;
+    overflow-y: scroll;
+    margin-left: 90px;
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; 
+}
