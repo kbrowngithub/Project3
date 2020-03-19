@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import bcrypt from "bcryptjs";
+
 class Signup extends Component {
     state = {
         fullName: "",
@@ -145,7 +146,7 @@ class Signup extends Component {
                                     onChange={this.handleInputChange}
                                 />
                             </div>
-                            <button onClick={this.handleFormSubmit} type="button" className="btn btn-primary btn-block">
+                            <button onClick={this.handleFormSubmit} type="button" className="btn btn-primary btn-block btn-login">
                                 Register
                         </button>
                         </form>
