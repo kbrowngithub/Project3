@@ -1,11 +1,9 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import './styles.css';
 
 function RecipeCard(props) {
-    // var shortText = props.summary.substr(0, 200);
-    // var cleanText = shortText.replace(/<\/?[^>]+(>|$)/g, "") + "...";
     return (
     
         <Card key={props.key} className ="cardFull">

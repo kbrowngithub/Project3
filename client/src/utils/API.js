@@ -57,5 +57,8 @@ export default {
   },
   searchDrinks: function (query) {
     return axios.post("/api/drink", query);
+  },
+  searchDrinkDetails: function (id) {
+    return axios.post("/api/drinkDetail/" + id);
   }
 };

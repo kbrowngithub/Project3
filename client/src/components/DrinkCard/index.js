@@ -1,14 +1,22 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import './styles.css';
 
 function DrinkCard(props) {
+    console.log(props);
     return (
         <Card className ="cardFull">
             <Card.Img src={props.image} />
             <Card.Body>
                 <Card.Title className="cardTitle">{props.title}</Card.Title>
-                <Button className="cardButton">Check It Out</Button>
+                <Link className="cardButton"
+                variant="primary" to={{
+                    pathname:'/recipes/new/' + props.id,
+                    state: {
+                        recipeData: props
+                    }
+                }}>Check It Out</Link> 
             </Card.Body>
         </Card>
     )

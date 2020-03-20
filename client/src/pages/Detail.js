@@ -16,7 +16,7 @@ class Detail extends Component {
   componentDidMount() {
     API.getRecipe(this.props.match.params.id)
       .then(res => {
-        this.setState({ recipe: res.data }, () => console.log(this.state.recipe))
+        this.setState({ recipe: res.data })
         this.setState({ ingredients: res.data.ingredients });
         this.setState({ instructions: res.data.instructions });
       })

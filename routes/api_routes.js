@@ -125,6 +125,15 @@ function api_routes(app) {
             })
             .catch(err => console.log(err));
     });
+    1
+    app.post("/api/drinkDetail/:id", function (req, res) {
+        var queryURL = "https://www.thecocktaildb.com/api/json/v1/" + process.env.drinkAPIKey + "//lookup.php?i=" + req.params.id;
+        axios.get(queryURL)
+            .then(response => {
+                res.json(response.data);
+            })
+            .catch(err => console.log(err));
+    });
 }
 
 module.exports = api_routes;
