@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const session = require('express-session');
 const mongoose = require("mongoose");
+const logger = require("morgan");
 const routes = require("./routes/api_routes");
 const passport = require("./config/passport");
 const app = express();
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 3001;
 
 // Define middleware here
 // Twilio Specific
+// app.use(logger("dev"));
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 

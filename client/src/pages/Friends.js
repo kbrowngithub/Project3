@@ -6,11 +6,17 @@ import { AwesomeButton } from 'react-awesome-button';
 
 //class component
 export default class Friends extends Component {
+    
+    handleFormSubmit = event => {
+        event.preventDefault();
+    
+        window.location.href = '/invite';
+    }
 
     render() {
         return (
             <div className="row mt-5">
-                <div className="col-md-10 m-auto">
+                <div className="col-md-8 m-auto">
                     <div className="card card-body">
                         <h1 className="text-center mb-3">
                             <i className="fas fa-user-plus"></i> Friends
