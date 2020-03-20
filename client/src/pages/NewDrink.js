@@ -9,7 +9,8 @@ import API from "../utils/API";
 class Detail extends Component {
     state = {
         drink: {},
-        ingredients: []
+        ingredients: [],
+        instructions: []
     };
     // When this component mounts, grab the recipe with the _id of this.props.match.params.id
     // e.g. localhost:3000/recipes/599dcb67f0f16317844583fc
@@ -25,19 +26,19 @@ class Detail extends Component {
                 const drink = res.data.drinks[0];
                 this.setState({ 
                     drink: drink
-                }, ()=> console.log(this.state.drink))
+                })
                 this.ingredientParser(drink);
+                this.instructionSplit(drink);
             })
             .catch(err => console.log(err));
     }
 
     ingredientParser = obj => {
+        let ingredients = [];
+
         let ingredientKeys = Object.keys(obj).filter(propertyName => {
             return propertyName.indexOf("strIngredient") === 0;
-        });    
-        
-        let ingredients = [];
-        
+        });           
         
         let measureKeys = Object.keys(obj).filter(propName => {
             return propName.indexOf("strMeasure") === 0;
@@ -48,7 +49,14 @@ class Detail extends Component {
             ingredients.push(obj[measureKeys[i]] + "of " + obj[ingredientKeys[i]] );
             }
         }
-        this.setState({ ingredients: ingredients }, () => console.log(this.state.ingredients));
+        this.setState({ ingredients: ingredients });
+    }
+
+    instructionSplit = obj => {
+        const instructions = obj.strInstructions;
+        const sentence = instructions.split('.');
+        const cleanArray = sentence.splice(0, sentence.length-1);
+        this.setState({ instructions: cleanArray })
     }
 
 
@@ -64,41 +72,33 @@ class Detail extends Component {
                         </Jumbotron>
                     </Col>
                 </Row>
-                {/* <Row>
+                <Row>
                     <Col size="md-10 md-offset-1">
-                        <div key={this.state.recipe.id}>
-                            <h1>{this.state.recipe.title}</h1>
-                            <image src={this.state.recipe.image} alt="Recipe Image"></image>
-                            <p>{this.state.cleanText}</p>
+                        <div key={this.state.drink.id}>
+                            <h1>{this.state.drink.strDrink}</h1>
+                            <image src={this.state.drink.image} alt="Drink Image"></image>
                             <List>
                                 <strong>Ingredients</strong>
                                 {this.state.ingredients.map(ingredient => (
-                                    <ListItem key={ingredient.id}>
-                                        {ingredient.amount} {ingredient.unit} {ingredient.name}
+                                    <ListItem key={this.state.ingredients.indexOf(ingredient)}>
+                                        {ingredient} 
                                     </ListItem>
                                 ))}
                             </List>
-                            <List>
-                                <strong>Missing Ingredients</strong>
-                                {this.state.missingIngredients.map(ingredient => (
-                                    <ListItem key={ingredient.id}>
-                                        {ingredient.amount} {ingredient.unit} {ingredient.name}
-                                    </ListItem>
-                                ))}
-                            </List>
+         
                             <List>
                                 <strong>Instructions</strong>
                                 {this.state.instructions.map(step => (
-                                    <ListItem key={this.state.recipe.key}>
-                                        {step.number}: {step.step}
-                                    </ListItem>
-
+                                        <ListItem key={this.state.instructions.indexOf(step)}>
+                                            {this.state.instructions.indexOf(step) + 1}: {step}
+                                        </ListItem>
                                 ))}
                             </List>
+            
                             <Button onClick={() => { this.saveRecipe() }}>Save to your Favourites</Button>
                         </div>
                     </Col>
-                </Row> */}
+                </Row>
                 <Row>
                     <Col size="md-2">
                         <Link to="/">← Back to Recipes</Link>
