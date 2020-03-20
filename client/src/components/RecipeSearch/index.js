@@ -21,7 +21,6 @@ class RecipeSearch extends Component {
     loadIngredients = () => {
         API.getIngredients()
             .then(res => {
-                console.log("RecipeSearch:24", res.data);
                 this.jsonConverter(res.data);
             })
             .catch(err => console.log(err));

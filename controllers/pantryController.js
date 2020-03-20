@@ -21,7 +21,6 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     update: function(req, res) {
-        console.log(req.body.quantity)
         db.Pantry
           .findOneAndUpdate({ _id: req.params.id }, {quantity: req.body.quantity})
           .then(dbModel => {
