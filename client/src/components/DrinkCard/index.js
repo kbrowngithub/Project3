@@ -12,9 +12,9 @@ function DrinkCard(props) {
                 <Card.Title className="cardTitle">{props.title}</Card.Title>
                 <Link className="cardButton"
                 variant="primary" to={{
-                    pathname:'/recipes/new/' + props.id,
+                    pathname:'/drinks/new/' + props.id,
                     state: {
-                        recipeData: props
+                        drinkData: props
                     }
                 }}>Check It Out</Link> 
             </Card.Body>

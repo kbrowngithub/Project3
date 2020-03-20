@@ -10,7 +10,6 @@ export default {
     return axios.get("/api/recipes/" + id);
   },
   saveRecipe: function (recipeData) {
-    console.log(recipeData)
     return axios.post("/api/recipes", recipeData);
   },
   deleteRecipe: function (id) {
