@@ -46,7 +46,7 @@ class Detail extends Component {
         
         for (let i = 0; i < ingredientKeys.length; i++) {
             if (obj[measureKeys[i]] !== null && obj[ingredientKeys[i]] !== null) {
-            ingredients.push(obj[measureKeys[i]] + "of " + obj[ingredientKeys[i]] );
+            ingredients.push(obj[measureKeys[i]] + " " + obj[ingredientKeys[i]] );
             }
         }
         this.setState({ ingredients: ingredients });
@@ -58,7 +58,17 @@ class Detail extends Component {
         const cleanArray = sentence.splice(0, sentence.length-1);
         this.setState({ instructions: cleanArray })
     }
-
+    saveDrink = () => {
+        API.saveDrink({
+            idDrink: this.state.drink.idDrink,
+            image: this.state.drink.strDrinkThumb,
+            title: this.state.drink.strDrink,
+            ingredients: this.state.ingredients,
+            instructions: this.state.instructions
+        })
+            .then(res => null)
+            .catch(err => console.log(err));
+    }
 
     render() {
         return (
@@ -76,7 +86,7 @@ class Detail extends Component {
                     <Col size="md-10 md-offset-1">
                         <div key={this.state.drink.id}>
                             <h1>{this.state.drink.strDrink}</h1>
-                            <image src={this.state.drink.image} alt="Drink Image"></image>
+                            <image src={this.state.drink.strDrinkThumb} alt="Drink Image"></image>
                             <List>
                                 <strong>Ingredients</strong>
                                 {this.state.ingredients.map(ingredient => (
@@ -95,7 +105,7 @@ class Detail extends Component {
                                 ))}
                             </List>
             
-                            <Button onClick={() => { this.saveRecipe() }}>Save to your Favourites</Button>
+                            <Button onClick={() => { this.saveDrink() }}>Save to your Favourites</Button>
                         </div>
                     </Col>
                 </Row>

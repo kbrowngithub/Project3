@@ -63,8 +63,8 @@ class Detail extends Component {
             ingredients: ingredients,
             summary: this.state.cleanText
         })
-            .then(res => window.location.reload(false))
-            .catch(err => console.log(err))
+            .then(res => null)
+            .catch(err => console.log(err));
     }
     render() {
         return (

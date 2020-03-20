@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import './styles.css';
 
 function DrinkCard(props) {
-    console.log(props);
     return (
         <Card className ="cardFull">
             <Card.Img src={props.image} />

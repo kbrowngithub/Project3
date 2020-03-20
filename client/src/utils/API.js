@@ -19,6 +19,11 @@ export default {
     return axios.put("/api/recipes/" + recipeData.id, recipeData)
   },
 
+  //Drink Routes
+  saveDrink: function (drinkData) {
+    return axios.post("/api/drinks", drinkData);
+  },
+
   //Pantry Routes
   getIngredients: function () {
     return axios.get("/api/pantry");

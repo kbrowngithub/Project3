@@ -4,6 +4,7 @@ const usersController = require("../controllers/usersController");
 const smsController = require("../controllers/smsController");
 const pantryController = require("../controllers/pantryController");
 const recipesController = require("../controllers/recipesController");
+const drinksController = require("../controllers/drinksController");
 const sessionsController = require("../controllers/sessionsController");
 const axios = require("axios");
 
@@ -73,6 +74,10 @@ function api_routes(app) {
     app.delete('/api/recipes/:id', recipesController.remove);
 
     app.post('/api/recipes', recipesController.create);
+
+    //Drink Routes
+
+    app.post('/api/drinks', drinksController.create);
 
 
     //Pantry Routes
