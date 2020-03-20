@@ -39,7 +39,7 @@ class Detail extends Component {
         </Row>
         <Row>
           <Col size="md-10 md-offset-1">
-            <div key={this.state.recipe.id}>
+            <div key={this.state.recipe._id}>
               <h1>{this.state.recipe.title}</h1>
               <image src={this.state.recipe.image} alt="Recipe Image"></image>
               <p>{this.state.recipe.summary}</p>
