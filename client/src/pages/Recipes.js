@@ -13,10 +13,18 @@ class Recipes extends Component {
         image: "",
         idAPI: "",
         ingredients: [],
-        instructions: []
+        instructions: [],
+        drinks: []
     }
     componentDidMount() {
         this.loadRecipes();
+        this.loadDrinks();
+    }
+
+    loadDrinks = () => {
+        API.loadDrinks()
+            .then(res=> this.setState({ drinks: res.data }))
+            .catch(err => console.log(err));
     }
 
     loadRecipes = () => {
@@ -87,6 +95,26 @@ class Recipes extends Component {
                                             </strong>
                                         </Link>
                                         <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
+                                    </ListItem>
+                                ))}
+                            </List>
+                        ) : (
+                                <h3>No Results to Display</h3>
+                            )}
+
+                        <Jumbotron>
+                            <h1>Recipe List</h1>
+                        </Jumbotron>
+                        {this.state.drinks.length ? (
+                            <List>
+                                {this.state.drinks.map(drink => (
+                                    <ListItem key={drink._id}>
+                                        <Link to={"/drinks/" + drink._id}>
+                                            <strong>
+                                                {drink.title}
+                                            </strong>
+                                        </Link>
+                                        <DeleteBtn onClick={() => this.deleteDrink(drink._id)} />
                                     </ListItem>
                                 ))}
                             </List>

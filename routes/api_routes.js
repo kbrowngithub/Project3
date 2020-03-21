@@ -64,7 +64,6 @@ function api_routes(app) {
     });
 
     //Recipe Routes
-
     app.get('/api/recipes', recipesController.findAll);
 
     app.get('/api/recipes/:id', recipesController.findById);
@@ -76,12 +75,14 @@ function api_routes(app) {
     app.post('/api/recipes', recipesController.create);
 
     //Drink Routes
+    app.get('/api/drinks', drinksController.findAll);
+
+    app.get('/api/drinks/:id', drinksController.findById);
 
     app.post('/api/drinks', drinksController.create);
 
 
     //Pantry Routes
-
     app.get('/api/pantry', pantryController.findAll);
 
     app.put('/api/pantry/:id', pantryController.update)
