@@ -77,7 +77,7 @@ class Login extends Component {
                                     onChange={this.handleInputChange}
                                 />
                             </div>
-                            <button onClick={this.handleFormSubmit} type="button" className="btn btn-primary btn-block">Login</button>
+                            <button onClick={this.handleFormSubmit} type="button" className="btn btn-primary btn-block btn-login">Login</button>
                         </form>
                         <p className="lead mt-4">
                             No Account? <a href="/signup">Register</a>

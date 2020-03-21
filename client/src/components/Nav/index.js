@@ -41,7 +41,7 @@ function Nav() {
                         ripple
                         element="Link"
                         className='button'
-                    ><Link className ="btnFontClr" to="/create">New User</Link></AwesomeButton>
+                    ><Link className ="btnFontClr" to="/signup">New User</Link></AwesomeButton>
                     <AwesomeButton
                         type="secondary"
                         size="medium"

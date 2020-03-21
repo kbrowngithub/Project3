@@ -1,4 +1,4 @@
-.button, .sendButton {
+.button {
     margin-left: 10px;
     font-size: medium;
     border-style: solid;
@@ -6,6 +6,17 @@
     text-shadow: 4px 4px 4px #aaa;
     border-color: darkgray;
     background-color: rgb(36, 27, 23);
+}
+
+.sendButton, .btn-login, .btn-friend {
+    margin-left: 10px;
+    font-size: medium;
+    border-style: solid;
+    border-radius:7px;
+    text-shadow: 4px 4px 4px #aaa;
+    border-color: darkgray;
+    background-color: rgb(36, 27, 23);
+    color: #EB6864;
 }
 
 body {
@@ -79,9 +90,9 @@ body {
     position: unset;
 } */
 
-.radioContainer {
-    background: white;
-    margin-top: 10px;
+.radioContainer, .card-body {
+    /* background: white;
+    margin-top: 10px; */
     border-radius: 25px;
     background: url(../images/paperboard-texture_95678-72.jpg);
 }

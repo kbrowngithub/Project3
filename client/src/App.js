@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Recipes from "./pages/Recipes";
 import Detail from "./pages/Detail";
@@ -22,6 +22,7 @@ function App() {
         <Nav/>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/recipes" component={Recipes} />
           <Route exact path="/recipes/:id" component={Detail} />
           <Route exact path="/recipes/new/:id" component={NewRecipe} />
@@ -30,7 +31,6 @@ function App() {
           <Route exact path="/friends" component={Friends} />
           <Route exact path="/create" component={CreateUser} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/invite" component={Invite} />
           <Route component={NoMatch} />
