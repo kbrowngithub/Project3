@@ -5,6 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import { List, ListItem } from "../components/List"
 import { Button } from 'react-bootstrap';
 import API from "../utils/API";
+import './assets/css/resultstyles.css';
 
 class Detail extends Component {
     state = {
@@ -73,20 +74,25 @@ class Detail extends Component {
     render() {
         return (
             <Container fluid>
+                <div className="resultContainer">
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
                             <h1>
                                 {this.state.drink.strDrink}
-                            </h1>
+                                </h1>
+                                
                         </Jumbotron>
+                        <div class="drink2">
+                        <image className="drink2" src={this.state.drink.strDrinkThumb}></image>
+                        </div>
                     </Col>
                 </Row>
                 <Row>
                     <Col size="md-10 md-offset-1">
                         <div key={this.state.drink.id}>
                             <h1>{this.state.drink.strDrink}</h1>
-                            <image src={this.state.drink.strDrinkThumb} alt="Drink Image"></image>
+                            
                             <List>
                                 <strong>Ingredients</strong>
                                 {this.state.ingredients.map(ingredient => (
@@ -114,6 +120,7 @@ class Detail extends Component {
                         <Link to="/">← Back to Recipes</Link>
                     </Col>
                 </Row>
+                </div>
             </Container>
         );
     }

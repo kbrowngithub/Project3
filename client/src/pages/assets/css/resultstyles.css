@@ -1,0 +1,12 @@
+.resultContainer {
+    background: rgb(214, 170, 129);
+    width: 400px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.drink2 {
+    width: 200px;
+    height: 200px;
+}
