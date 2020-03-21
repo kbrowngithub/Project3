@@ -2,7 +2,6 @@ const db = require("../models");
 
 module.exports = {
     findAll: function(req, res) {
-      console.log("query",req.query)  
       db.Pantry
           .find(req.query)
           .sort({ date: -1 })

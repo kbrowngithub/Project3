@@ -23,9 +23,15 @@ class IngredientList extends Component {
   }
 
   loadIngredients = () => {
+    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
     API.getIngredients()
       .then(res => {
-        this.setState({ ingredients: res.data });
+        console.log("Getingdredients",res.data)
+
+        var index = res.data.map(function(x) {return x.userEmail}).indexOf(email);
+        var ingredientList = res.data[index].ingredients
+
+        this.setState({ ingredients: ingredientList });
       })
       .catch(err => console.log(err));
   }
