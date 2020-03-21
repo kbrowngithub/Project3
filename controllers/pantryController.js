@@ -2,7 +2,8 @@ const db = require("../models");
 
 module.exports = {
     findAll: function(req, res) {
-        db.Pantry
+      console.log("query",req.query)  
+      db.Pantry
           .find(req.query)
           .sort({ date: -1 })
           .then(dbModel => res.json(dbModel))
@@ -48,7 +49,8 @@ module.exports = {
     update: function(req, res) {
         console.log(req.body.quantity)
         db.Pantry
-          .findOneAndUpdate({ _id: req.params.id }, {quantity: req.body.quantity})
+          .findOne({ userEmail: req.body.userEmail }, {ingredients: req.params.id})
+          .then(findOneAndUpdate({ quantity: req.body.quantity}))
           .then(dbModel => {
             console.log(dbModel)
             res.json(dbModel)})
