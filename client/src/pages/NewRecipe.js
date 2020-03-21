@@ -19,7 +19,7 @@ class Detail extends Component {
     componentDidMount() {
         this.setState({ recipe: this.props.location.state.recipeData });
         this.loadRecipeInstructions(this.props.match.params.id);
-        this.setState({ cleanText: this.props.location.state.recipeData.summary.replace(/<\/?[^>]+(>|$)/g, "") });
+        this.loadRecipeSumm(this.props.match.params.id);
         this.setState({ ingredients: this.props.location.state.recipeData.usedIngredients })
         this.setState({ missingIngredients: this.props.location.state.recipeData.missingIngredients })
     }
@@ -27,6 +27,13 @@ class Detail extends Component {
         API.getInstructions(id)
             .then(res => this.setState({ instructions: res.data[0].steps }))
             .catch(err => console.log(err));
+    }
+    loadRecipeSumm = id => {
+        API.searchSumms(id)
+            .then(res => {
+                this.setState({ cleanText: res.data.summary.replace(/<\/?[^>]+(>|$)/g, "") })
+            })
+            .catch(err=> console.log(err));
     }
     saveRecipe = () => {
         let ingredients = [];
@@ -56,8 +63,8 @@ class Detail extends Component {
             ingredients: ingredients,
             summary: this.state.cleanText
         })
-            .then(res => window.location.reload(false))
-            .catch(err => console.log(err))
+            .then(res => null)
+            .catch(err => console.log(err));
     }
     render() {
         return (

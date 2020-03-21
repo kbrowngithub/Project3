@@ -10,7 +10,6 @@ export default {
     return axios.get("/api/recipes/" + id);
   },
   saveRecipe: function (recipeData) {
-    console.log(recipeData)
     return axios.post("/api/recipes", recipeData);
   },
   deleteRecipe: function (id) {
@@ -18,6 +17,11 @@ export default {
   },
   updateRecipe: function(recipeData) {
     return axios.put("/api/recipes/" + recipeData.id, recipeData)
+  },
+
+  //Drink Routes
+  saveDrink: function (drinkData) {
+    return axios.post("/api/drinks", drinkData);
   },
 
   //Pantry Routes
@@ -49,10 +53,16 @@ export default {
   searchRecipes: function (query) {
     return axios.post("/api/spoon", query);
   },
+  searchSumms: function (id) {
+    return axios.post("/api/spoonSumm/" + id);
+  },
   getInstructions: function (id) {
     return axios.post("/api/spoonOne/" + id);
   },
   searchDrinks: function (query) {
     return axios.post("/api/drink", query);
+  },
+  searchDrinkDetails: function (id) {
+    return axios.post("/api/drinkDetail/" + id);
   }
 };

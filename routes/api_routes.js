@@ -4,6 +4,7 @@ const usersController = require("../controllers/usersController");
 const smsController = require("../controllers/smsController");
 const pantryController = require("../controllers/pantryController");
 const recipesController = require("../controllers/recipesController");
+const drinksController = require("../controllers/drinksController");
 const sessionsController = require("../controllers/sessionsController");
 const axios = require("axios");
 
@@ -74,6 +75,10 @@ function api_routes(app) {
 
     app.post('/api/recipes', recipesController.create);
 
+    //Drink Routes
+
+    app.post('/api/drinks', drinksController.create);
+
 
     //Pantry Routes
 
@@ -91,30 +96,27 @@ function api_routes(app) {
         var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&limitLicense=true&ranking=2&number=10&ignorePantry=true";
         axios.get(queryURL)
             .then(response => {
-                recipes = response.data;
-                newRecipes = [];
-                recipes.map(recipe => {
-                    var querySumm = "https://api.spoonacular.com/recipes/" + recipe.id + "/summary?apiKey=" + process.env.foodAPIKey;
-                    axios.get(querySumm)
-                        .then(response2 => {
-                            recipe.summary = response2.data.summary;
-                            newRecipes.push(recipe);
-                            if (newRecipes.length === recipes.length) {
-                                res.json(newRecipes);
-                            }
-                        })
-                        .catch(err => console.log(err));
-                })
+                res.json(response.data);
             })
             .catch(err => {
                 res.json(err);
             });
     });
 
+    app.post("/api/spoonSumm/:id", function (req, res) {
+        var querySumm = "https://api.spoonacular.com/recipes/" + req.params.id + "/summary?apiKey=" + process.env.foodAPIKey;
+        axios.get(querySumm)
+            .then(response => {
+                    res.json(response.data);
+            })
+            .catch(err => console.log(err));
+    });
+
     app.post("/api/spoonOne/:id", function (req, res) {
         var queryURL = "https://api.spoonacular.com/recipes/" + req.params.id + "/analyzedInstructions?apiKey=" + process.env.foodAPIKey;
         axios.get(queryURL)
             .then(response => {
+                
                 res.json(response.data);
             })
             .catch(err => console.log(err));
@@ -122,6 +124,15 @@ function api_routes(app) {
 
     app.post("/api/drink", function (req, res) {
         var queryURL = "https://www.thecocktaildb.com/api/json/v1/" + process.env.drinkAPIKey + "/filter.php?i=" + req.body.query;
+        axios.get(queryURL)
+            .then(response => {
+                res.json(response.data);
+            })
+            .catch(err => console.log(err));
+    });
+    1
+    app.post("/api/drinkDetail/:id", function (req, res) {
+        var queryURL = "https://www.thecocktaildb.com/api/json/v1/" + process.env.drinkAPIKey + "//lookup.php?i=" + req.params.id;
         axios.get(queryURL)
             .then(response => {
                 res.json(response.data);
