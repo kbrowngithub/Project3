@@ -1,12 +1,66 @@
 .resultContainer {
     background: rgb(214, 170, 129);
-    width: 400px;
+    width: 500px;
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 15px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
 }
 
-.drink2 {
-    width: 200px;
-    height: 200px;
+.drinkTitle {
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    font-family: 'Fredericka the Great', cursive;
+    margin-bottom: 10px;
+    background: rgb(240, 215, 177);
+    padding: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.saveButton {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(165, 87, 42);
+    border-radius: 7px;
+    font-family: 'Fredericka the Great', cursive;
+}
+.saveButton:hover {
+    background-color: rgb(165, 87, 42);
+    text-decoration: underline;
+  }
+
+.font {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.colorBlack {
+    font-size: small;
+    color: black;
+}
+
+.teaser {
+    background-color: white;
+    padding: 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 7px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.center {
+    margin-left: 50px;
 }
