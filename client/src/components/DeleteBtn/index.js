@@ -14,7 +14,7 @@ export default function DeleteBtn(props) {
 export function EditBtn(props) {
   return (
     <button className="edit-btn" {...props} role="button" tabIndex="0">
-      <img src="https://img.icons8.com/wired/64/000000/edit.png"/>
+      <img className="edit-img" src="https://img.icons8.com/wired/64/000000/edit.png"/>
     </button>
   )
 }

@@ -20,13 +20,11 @@ class Recipes extends Component {
         this.loadRecipes();
         this.loadDrinks();
     }
-
     loadDrinks = () => {
         API.loadDrinks()
-            .then(res=> this.setState({ drinks: res.data }))
+            .then(res => this.setState({ drinks: res.data }))
             .catch(err => console.log(err));
     }
-
     loadRecipes = () => {
         API.getRecipes()
             .then(res => this.setState({ recipes: res.data }))
@@ -37,6 +35,12 @@ class Recipes extends Component {
             .then(res => this.loadRecipes())
             .catch(err => console.log(err));
     };
+    deleteDrink = id => {
+        API.deleteDrink(id)
+            .then(res => this.loadDrinks())
+            .catch(err => console.log(err))
+    }
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -45,21 +49,20 @@ class Recipes extends Component {
         });
     };
     handleFormSubmit = data => {
-        console.log(data);
-            API.saveRecipe({
-                title: data.title,
-                image: data.image,
-                ingredients: [data.ingredients],
-                instructions: [data.instructions]
+        API.saveRecipe({
+            title: data.title,
+            image: data.image,
+            ingredients: [data.ingredients],
+            instructions: [data.instructions]
+        })
+            .then(res => {
+                this.loadRecipes();
+                this.state.title = "";
+                this.state.image = "";
+                this.state.ingredients = [];
+                this.state.instructions = []
             })
-                .then(res => {
-                    this.loadRecipes();
-                    this.state.title = "";
-                    this.state.image = "";
-                    this.state.ingredients = [];
-                    this.state.instructions = []
-                })
-                .catch(err => console.log(err));
+            .catch(err => console.log(err));
 
     }
 

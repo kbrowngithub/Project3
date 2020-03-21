@@ -7,9 +7,11 @@ class IngredientList extends Component {
     super(props)
     this.state = {
       ingredients: [],
+      liquors: [],
       newIngredient: "",
       newQuantity: "",
-      newUnit: ""
+      newUnit: "",
+      newDrink: ""
     }
   }
   componentDidMount() {
@@ -86,8 +88,6 @@ class IngredientList extends Component {
           sendIngredient={this.sendIngredient}
         />
       </div>
-
-
     )
   }
 }
