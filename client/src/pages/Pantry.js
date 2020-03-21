@@ -1,10 +1,97 @@
 import React, { Component } from 'react';
-import Table from  "../components/Table";
-
+import { RenderTableData, RenderTableHeader } from "../components/Table";
+import IngredientForm from '../components/NewIngredientForm';
+import API from "../utils/API";
 class IngredientList extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      ingredients: [],
+      newIngredient: "",
+      newQuantity: "",
+      newUnit: ""
+    }
+  }
+  componentDidMount() {
+    this.loadIngredients();
+  }
+
+  updateQuantity = (id, int) => {
+    API.updateIngredient({ id: id, quantity: int })
+      .then(res => console.log("Quantity Changed"))
+      .catch(err => console.log(err));
+  }
+
+  loadIngredients = () => {
+    API.getIngredients()
+      .then(res => {
+        this.setState({ ingredients: res.data });
+      })
+      .catch(err => console.log(err));
+  }
+
+  addIngredient = ({ target }) => {
+    this.setState({
+      [target.name]: target.value
+    });
+
+  }
+
+  deleteIngredient = (id) => {
+    API.deleteIngredient(id)
+      .then(res => this.loadIngredients())
+      .catch(err => console.log(err));
+  }
+
+  sendIngredient = data => {
+    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
+    API.saveIngredient({
+      userEmail: email,
+      ingredients: {
+         name: this.state.newIngredient,
+          quantity: this.state.newQuantity,
+          unit: this.state.newUnit,
+      }
+    })
+      .then(res => {
+        this.loadIngredients();
+        this.setState({ newIngredient: "", newQuantity: "", newUnit: "" })
+      })
+      .catch(err => console.log(err));
+  }
   render() {
-    return(
-      <Table></Table>
+    return (
+      <div>
+        <h1 id='title'>Pantry</h1>
+        {this.state.ingredients.length ? (
+          <table id='ingredients'>
+            <tbody>
+              <tr>
+                <RenderTableHeader
+                  header={Object.keys(this.state.ingredients[0])}
+                />
+              </tr>
+              <RenderTableData
+                ingredients={this.state.ingredients}
+                updateQuantity={this.updateQuantity}
+                deleteIngredient={this.deleteIngredient}
+              />
+            </tbody>
+          </table>
+
+        ) : (
+            <h3>No ingredients to display, add some below!</h3>
+          )}
+        <IngredientForm
+          newIngredient={this.state.newIngredient}
+          newQuantity={this.state.newQuantity}
+          newUnit={this.state.newUnit}
+          addIngredient={this.addIngredient}
+          sendIngredient={this.sendIngredient}
+        />
+      </div>
+
+
     )
   }
 }

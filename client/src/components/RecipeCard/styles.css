@@ -1,0 +1,39 @@
+.cardFull {
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    border-radius: 10px;
+    background-color: ivory;
+}
+
+.cardTitle {
+    color: brown;
+    font-weight: bold;
+    font-size: small;
+}
+
+.cardButton {
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 8px;
+    font-size: x-small;
+    width: 280px;
+    padding: 10px;
+    background: brown;
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: normal;
+}
+
+.cardButton:hover {
+    background-color: rgb(104, 29, 29);
+    text-decoration: underline;
+    color: white;
+    border-color: brown;
+
+  }
+
+.missing {
+    font-size: small;
+}

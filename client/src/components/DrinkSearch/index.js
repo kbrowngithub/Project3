@@ -9,7 +9,7 @@ class DrinkSearch extends Component {
         super(props)
         this.state = {
             drinkBase: null,
-            strQuery: "vodka"
+            strQuery: "rum"
         }
         this.searchDrinks = this.searchDrinks.bind(this);
     }

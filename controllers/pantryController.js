@@ -47,7 +47,6 @@ module.exports = {
 
     },
     update: function(req, res) {
-        console.log(req.body.quantity)
         db.Pantry
           .findOne({ userEmail: req.body.userEmail }, {ingredients: req.params.id})
           .then(findOneAndUpdate({ quantity: req.body.quantity}))

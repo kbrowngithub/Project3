@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const recipeSchema = new Schema({
+const DrinkSchema = new Schema({
     title: { 
         type: String, 
         required: true,
@@ -11,15 +11,12 @@ const recipeSchema = new Schema({
     },
     image: { 
         type: String, 
-        default: "https://ezyvectors.com/wp-content/uploads//edd/2019/05/Colorful-Free-Food-Icon-Vector.jpg",
+        default: "https://ezyvectors.com/wp-content/uploads/edd/2019/02/free-mocktail-vector-free.png",
         trim: true,
         maxlength: 150
     },
-    idAPI: { 
+    idDrink: { 
         type: Number 
-    },
-    summary: {
-        type: String
     },
     ingredients: { 
         type: Array, 
@@ -31,6 +28,6 @@ const recipeSchema = new Schema({
     date: { type: Date, default: Date.now }
 });
 
-const Recipe = mongoose.model("Recipe", recipeSchema);
+const Drink = mongoose.model("Drink", DrinkSchema);
 
-module.exports = Recipe;
+module.exports = Drink;
