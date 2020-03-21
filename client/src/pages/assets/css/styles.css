@@ -42,7 +42,7 @@ body {
     border-color: rgb(36, 27, 23);
     border-radius: 20px;
     border-width: 3px;
-    opacity: 85%;
+    opacity: 0.85;
 }
 
 .foodButton {
@@ -58,7 +58,7 @@ body {
     border-color: rgb(36, 27, 23);
     border-radius: 20px;
     border-width: 3px;
-    opacity: 85%;
+    opacity: 0.85;
 }
 
 .drinkButton:hover, .foodButton:hover {
