@@ -31,7 +31,7 @@ function api_routes(app) {
         passport.authenticate('local', {
             successRedirect: '/',
             failureRedirect: '/login'
-        })(req, res, next);
+        })(req, res, next)
       });
 
     // Logout

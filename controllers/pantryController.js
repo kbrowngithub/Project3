@@ -14,11 +14,21 @@ module.exports = {
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
     },
-    create: function(req,res) {
-        db.Pantry
+    create: function(req,res) { 
+      db.Pantry.findOne({ userEmail: req.body.userEmail }, function(user) {
+        console.log("Uservar: " + user)
+        if (user) {
+          console.log("User found")
+        } else {
+          console.log("No user")
+        }
+      })
+
+      db.Pantry
             .create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+            console.log("Getting user email: " + req.body.userEmail)
     },
     update: function(req, res) {
         console.log(req.body.quantity)

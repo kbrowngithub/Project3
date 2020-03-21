@@ -15,6 +15,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  pantry: {
+    type: Array
+  },
   date: {
     type: Date,
     default: Date.now

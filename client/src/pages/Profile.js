@@ -14,6 +14,7 @@ class Profile extends Component {
         API.logout().then(function(response){
             console.log("Data: ", response) 
             sessionStorage.setItem("Logout", true);
+            sessionStorage.setItem("UserEmail", null);
             window.location.href = "/"
             console.log("User has been logged out client")
         })

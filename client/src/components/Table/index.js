@@ -51,12 +51,16 @@ class Table extends Component {
     sendIngredient() {
         var regNum=/^[0-9]+$/;
         var regex=/[A-Za-z]/g;
+        var email = JSON.parse(sessionStorage.getItem("UserEmail"));
 
         if (this.state.newIngredient.match(regex) && this.state.newQuantity.match(regNum)) {
             API.saveIngredient({
-                name: this.state.newIngredient,
-                quantity: this.state.newQuantity,
-                unit: this.state.newUnit
+                userEmail: email,
+                ingredients: [{
+                    name: this.state.newIngredient,
+                    quantity: this.state.newQuantity,
+                    unit: this.state.newUnit,
+                }]
             })
             .then(res => {
                 this.loadIngredients();
