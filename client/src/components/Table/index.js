@@ -56,11 +56,11 @@ class Table extends Component {
         if (this.state.newIngredient.match(regex) && this.state.newQuantity.match(regNum)) {
             API.saveIngredient({
                 userEmail: email,
-                ingredients: [{
+                ingredients: {
                     name: this.state.newIngredient,
                     quantity: this.state.newQuantity,
                     unit: this.state.newUnit,
-                }]
+                }
             })
             .then(res => {
                 this.loadIngredients();
