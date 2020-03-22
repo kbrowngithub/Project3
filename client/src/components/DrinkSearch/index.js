@@ -27,7 +27,7 @@ class DrinkSearch extends Component {
 
             <Button
             onClick={this.searchDrinks}
-            className='drinkButton'
+            className='drinkButton standardButton'
           >
             Drink Recipes
           </Button>

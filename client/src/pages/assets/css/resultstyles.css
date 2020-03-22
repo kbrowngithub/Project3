@@ -1,5 +1,5 @@
 .resultContainer {
-    background: rgb(214, 170, 129);
+    background-image: url(../images/paperboard-texture_95678-72.jpg);
     width: 500px;
     padding: 20px;
     margin-left: auto;
@@ -17,28 +17,20 @@
     font-family: 'Fredericka the Great', cursive;
     margin-bottom: 10px;
     background: rgb(240, 215, 177);
-    padding: 3px;
+    padding: 15px;
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 20px;
-    border-radius: 15px;
+    border-radius: 10px;
     border-color: black;
     border-width: 1px;
     border-style: solid;
 }
 
+/* 
 .saveButton {
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    background-color: rgb(165, 87, 42);
-    border-radius: 7px;
     font-family: 'Fredericka the Great', cursive;
-}
-.saveButton:hover {
-    background-color: rgb(165, 87, 42);
-    text-decoration: underline;
-  }
+} */
 
 .font {
     font-family: 'Times New Roman', Times, serif;
@@ -64,3 +56,18 @@
 .center {
     margin-left: 50px;
 }
+
+.standardButton {
+    font-family: 'Fredericka the Great', cursive;
+    background-color: brown;
+    text-shadow: 4px 4px 4px rgb(36, 27, 23);
+    border-color: rgb(36, 27, 23);
+    border-radius: 20px;
+    border-width: 3px;
+    opacity: 0.85;
+}
+
+.standardButton:hover {
+    background-color: rgb(104, 29, 29);
+    text-decoration: underline;
+  }

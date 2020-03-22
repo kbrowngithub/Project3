@@ -119,7 +119,7 @@ class Detail extends Component {
                                 </div>
                             </List>
                             <br></br>
-                            <Button className="saveButton" variant="light" onClick={() => { this.saveRecipe() }}>Save to your Favourites</Button>
+                            <Button className="saveButton standardButton" variant="light" onClick={() => { this.saveRecipe() }}>Save to your Favourites</Button>
                         </div>
                     </Col>
                     </div>

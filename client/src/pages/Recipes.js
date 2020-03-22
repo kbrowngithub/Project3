@@ -67,10 +67,8 @@ class Recipes extends Component {
         return (
             <Container fluid>
                 <Row>
-                    <Col size="md-6">
-                        <Jumbotron>
-                            <h1>Recipes</h1>
-                        </Jumbotron>
+                    <Col size="md-5">
+                    <h1>Recipes</h1>
                         <RecipeForm
                             handleInputChange={this.handleInputChange}
                             handleFormSubmit={this.handleFormSubmit}
