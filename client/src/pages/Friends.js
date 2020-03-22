@@ -6,6 +6,13 @@ import { AwesomeButton } from 'react-awesome-button';
 
 //class component
 export default class Friends extends Component {
+
+    componentDidMount() {
+        console.log(sessionStorage.getItem("Logout"))
+        if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
+            window.location.href = "/login"
+        }
+    }
     
     handleFormSubmit = event => {
         event.preventDefault();

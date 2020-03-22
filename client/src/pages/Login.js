@@ -8,6 +8,9 @@ class Login extends Component {
     };
 
     handleFormSubmit = event => {
+        event.preventDefault();
+        const { history } = this.props;
+
         if (!this.state.email) {
             // return alert("Please enter your email");
             return this.setState({loginFlag: 1});
@@ -26,12 +29,14 @@ class Login extends Component {
             }).then(function(data){
                 console.log("CLIENT DATA ",data);
                 sessionStorage.setItem("Logout", false);
-                window.location.href="/profile"
+                // window.location.href="/profile"
+                history.push('/');
             }).catch(function(error){
                 if (error) {
                     return currentComponent.setState({loginFlag: 3})
                 }
-            })
+            });
+            
         }
     };
 

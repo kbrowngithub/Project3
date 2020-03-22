@@ -14,7 +14,11 @@ class IngredientList extends Component {
     }
   }
   componentDidMount() {
-    this.loadIngredients();
+    if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
+      window.location.href = "/login"
+    } else {
+      this.loadIngredients();
+    }
   }
 
   updateQuantity = (id, int) => {
@@ -82,14 +86,14 @@ class IngredientList extends Component {
             ) : (
                 <h3>No ingredients to display, add some below!</h3>
               )}
-              <div className="fonting">
-            <IngredientForm
-              newIngredient={this.state.newIngredient}
-              newQuantity={this.state.newQuantity}
-              newUnit={this.state.newUnit}
-              addIngredient={this.addIngredient}
-              sendIngredient={this.sendIngredient}
-            />
+            <div className="fonting">
+              <IngredientForm
+                newIngredient={this.state.newIngredient}
+                newQuantity={this.state.newQuantity}
+                newUnit={this.state.newUnit}
+                addIngredient={this.addIngredient}
+                sendIngredient={this.sendIngredient}
+              />
             </div>
           </div>
         </div>

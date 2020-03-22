@@ -16,9 +16,15 @@ class Recipes extends Component {
         instructions: [],
         drinks: []
     }
+
     componentDidMount() {
-        this.loadRecipes();
-        this.loadDrinks();
+        console.log(sessionStorage.getItem("Logout"))
+        if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
+            window.location.href = "/login"
+        } else { 
+            this.loadRecipes();
+            this.loadDrinks();
+        }
     }
 
     loadDrinks = () => {
