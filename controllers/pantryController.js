@@ -46,16 +46,18 @@ module.exports = {
 
     },
     update: function(req, res) {
-        db.Pantry
-          .findOne({ userEmail: req.body.userEmail }, {ingredients: req.params.id})
-          .then(findOneAndUpdate({ quantity: req.body.quantity}))
+      console.log("updateemail: ",req.body.email)  
+      console.log("id: ",req.params.id)
+      console.log(req.body.quantity)
+      db.Pantry
+          .update({ userEmail: req.body.email , _id: req.params.id}, { $set : {quantity: req.body.quantity}})
           .then(dbModel => {
             console.log(dbModel)
             res.json(dbModel)})
           .catch(err => res.status(422).json(err));
       },
     remove: function(req, res) {
-      console.log(req);
+      console.log(req.params);
         db.Pantry
           .findById({ _id: req.params.id })
           .then(dbModel => {

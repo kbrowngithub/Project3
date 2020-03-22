@@ -16,8 +16,9 @@ class IngredientList extends Component {
     this.loadIngredients();
   }
 
-  updateQuantity = (id, int) => {
-    API.updateIngredient({ id: id, quantity: int })
+  updateQuantity = (id, int, email) => {
+    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
+    API.updateIngredient({ id: id, quantity: int, email: email })
       .then(res => console.log("Quantity Changed"))
       .catch(err => console.log(err));
   }
@@ -44,6 +45,7 @@ class IngredientList extends Component {
   }
 
   deleteIngredient = (id) => {
+    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
     API.deleteIngredient(id)
       .then(res => this.loadIngredients())
       .catch(err => console.log(err));
