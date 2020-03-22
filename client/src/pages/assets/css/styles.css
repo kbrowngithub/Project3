@@ -1,11 +1,18 @@
 .button {
-    margin-left: 10px;
-    font-size: medium;
     border-style: solid;
     border-radius:7px;
     text-shadow: 4px 4px 4px #aaa;
     border-color: darkgray;
     background-color: rgb(36, 27, 23);
+}
+
+.backing {
+    background-color: white;
+    padding: 20px;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style: solid;    
+    border-radius: 5px;
 }
 
 .btn-friend {
@@ -24,14 +31,54 @@ padding-left: 10px;
 padding-right: 10px;
 }
 
-.heading {
-    font-family: 'Fredericka the Great', cursive;
-    margin-left: auto;
-    margin-right: auto;
+.createRecipe {
+    margin-left: 30px;
+    margin-top: 30px;
 }
 
-.fonting {
+.heading {
+    font-family: 'Fredericka the Great', cursive;
+}
+
+.recipeHeading {
+    margin-left: 25%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.savedRecipe {
+    width: 800px;
+    padding-left: 100px;
+    margin-left: 30%;
+}
+
+.center {
+  margin-left: 100%;
+}
+
+.column {
+    background: url(../images/paperboard-texture_95678-72.jpg);
+    border-radius: 20px;
+}
+
+.fontNorm {
     font-family: 'Times New Roman', Times, serif;
+}
+
+.fontStyled {
+    font-family: 'Fredericka the Great', cursive;
+}
+
+.tableHeader {
+    font-family: 'Fredericka the Great', cursive;
+    color: blue;
+    background-color: blue;
+}
+
+.recipeList {
+    width: 500px;
+    margin-left: 80px;
+    padding: 30px;
 }
 
 .sendButton, .btn-login, .btn-friend {
@@ -87,6 +134,7 @@ body {
     border-width: 2px;
     opacity: 0.85;
     font-weight: normal;
+    transition: 0.7s;
 }
 
 .standardButton:hover {
@@ -198,7 +246,7 @@ body {
         background-image: url(../images/silhouette.png);
         background-size: 120% 190%;
     }
-    .drinkButton {
+    /* .drinkButton {
         left: 43.5%;
         margin-top: 19%;
         width: 20%;
@@ -212,15 +260,19 @@ body {
         width: 20%;
         height: 60px;
         font-size: large;
-    }
+    } */
+}
+
+.savedItems {
+    color: brown;
 }
 
 @media only screen and (min-width: 1200px) {
 
     .button{
-        margin-left: 10px;
+        margin-left: 15px;
         font-size: medium;
-        width: 120px;
+        width: 130px;
         height: 40px;
     }
     
