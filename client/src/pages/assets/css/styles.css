@@ -8,16 +8,49 @@
     background-color: rgb(36, 27, 23);
 }
 
-.sendButton, .btn-login, .btn-friend {
-    margin-left: 10px;
-    font-size: medium;
-    border-style: solid;
-    border-radius:7px;
-    text-shadow: 4px 4px 4px #aaa;
-    border-color: darkgray;
-    background-color: rgb(36, 27, 23);
-    color: #EB6864;
+.btn-friend {
+    width: 150px;
 }
+
+.lead {
+font-weight: bold;
+font-size: medium;
+border-style: solid;
+border-radius: 5px;
+border-color: black;
+width: 330px;
+border-width: 1px;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.heading {
+    font-family: 'Fredericka the Great', cursive;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fonting {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.sendButton, .btn-login, .btn-friend {
+    color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(165, 87, 42);
+    border-radius: 7px;
+    font-family: 'Fredericka the Great', cursive;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius:7px;
+    color: black;
+}
+.btn-friend:hover {
+    background-color: rgb(165, 87, 42);
+    text-decoration: underline;
+  }
 
 body {
     background-image: url(../images/silhouette.png);
@@ -36,14 +69,32 @@ body {
     width: 20%;
     height: 100px;
     font-size: xx-large;
+}
+
+.thead-light {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.standardButton {
+    color: white;
     font-family: 'Fredericka the Great', cursive;
     background-color: brown;
     text-shadow: 4px 4px 4px rgb(36, 27, 23);
     border-color: rgb(36, 27, 23);
-    border-radius: 20px;
-    border-width: 3px;
+    border-radius: 10px;
+    border-width: 2px;
     opacity: 0.85;
+    font-weight: normal;
 }
+
+.standardButton:hover {
+    background-color: rgb(104, 29, 29);
+    text-decoration: underline;
+    color: white;
+    border-color: red;
+  }
 
 .foodButton {
     position: relative;
@@ -52,19 +103,8 @@ body {
     width: 20%;
     height: 100px;
     font-size: xx-large;
-    font-family: 'Fredericka the Great', cursive;
-    background-color: brown;
-    text-shadow: 4px 4px 4px rgb(36, 27, 23);
-    border-color: rgb(36, 27, 23);
-    border-radius: 20px;
-    border-width: 3px;
     opacity: 0.85;
 }
-
-.drinkButton:hover, .foodButton:hover {
-    background-color: rgb(104, 29, 29);
-    text-decoration: underline;
-  }
 
 .form-check {
     margin-left: 20px;
@@ -89,6 +129,12 @@ body {
 /* .form-group {
     position: unset;
 } */
+
+.bordered {
+    border-style: solid;
+    border-width: 2px;
+    border-color: brown;
+}
 
 .radioContainer, .card-body {
     /* background: white;
