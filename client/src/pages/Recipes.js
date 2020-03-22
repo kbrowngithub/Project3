@@ -23,7 +23,7 @@ class Recipes extends Component {
 
     loadDrinks = () => {
         API.loadDrinks()
-            .then(res=> this.setState({ drinks: res.data }))
+            .then(res => this.setState({ drinks: res.data }))
             .catch(err => console.log(err));
     }
 
@@ -46,20 +46,20 @@ class Recipes extends Component {
     };
     handleFormSubmit = data => {
         console.log(data);
-            API.saveRecipe({
-                title: data.title,
-                image: data.image,
-                ingredients: [data.ingredients],
-                instructions: [data.instructions]
+        API.saveRecipe({
+            title: data.title,
+            image: data.image,
+            ingredients: [data.ingredients],
+            instructions: [data.instructions]
+        })
+            .then(res => {
+                this.loadRecipes();
+                this.state.title = "";
+                this.state.image = "";
+                this.state.ingredients = [];
+                this.state.instructions = []
             })
-                .then(res => {
-                    this.loadRecipes();
-                    this.state.title = "";
-                    this.state.image = "";
-                    this.state.ingredients = [];
-                    this.state.instructions = []
-                })
-                .catch(err => console.log(err));
+            .catch(err => console.log(err));
 
     }
 
@@ -67,59 +67,61 @@ class Recipes extends Component {
         return (
             <Container fluid>
                 <Row>
-                    <Col size="md-5">
-                    <h1>Recipes</h1>
-                        <RecipeForm
-                            handleInputChange={this.handleInputChange}
-                            handleFormSubmit={this.handleFormSubmit}
-                            title={this.state.title}
-                            image={this.state.image}
-                            ingredients={this.state.ingredients}
-                            instructions={this.state.instructions}
-                        />
+                    <div className="column bordered">
+                        
+                            <h1 className="heading createRecipe">Create Recipe</h1>
+                            <RecipeForm
+                                handleInputChange={this.handleInputChange}
+                                handleFormSubmit={this.handleFormSubmit}
+                                title={this.state.title}
+                                image={this.state.image}
+                                ingredients={this.state.ingredients}
+                                instructions={this.state.instructions}
+                            />
+                      
+                    </div>
+                    
+                        <div className="bordered recipeList column">
+                            <h1 className="heading">Saved Recipes</h1>
 
-                    </Col>
-                    <Col size="md-6 sm-12">
-                        <Jumbotron>
-                            <h1>Recipe List</h1>
-                        </Jumbotron>
-                        {this.state.recipes.length ? (
-                            <List>
-                                {this.state.recipes.map(recipe => (
-                                    <ListItem key={recipe._id}>
-                                        <Link to={"/recipes/" + recipe._id}>
-                                            <strong>
-                                                {recipe.title}
-                                            </strong>
-                                        </Link>
-                                        <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        ) : (
-                                <h3>No Results to Display</h3>
-                            )}
+                            {this.state.recipes.length ? (
+                                <List>
+                                    {this.state.recipes.map(recipe => (
+                                        <ListItem key={recipe._id}>
+                                            <Link to={"/recipes/" + recipe._id}>
+                                                <strong>
+                                                    {recipe.title}
+                                                </strong>
+                                            </Link>
+                                            <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            ) : (
+                                    <h3>No Results to Display</h3>
+                                )}
+                        </div>
+                        <div className="bordered recipeList column">
+                            <h1 className="heading">Saved Drinks</h1>
 
-                        <Jumbotron>
-                            <h1>Recipe List</h1>
-                        </Jumbotron>
-                        {this.state.drinks.length ? (
-                            <List>
-                                {this.state.drinks.map(drink => (
-                                    <ListItem key={drink._id}>
-                                        <Link to={"/drinks/" + drink._id}>
-                                            <strong>
-                                                {drink.title}
-                                            </strong>
-                                        </Link>
-                                        <DeleteBtn onClick={() => this.deleteDrink(drink._id)} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        ) : (
-                                <h3>No Results to Display</h3>
-                            )}
-                    </Col>
+                            {this.state.drinks.length ? (
+                                <List>
+                                    {this.state.drinks.map(drink => (
+                                        <ListItem key={drink._id}>
+                                            <Link to={"/drinks/" + drink._id}>
+                                                <strong>
+                                                    {drink.title}
+                                                </strong>
+                                            </Link>
+                                            <DeleteBtn onClick={() => this.deleteDrink(drink._id)} />
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            ) : (
+                                    <h3>No Results to Display</h3>
+                                )}
+                        </div>
+                   
                 </Row>
             </Container>
         )

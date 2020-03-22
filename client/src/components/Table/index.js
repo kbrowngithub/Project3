@@ -18,7 +18,7 @@ export function RenderTableData(props) {
                             updateQuantityCB={props.updateQuantity} />
                     </td>
                     <td>{ingredient.unit}</td>
-                    <td><Button variant="danger" onClick={() => props.deleteIngredient(ingredient._id)}>X</Button></td>
+                    <td className="deleteColumn"><Button className="delete" onClick={() => props.deleteIngredient(ingredient._id)}>X</Button></td>
                 </tr>
             )
         });
