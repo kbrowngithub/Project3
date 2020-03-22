@@ -1,6 +1,4 @@
 .button {
-    margin-left: 10px;
-    font-size: medium;
     border-style: solid;
     border-radius:7px;
     text-shadow: 4px 4px 4px #aaa;
@@ -248,7 +246,7 @@ body {
         background-image: url(../images/silhouette.png);
         background-size: 120% 190%;
     }
-    .drinkButton {
+    /* .drinkButton {
         left: 43.5%;
         margin-top: 19%;
         width: 20%;
@@ -262,15 +260,19 @@ body {
         width: 20%;
         height: 60px;
         font-size: large;
-    }
+    } */
+}
+
+.savedItems {
+    color: brown;
 }
 
 @media only screen and (min-width: 1200px) {
 
     .button{
-        margin-left: 10px;
+        margin-left: 15px;
         font-size: medium;
-        width: 120px;
+        width: 130px;
         height: 40px;
     }
     

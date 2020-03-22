@@ -29,25 +29,15 @@
   }
 
   .delete {
-    color: white;
-    font-family: 'Fredericka the Great', cursive;
-    background-color: brown;
-    text-shadow: 4px 4px 4px rgb(36, 27, 23);
-    border-color: rgb(36, 27, 23);
-    border-radius: 5px;
-    border-width: 1px;
-    font-weight: normal;
-    font-size: small;
-    transition: 0.5s;
+color: red;
+max-width: 50px;
 }
 
 .delete:hover {
-    background-color: rgb(104, 29, 29);
-    text-decoration: underline;
-    border-color: red;
+    cursor: pointer;
   }
 
   .deleteColumn {
-    width: 100px;
+    width: 75px;
   }
   

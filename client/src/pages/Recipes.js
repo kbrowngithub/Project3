@@ -89,7 +89,7 @@ class Recipes extends Component {
                                     {this.state.recipes.map(recipe => (
                                         <ListItem key={recipe._id}>
                                             <Link to={"/recipes/" + recipe._id}>
-                                                <strong>
+                                                <strong className="savedItems">
                                                     {recipe.title}
                                                 </strong>
                                             </Link>
@@ -109,7 +109,7 @@ class Recipes extends Component {
                                     {this.state.drinks.map(drink => (
                                         <ListItem key={drink._id}>
                                             <Link to={"/drinks/" + drink._id}>
-                                                <strong>
+                                                <strong className="savedItems">
                                                     {drink.title}
                                                 </strong>
                                             </Link>
