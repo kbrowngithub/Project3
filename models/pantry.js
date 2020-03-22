@@ -18,7 +18,6 @@ const pantrySchema = new Schema({
     unit: {
         type: String,
         trim: true,
-        minlength: 1,
         maxlength: 10
     }
 });

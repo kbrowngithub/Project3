@@ -65,12 +65,11 @@ class IngredientList extends Component {
       <div className="row mt-5">
         <div className="col-md-8 m-auto">
           <div className="bordered card card-body">
-
             <h1 className="heading">Pantry</h1>
             {this.state.ingredients.length ? (
               <table id='ingredients'>
                 <tbody>
-                  <tr>
+                  <tr className="tableHeader">
                     <RenderTableHeader
                       header={Object.keys(this.state.ingredients[0])}
                     />
@@ -84,8 +83,9 @@ class IngredientList extends Component {
               </table>
 
             ) : (
-                <h3>No ingredients to display, add some below!</h3>
+                <h3 className="fontStyled">No ingredients to display, add some below!</h3>
               )}
+<<<<<<< HEAD
             <div className="fonting">
               <IngredientForm
                 newIngredient={this.state.newIngredient}
@@ -94,6 +94,16 @@ class IngredientList extends Component {
                 addIngredient={this.addIngredient}
                 sendIngredient={this.sendIngredient}
               />
+=======
+              <div className="fontNorm">
+            <IngredientForm
+              newIngredient={this.state.newIngredient}
+              newQuantity={this.state.newQuantity}
+              newUnit={this.state.newUnit}
+              addIngredient={this.addIngredient}
+              sendIngredient={this.sendIngredient}
+            />
+>>>>>>> 56637e7d24fa7603f9d1b74f00160636ba8bd9d4
             </div>
           </div>
         </div>

@@ -28,21 +28,13 @@ class Detail extends Component {
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>
-                {this.state.recipe.title}
-              </h1>
-            </Jumbotron>
-          </Col>
-        </Row>
+        <div className="bordered column savedRecipe">
+    
         <Row>
           <Col size="md-10 md-offset-1">
             <div key={this.state.recipe._id}>
-              <h1>{this.state.recipe.title}</h1>
-              <image src={this.state.recipe.image} alt="Recipe Image"></image>
-              <p>{this.state.recipe.summary}</p>
+              <h1 className="heading recipeHeading">{this.state.recipe.title}</h1>
+              <p className="backing">{this.state.recipe.summary}</p>
               <List>
                 <strong>Ingredients</strong>
                 {this.state.ingredients.map(ingredient => (
@@ -67,6 +59,7 @@ class Detail extends Component {
             <Link to="/">← Back to Recipes</Link>
           </Col>
         </Row>
+        </div>
       </Container>
     );
   }

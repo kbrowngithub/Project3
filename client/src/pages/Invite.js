@@ -161,8 +161,8 @@ class Invite extends Component {
       <Container fluid>
         <div className="row mt-5">
           <div className="col-md-6 m-auto">
-            <div className="card card-body radioContainer">
-              <h1 className="text-center mb-3">
+            <div className="card bordered card-body radioContainer">
+              <h1 className="text-center heading mb-3">
                 <i className="fas fa-user-plus"></i> Invite
               </h1>
               <form onSubmit={this.handleFormSubmit}>
@@ -192,7 +192,15 @@ class Invite extends Component {
                   />
                 </div>
 
+<<<<<<< HEAD
                 <button type="submit" className='sendButton btn-block'>
+=======
+                <button type="button"
+                  // disabled={!(this.state.message.to)}
+                  onClick={this.handleFormSubmit}
+                  className='standardButton btn-friend btn-block'
+                >
+>>>>>>> 56637e7d24fa7603f9d1b74f00160636ba8bd9d4
                   Send
                 </button>
               </form>

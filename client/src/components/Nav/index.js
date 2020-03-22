@@ -54,12 +54,7 @@ function Nav() {
 
             </div>
 
-            <div className="md-form my-0">
-                <input className="form-control mr-sm-2 searchBar" type="text" placeholder="Search Favorite Recipes" aria-label="Search" />
-            </div>
-            <div>
-        
-</div>
+
 
         </nav>
     
