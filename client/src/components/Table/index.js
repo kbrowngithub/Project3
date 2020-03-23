@@ -1,6 +1,6 @@
 import React from 'react';
 import "./style.css";
-
+import DeleteBtn from "../DeleteBtn";
 import QuantityBtn from '../QuantityBtn'
 import { Button } from 'react-bootstrap';
 
@@ -18,7 +18,9 @@ export function RenderTableData(props) {
                             updateQuantityCB={props.updateQuantity} />
                     </td>
                     <td>{ingredient.unit}</td>
-                    <td><Button variant="danger" onClick={() => props.deleteIngredient(ingredient._id)}>X</Button></td>
+                    <td className="deleteColumn">
+                        <DeleteBtn className="delete" onClick={() => props.deleteIngredient(ingredient._id)} />
+                    </td>
                 </tr>
             )
         });

@@ -49,6 +49,7 @@ class Recipes extends Component {
         });
     };
     handleFormSubmit = data => {
+        console.log(data);
         API.saveRecipe({
             title: data.title,
             image: data.image,
@@ -70,61 +71,61 @@ class Recipes extends Component {
         return (
             <Container fluid>
                 <Row>
-                    <Col size="md-6">
-                        <Jumbotron>
-                            <h1>Recipes</h1>
-                        </Jumbotron>
-                        <RecipeForm
-                            handleInputChange={this.handleInputChange}
-                            handleFormSubmit={this.handleFormSubmit}
-                            title={this.state.title}
-                            image={this.state.image}
-                            ingredients={this.state.ingredients}
-                            instructions={this.state.instructions}
-                        />
+                    <div className="column bordered">
+                        
+                            <h1 className="heading createRecipe">Create Recipe</h1>
+                            <RecipeForm
+                                handleInputChange={this.handleInputChange}
+                                handleFormSubmit={this.handleFormSubmit}
+                                title={this.state.title}
+                                image={this.state.image}
+                                ingredients={this.state.ingredients}
+                                instructions={this.state.instructions}
+                            />
+                      
+                    </div>
+                    
+                        <div className="bordered recipeList column">
+                            <h1 className="heading">Saved Recipes</h1>
 
-                    </Col>
-                    <Col size="md-6 sm-12">
-                        <Jumbotron>
-                            <h1>Recipe List</h1>
-                        </Jumbotron>
-                        {this.state.recipes.length ? (
-                            <List>
-                                {this.state.recipes.map(recipe => (
-                                    <ListItem key={recipe._id}>
-                                        <Link to={"/recipes/" + recipe._id}>
-                                            <strong>
-                                                {recipe.title}
-                                            </strong>
-                                        </Link>
-                                        <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        ) : (
-                                <h3>No Results to Display</h3>
-                            )}
+                            {this.state.recipes.length ? (
+                                <List>
+                                    {this.state.recipes.map(recipe => (
+                                        <ListItem key={recipe._id}>
+                                            <Link to={"/recipes/" + recipe._id}>
+                                                <strong className="savedItems">
+                                                    {recipe.title}
+                                                </strong>
+                                            </Link>
+                                            <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            ) : (
+                                    <h3>No Results to Display</h3>
+                                )}
+                        </div>
+                        <div className="bordered recipeList column">
+                            <h1 className="heading">Saved Drinks</h1>
 
-                        <Jumbotron>
-                            <h1>Recipe List</h1>
-                        </Jumbotron>
-                        {this.state.drinks.length ? (
-                            <List>
-                                {this.state.drinks.map(drink => (
-                                    <ListItem key={drink._id}>
-                                        <Link to={"/drinks/" + drink._id}>
-                                            <strong>
-                                                {drink.title}
-                                            </strong>
-                                        </Link>
-                                        <DeleteBtn onClick={() => this.deleteDrink(drink._id)} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        ) : (
-                                <h3>No Results to Display</h3>
-                            )}
-                    </Col>
+                            {this.state.drinks.length ? (
+                                <List>
+                                    {this.state.drinks.map(drink => (
+                                        <ListItem key={drink._id}>
+                                            <Link to={"/drinks/" + drink._id}>
+                                                <strong className="savedItems">
+                                                    {drink.title}
+                                                </strong>
+                                            </Link>
+                                            <DeleteBtn onClick={() => this.deleteDrink(drink._id)} />
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            ) : (
+                                    <h3>No Results to Display</h3>
+                                )}
+                        </div>
+                   
                 </Row>
             </Container>
         )

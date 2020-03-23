@@ -17,8 +17,8 @@ export default class Friends extends Component {
         return (
             <div className="row mt-5">
                 <div className="col-md-8 m-auto">
-                    <div className="card card-body">
-                        <h1 className="text-center mb-3">
+                    <div className="bordered card card-body">
+                        <h1 className="text-center mb-3 heading">
                             <i className="fas fa-user-plus"></i> Friends
                         </h1>
                         <table className="table">
@@ -34,18 +34,7 @@ export default class Friends extends Component {
                                 {/* friends go here */}
                             </tbody>
                         </table>
-                        {/* <input type='button' value='Invite Friend' href="invite" className='btn btn-info' /> */}
-                        {/* <AwesomeButton
-                    type="primary"
-                    size="medium"
-                    ripple
-                    element="Link"
-                    className='button'
-                ><Link to="/invite">NewFriend</Link>
-                </AwesomeButton> */}
-                        <button onClick={this.handleFormSubmit} type="button" className="btn-block btn-friend">
-                            <Link to="/invite">NewFriend</Link>
-                        </button>
+                        <Button className="btn-friend standardButton" variant="light" onClick={this.handleFormSubmit}>New Friend</Button>
                     </div>
                 </div>
             </div>

@@ -140,40 +140,66 @@ class Detail extends Component {
 
 
 
-                  <List>
+              <List>
 
-                    <span><strong>Ingredients</strong>
-                      <EditBtn onClick={() => this.editRecipe("ingredients")}></EditBtn>
-                    </span>
+                <span><strong>Ingredients</strong>
+                  <EditBtn onClick={() => this.editRecipe("ingredients")}></EditBtn>
+                </span>
+                {this.state.ingredients.map(ingredient => (
+                  <ListItem key={ingredient.id}>
+                    {ingredient.amount} {ingredient.unit} {ingredient.name}
+                  </ListItem>
+                ))}
+
+              </List>
+
+
+              <List>
+                <strong>Instructions</strong>
+                <EditBtn onClick={() => this.editRecipe("instructions")}></EditBtn>
+                {this.state.instructions.map(step => (
+                  <ListItem key={this.state.recipe.key++}>
+                    {step.number}: {step.step}
+                  </ListItem>
+                ))}
+              </List>
+            </div>
+        </Col>
+        </Row>
+          <div className="bordered column savedRecipe">
+
+            <Row>
+              <Col size="md-10 md-offset-1">
+                <div key={this.state.recipe._id}>
+                  <h1 className="heading recipeHeading">{this.state.recipe.title}</h1>
+                  <p className="backing">{this.state.recipe.summary}</p>
+                  <List>
+                    <strong>Ingredients</strong>
                     {this.state.ingredients.map(ingredient => (
                       <ListItem key={ingredient.id}>
                         {ingredient.amount} {ingredient.unit} {ingredient.name}
                       </ListItem>
                     ))}
-
                   </List>
-   
-
                   <List>
                     <strong>Instructions</strong>
-                    <EditBtn onClick={() => this.editRecipe("instructions")}></EditBtn>
                     {this.state.instructions.map(step => (
                       <ListItem key={this.state.recipe.key++}>
                         {step.number}: {step.step}
                       </ListItem>
                     ))}
                   </List>
-     
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-2">
-            <Link to="/">← Back to Recipes</Link>
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col size="md-2">
+                <Link to="/">← Back to Recipes</Link>
 
-          </Col>
-        </Row>
-      </Container >
+              </Col>
+            </Row>
+          </div>
+      </Container>
     );
   }
 }

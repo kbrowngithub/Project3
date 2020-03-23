@@ -1,6 +1,8 @@
 import React from 'react';
 import { FormBtn } from "../Form";
 import { useForm } from 'react-hook-form'
+import './styles.css';
+
 
 export default function RecipeForm(props) {
     const { register, handleSubmit, errors } = useForm();
@@ -9,6 +11,7 @@ export default function RecipeForm(props) {
     };
 
     return (
+        <div className="background">
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
                 <input
@@ -80,9 +83,10 @@ export default function RecipeForm(props) {
             />
             {errors.instructions && errors.instructions.type === "minLength" && "Instructions length must be longer"}
             </div>
-            <FormBtn>
+            <FormBtn className="standardButton" variant="light">
                 Submit Recipe
             </FormBtn>
         </form>
+        </div>
     )
 }

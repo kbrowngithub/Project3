@@ -1,6 +1,4 @@
 .button {
-    margin-left: 10px;
-    font-size: medium;
     border-style: solid;
     border-radius:7px;
     text-shadow: 4px 4px 4px #aaa;
@@ -8,16 +6,105 @@
     background-color: rgb(36, 27, 23);
 }
 
-.sendButton, .btn-login, .btn-friend {
-    margin-left: 10px;
-    font-size: medium;
-    border-style: solid;
-    border-radius:7px;
-    text-shadow: 4px 4px 4px #aaa;
-    border-color: darkgray;
-    background-color: rgb(36, 27, 23);
-    color: #EB6864;
+.backing {
+    background-color: white;
+    padding: 20px;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style: solid;    
+    border-radius: 5px;
 }
+
+.btn-friend {
+    width: 150px;
+}
+
+.loginButton {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.lead {
+    font-weight: bold;
+    font-size: medium;
+    width: 330px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.createRecipe {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.heading {
+    font-family: 'Fredericka the Great', cursive;
+}
+
+.recipeHeading {
+    margin-left: 25%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.savedRecipe {
+    width: 800px;
+    padding-left: 100px;
+    margin-left: 30%;
+}
+
+.centerResult {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  margin-left: 100%;
+}
+
+.column {
+    background: url(../images/paperboard-texture_95678-72.jpg);
+    border-radius: 20px;
+}
+
+.fontNorm {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.fontStyled {
+    font-family: 'Fredericka the Great', cursive;
+}
+
+.tableHeader {
+    font-family: 'Fredericka the Great', cursive;
+    color: blue;
+    background-color: blue;
+}
+
+.recipeList {
+    width: 350px;
+    margin-left: 80px;
+    padding: 30px;
+}
+
+.sendButton, .btn-login, .btn-friend {
+    color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(165, 87, 42);
+    border-radius: 7px;
+    font-family: 'Fredericka the Great', cursive;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius:7px;
+    color: black;
+}
+.btn-friend:hover {
+    background-color: rgb(165, 87, 42);
+    text-decoration: underline;
+  }
 
 body {
     background-image: url(../images/silhouette.png);
@@ -36,35 +123,43 @@ body {
     width: 20%;
     height: 100px;
     font-size: xx-large;
+}
+
+.thead-light {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.standardButton {
+    color: white;
     font-family: 'Fredericka the Great', cursive;
     background-color: brown;
     text-shadow: 4px 4px 4px rgb(36, 27, 23);
     border-color: rgb(36, 27, 23);
-    border-radius: 20px;
-    border-width: 3px;
-    opacity: 85%;
+    border-radius: 10px;
+    border-width: 2px;
+    opacity: 0.85;
+    font-weight: normal;
+    transition: 0.7s;
 }
+
+.standardButton:hover {
+    background-color: rgb(104, 29, 29);
+    text-decoration: underline;
+    color: white;
+    border-color: red;
+  }
 
 .foodButton {
     position: relative;
-  left: 22.5%;
+    left: 22.5%;
     margin-top: 22%;
     width: 20%;
     height: 100px;
     font-size: xx-large;
-    font-family: 'Fredericka the Great', cursive;
-    background-color: brown;
-    text-shadow: 4px 4px 4px rgb(36, 27, 23);
-    border-color: rgb(36, 27, 23);
-    border-radius: 20px;
-    border-width: 3px;
-    opacity: 85%;
+    opacity: 0.85;
 }
-
-.drinkButton:hover, .foodButton:hover {
-    background-color: rgb(104, 29, 29);
-    text-decoration: underline;
-  }
 
 .form-check {
     margin-left: 20px;
@@ -89,6 +184,12 @@ body {
 /* .form-group {
     position: unset;
 } */
+
+.bordered {
+    border-style: solid;
+    border-width: 2px;
+    border-color: brown;
+}
 
 .radioContainer, .card-body {
     /* background: white;
@@ -152,7 +253,7 @@ body {
         background-image: url(../images/silhouette.png);
         background-size: 120% 190%;
     }
-    .drinkButton {
+    /* .drinkButton {
         left: 43.5%;
         margin-top: 19%;
         width: 20%;
@@ -166,15 +267,19 @@ body {
         width: 20%;
         height: 60px;
         font-size: large;
-    }
+    } */
+}
+
+.savedItems {
+    color: brown;
 }
 
 @media only screen and (min-width: 1200px) {
 
     .button{
-        margin-left: 10px;
+        margin-left: 15px;
         font-size: medium;
-        width: 120px;
+        width: 130px;
         height: 40px;
     }
     
@@ -214,20 +319,12 @@ body {
 
 .containerDrink {
     height: 300px;
-    overflow-y: scroll;
+    overflow-x: scroll;
     margin-left: 60px;
   }
-  ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; 
-}
 
 .containerRecipe {
     height: 300px;
-    overflow-y: scroll;
+    overflow-x: scroll;
     margin-left: 90px;
   }
-  ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; 
-}
