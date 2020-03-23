@@ -57,7 +57,9 @@ class Detail extends Component {
         const instructions = obj.strInstructions;
         const sentence = instructions.split('.');
         const cleanArray = sentence.splice(0, sentence.length - 1);
-        this.setState({ instructions: cleanArray })
+        const ruleArr = cleanArray.filter(el => el.length > 3);
+        console.log(ruleArr, cleanArray)
+        this.setState({ instructions: ruleArr })
     }
     saveDrink = () => {
         API.saveDrink({
@@ -105,7 +107,7 @@ class Detail extends Component {
                                     <div className="font">
                                     {this.state.instructions.map(step => (
                                         <ListItem key={this.state.instructions.indexOf(step)}>
-                                            {this.state.instructions.indexOf(step) + 1}: {step}class
+                                            {this.state.instructions.indexOf(step) + 1}: {step}
                                         </ListItem>
                                     ))}
                                     </div>
