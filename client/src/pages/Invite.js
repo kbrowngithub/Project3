@@ -47,7 +47,6 @@ class Invite extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    alert(`this.state.message.to = ${this.state.message.to}`);
     const addr = this.state.message.to;
     if (!addr) {
       alert(`Must enter a valid \'To\' address (email or 10-digit cell)`);
@@ -166,7 +165,18 @@ class Invite extends Component {
                 <i className="fas fa-user-plus"></i> Invite
               </h1>
               <form onSubmit={this.handleFormSubmit}>
-
+                <div className="form-group">
+                  <label htmlFor="cName">Contact Name:</label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="cName"
+                    id="cName"
+                    placeholder="Enter a name for this contact"
+                    // value={this.state.message.to}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
                 <div className="form-group">
                   <label htmlFor="to">To:</label>
                   <input
@@ -192,15 +202,11 @@ class Invite extends Component {
                   />
                 </div>
 
-<<<<<<< HEAD
-                <button type="submit" className='sendButton btn-block'>
-=======
                 <button type="button"
                   // disabled={!(this.state.message.to)}
                   onClick={this.handleFormSubmit}
                   className='standardButton btn-friend btn-block'
                 >
->>>>>>> 56637e7d24fa7603f9d1b74f00160636ba8bd9d4
                   Send
                 </button>
               </form>

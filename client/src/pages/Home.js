@@ -19,6 +19,7 @@ class Home extends Component {
         if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
             window.location.href = "/login"
         }
+
     }
 
     updateRecipes = (array) => {

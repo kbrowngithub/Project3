@@ -85,16 +85,6 @@ class IngredientList extends Component {
             ) : (
                 <h3 className="fontStyled">No ingredients to display, add some below!</h3>
               )}
-<<<<<<< HEAD
-            <div className="fonting">
-              <IngredientForm
-                newIngredient={this.state.newIngredient}
-                newQuantity={this.state.newQuantity}
-                newUnit={this.state.newUnit}
-                addIngredient={this.addIngredient}
-                sendIngredient={this.sendIngredient}
-              />
-=======
               <div className="fontNorm">
             <IngredientForm
               newIngredient={this.state.newIngredient}
@@ -103,7 +93,6 @@ class IngredientList extends Component {
               addIngredient={this.addIngredient}
               sendIngredient={this.sendIngredient}
             />
->>>>>>> 56637e7d24fa7603f9d1b74f00160636ba8bd9d4
             </div>
           </div>
         </div>
