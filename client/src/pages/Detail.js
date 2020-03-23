@@ -96,109 +96,66 @@ class Detail extends Component {
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              {this.state.field === "title" ? (
-                <TitleForm
-                  key={this.state.recipe._id}
-                  value={this.state.title}
-                  updateField={this.updateField}
-                  handleInputChange={this.handleInputChange}
-                />
-              ) : (
-                  <div>
-                    <h1>
-                      {this.state.title}
-                    </h1>
-                    <EditBtn onClick={() => this.editRecipe("title")}></EditBtn>
-                  </div>
-                )}
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <div key={this.state.recipe._id}>
+        <div className="bordered column savedRecipe">
 
-              <h1>{this.state.recipe.title}</h1>
-              <image src={this.state.recipe.image} alt="Recipe Image"></image>
-              {this.state.field === "summary" ? (
-                <SummForm
-                  key={this.state.recipe._id}
-                  value={this.state.summ}
-                  updateField={this.updateField}
-                  handleInputChange={this.handleInputChange}
-                />
-              ) : (
-                  <span>
-                    <EditBtn onClick={() => this.editRecipe("summary")}></EditBtn>
-                    <p>{this.state.recipe.summary}</p>
-                  </span>
-                )}
+          <Row>
+            <Col size="md-10 md-offset-1">
+              <div key={this.state.recipe._id}>
+                {this.state.field === "title" ? (
+                  <TitleForm
+                    key={this.state.recipe._id}
+                    value={this.state.title}
+                    updateField={this.updateField}
+                    handleInputChange={this.handleInputChange}
+                  />
+                ) : (
+                    <span>
+                      <EditBtn onClick={() => this.editRecipe("title")}></EditBtn>
+                      <h1 className="heading recipeHeading">{this.state.recipe.title}</h1>
 
+                    </span>
+                  )}
 
+                {this.state.field === "summary" ? (
+                  <SummForm
+                    key={this.state.recipe._id}
+                    value={this.state.summ}
+                    updateField={this.updateField}
+                    handleInputChange={this.handleInputChange}
+                  />
+                ) : (
+                    <span>
+                      <EditBtn onClick={() => this.editRecipe("summary")}></EditBtn>
+                      <p className="backing">{this.state.recipe.summary}</p>
+                    </span>
+                  )}
 
+                <List>
+                  <strong>Ingredients</strong>
+                  {this.state.ingredients.map(ingredient => (
+                    <ListItem key={ingredient.id}>
+                      {ingredient.amount} {ingredient.unit} {ingredient.name}
+                    </ListItem>
+                  ))}
+                </List>
+                <List>
+                  <strong>Instructions</strong>
+                  {this.state.instructions.map(step => (
+                    <ListItem key={this.state.recipe.key++}>
+                      {step.number}: {step.step}
+                    </ListItem>
+                  ))}
+                </List>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-2">
+              <Link to="/">← Back to Recipes</Link>
 
-              <List>
-
-                <span><strong>Ingredients</strong>
-                  <EditBtn onClick={() => this.editRecipe("ingredients")}></EditBtn>
-                </span>
-                {this.state.ingredients.map(ingredient => (
-                  <ListItem key={ingredient.id}>
-                    {ingredient.amount} {ingredient.unit} {ingredient.name}
-                  </ListItem>
-                ))}
-
-              </List>
-
-
-              <List>
-                <strong>Instructions</strong>
-                <EditBtn onClick={() => this.editRecipe("instructions")}></EditBtn>
-                {this.state.instructions.map(step => (
-                  <ListItem key={this.state.recipe.key++}>
-                    {step.number}: {step.step}
-                  </ListItem>
-                ))}
-              </List>
-            </div>
-        </Col>
-        </Row>
-          <div className="bordered column savedRecipe">
-
-            <Row>
-              <Col size="md-10 md-offset-1">
-                <div key={this.state.recipe._id}>
-                  <h1 className="heading recipeHeading">{this.state.recipe.title}</h1>
-                  <p className="backing">{this.state.recipe.summary}</p>
-                  <List>
-                    <strong>Ingredients</strong>
-                    {this.state.ingredients.map(ingredient => (
-                      <ListItem key={ingredient.id}>
-                        {ingredient.amount} {ingredient.unit} {ingredient.name}
-                      </ListItem>
-                    ))}
-                  </List>
-                  <List>
-                    <strong>Instructions</strong>
-                    {this.state.instructions.map(step => (
-                      <ListItem key={this.state.recipe.key++}>
-                        {step.number}: {step.step}
-                      </ListItem>
-                    ))}
-                  </List>
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col size="md-2">
-                <Link to="/">← Back to Recipes</Link>
-
-              </Col>
-            </Row>
-          </div>
+            </Col>
+          </Row>
+        </div>
       </Container>
     );
   }

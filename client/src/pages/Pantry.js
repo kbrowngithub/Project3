@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { RenderTableData, RenderTableHeader } from "../components/Table";
 import { IngredientForm, DrinkForm } from '../components/NewIngredientForm';
 import API from "../utils/API";
+import { List, ListItem } from '../components/List';
+import DeleteBtn from '../components/DeleteBtn';
 class IngredientList extends Component {
   constructor(props) {
     super(props)
@@ -34,7 +36,7 @@ class IngredientList extends Component {
   }
 
   loadLiquors = () => {
-    API.getLiquors() 
+    API.getLiquors()
       .then(res => {
         this.setState({ liquors: res.data })
       })
@@ -78,7 +80,7 @@ class IngredientList extends Component {
     API.saveLiquor({
       name: data.newDrink
     })
-      .then(res=> {
+      .then(res => {
         this.loadLiquors();
         this.setState({ newDrink: "" })
       })
@@ -86,65 +88,75 @@ class IngredientList extends Component {
   }
   render() {
     return (
-      <div className="row mt-5">
-        <div className="col-md-8 m-auto">
-          <div className="bordered card card-body">
-            <h1 className="heading">Pantry</h1>
-            {this.state.ingredients.length ? (
-              <table id='ingredients'>
-                <tbody>
-                  <tr className="tableHeader">
-                    <RenderTableHeader
-                      header={Object.keys(this.state.ingredients[0])}
+      <container>
+        <div className="row mt-5">
+          <div className="col-md-8 m-auto">
+            <div className="bordered card card-body">
+              <h1 className="heading">Pantry</h1>
+              {this.state.ingredients.length ? (
+                <table id='ingredients'>
+                  <tbody>
+                    <tr className="tableHeader">
+                      <RenderTableHeader
+                        header={Object.keys(this.state.ingredients[0])}
+                      />
+                    </tr>
+                    <RenderTableData
+                      ingredients={this.state.ingredients}
+                      updateQuantity={this.updateQuantity}
+                      deleteIngredient={this.deleteIngredient}
                     />
-                  </tr>
-                  <RenderTableData
-                    ingredients={this.state.ingredients}
-                    updateQuantity={this.updateQuantity}
-                    deleteIngredient={this.deleteIngredient}
-                  />
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
 
-            ) : (
-                <h3 className="fontStyled">No ingredients to display, add some below!</h3>
-              )}
+              ) : (
+                  <h3 className="fontStyled">No ingredients to display, add some below!</h3>
+                )}
               <div className="fontNorm">
-            <IngredientForm
-              newIngredient={this.state.newIngredient}
-              newQuantity={this.state.newQuantity}
-              newUnit={this.state.newUnit}
-              addIngredient={this.addIngredient}
-              sendIngredient={this.sendIngredient}
-            />
+                <IngredientForm
+                  newIngredient={this.state.newIngredient}
+                  newQuantity={this.state.newQuantity}
+                  newUnit={this.state.newUnit}
+                  addIngredient={this.addIngredient}
+                  sendIngredient={this.sendIngredient}
+                />
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+        <div className="row mt-5">
+          <div className="col-md-8 m-auto">
+            <div className="bordered card card-body">
+              <h1 id="heading">Liquor Cabinent</h1>
+              <List>
+                {this.state.liquors.length ? (
+                  <div>
+                    {this.state.liquors.map(liquor => (
+
+                      <ListItem>
+                        {liquor.name}
+                        <DeleteBtn onClick={() => this.deleteLiquor(liquor._id)} />
+                      </ListItem>
+                    ))}
+                  </div>
+                ) : (
+                    <h3 className="fontStyled">No drink bases to display</h3>
+                  )}
+              </List>
+              <DrinkForm
+                newDrink={this.state.newDrink}
+                addDrink={this.addIngredient}
+                sendDrink={this.sendDrink}
+              />
             </div>
           </div>
         </div>
-        <h1 id="title">Liquor Cabinent</h1>
-      <List>
-        {this.state.liquors.length ? (
-          <div>
-            {this.state.liquors.map(liquor => (
-
-              <ListItem>
-                {liquor.name}
-                <DeleteBtn onClick={() => this.deleteLiquor(liquor._id)} />
-              </ListItem>
-            ))}
-          </div>
-        ) : (
-            <h3>No drink bases to display</h3>
-          )}
-      </List>
-      <DrinkForm
-        newDrink={this.state.newDrink}
-        addDrink={this.addIngredient}
-        sendDrink={this.sendDrink}
-      />
-      </div>
+      </container>
 
 
-     
     )
   }
 }
