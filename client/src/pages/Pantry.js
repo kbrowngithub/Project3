@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { RenderTableData, RenderTableHeader } from "../components/Table";
-import IngredientForm from '../components/NewIngredientForm';
+import { IngredientForm, DrinkForm } from '../components/NewIngredientForm';
 import API from "../utils/API";
+import { List, ListItem } from "../components/List"
+import DeleteBtn from "../components/DeleteBtn";
 class IngredientList extends Component {
   constructor(props) {
     super(props)
@@ -16,6 +18,7 @@ class IngredientList extends Component {
   }
   componentDidMount() {
     this.loadIngredients();
+    this.loadLiquors();
   }
 
   updateQuantity = (id, int) => {
@@ -32,6 +35,14 @@ class IngredientList extends Component {
       .catch(err => console.log(err));
   }
 
+  loadLiquors = () => {
+    API.getLiquors() 
+      .then(res => {
+        this.setState({ liquors: res.data })
+      })
+      .catch(err => console.log(err))
+  }
+
   addIngredient = ({ target }) => {
     this.setState({
       [target.name]: target.value
@@ -45,6 +56,13 @@ class IngredientList extends Component {
       .catch(err => console.log(err));
   }
 
+  deleteLiquor = (id) => {
+    API.deleteLiquor(id)
+      .then(res => this.loadLiquors())
+      .catch(err => console.log(err));
+  }
+
+
   sendIngredient = data => {
     API.saveIngredient({
       name: data.newIngredient,
@@ -54,6 +72,17 @@ class IngredientList extends Component {
       .then(res => {
         this.loadIngredients();
         this.setState({ newIngredient: "", newQuantity: "", newUnit: "" })
+      })
+      .catch(err => console.log(err));
+  }
+
+  sendDrink = data => {
+    API.saveLiquor({
+      name: data.newDrink
+    })
+      .then(res=> {
+        this.loadLiquors();
+        this.setState({ newDrink: "" })
       })
       .catch(err => console.log(err));
   }
@@ -87,6 +116,30 @@ class IngredientList extends Component {
           addIngredient={this.addIngredient}
           sendIngredient={this.sendIngredient}
         />
+      
+
+
+      <h1 id="title">Liquor Cabinent</h1>
+      <List>
+        {this.state.liquors.length ? (
+          <div>
+            {this.state.liquors.map(liquor => (
+
+              <ListItem>
+                {liquor.name}
+                <DeleteBtn onClick={() => this.deleteLiquor(liquor._id)} />
+              </ListItem>
+            ))}
+          </div>
+        ) : (
+            <h3>No drink bases to display</h3>
+          )}
+      </List>
+      <DrinkForm
+        newDrink={this.state.newDrink}
+        addDrink={this.addIngredient}
+        sendDrink={this.sendDrink}
+      />
       </div>
     )
   }

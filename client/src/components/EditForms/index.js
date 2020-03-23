@@ -50,13 +50,13 @@ export function SummForm(props) {
     )
 }
 
-export function IngredientForm(props) {
+export function NoteForm(props) {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         props.updateField(data);
+        console.log(data);
     };
     const ingredients = props.value;
-    console.log(ingredients)
     return(
         <form key={props.key} onSubmit={handleSubmit(onSubmit)}>
             {ingredients.map(ingredient => (

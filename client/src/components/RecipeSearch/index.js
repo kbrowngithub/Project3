@@ -10,7 +10,7 @@ class RecipeSearch extends Component {
         super(props)
         this.state = {
             ingredients: [],
-            strQuery: null
+            strQuery: ""
         }
         this.searchRecipes = this.searchRecipes.bind(this);
     }

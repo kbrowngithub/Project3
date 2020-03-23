@@ -5,7 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { List, ListItem } from "../components/List"
 import { EditBtn } from "../components/DeleteBtn";
-import { TitleForm, SummForm, IngredientForm } from "../components/EditForms";
+import { TitleForm, SummForm } from "../components/EditForms";
 // import { Title } from "react-bootstrap/lib/Modal";
 class Detail extends Component {
   state = {
@@ -137,14 +137,8 @@ class Detail extends Component {
                   </span>
                 )}
 
-              {this.state.field === "ingredients" ? (
-                <IngredientForm
-                  key={this.state.recipe._id}
-                  value={this.state.recipe.ingredients}
-                  updateField={this.updateField}
-                  handleInputChange={this.handleInputChange}
-                />
-              ) : (
+
+
 
                   <List>
 
@@ -158,15 +152,8 @@ class Detail extends Component {
                     ))}
 
                   </List>
-                )}
-              {this.state.field === "instructions" ? (
-                <IngredientForm
-                  key={this.state.recipe._id}
-                  value={this.state.recipe.ingredients}
-                  updateField={this.updateField}
-                  handleInputChange={this.handleInputChange}
-                />
-              ) : (
+   
+
                   <List>
                     <strong>Instructions</strong>
                     <EditBtn onClick={() => this.editRecipe("instructions")}></EditBtn>
@@ -176,7 +163,7 @@ class Detail extends Component {
                       </ListItem>
                     ))}
                   </List>
-                )}
+     
             </div>
           </Col>
         </Row>
