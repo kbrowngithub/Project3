@@ -47,7 +47,7 @@ class Login extends Component {
             <div className="row mt-5">
                 <div className="col-md-6 m-auto">
                     <div className="card card-body">
-                        <h1 className="text-center mb-3"><i className="fas fa-sign-in-alt"></i>  Login</h1>
+                        <h1 className="text-center mb-3 heading"><i className="fas fa-sign-in-alt"></i>  Login</h1>
                         {/* <% include ./partials/messages %> */}
                         { this.state.loginFlag === 1 && <p>Please enter your email</p>}
                         { this.state.loginFlag === 2 && <p>Please enter your password</p>}
@@ -77,7 +77,7 @@ class Login extends Component {
                                     onChange={this.handleInputChange}
                                 />
                             </div>
-                            <button onClick={this.handleFormSubmit} type="button" className="btn btn-primary btn-block btn-login">Login</button>
+                            <button onClick={this.handleFormSubmit} type="button" className="standardButton loginButton">Login</button>
                         </form>
                         <p className="lead mt-4">
                             No Account? <a href="/signup">Register</a>
