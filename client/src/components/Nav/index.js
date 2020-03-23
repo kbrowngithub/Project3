@@ -49,7 +49,13 @@ function Nav() {
                         element="Link"
                         className='button'
                     ><Link className ="btnFontClr" to="/pantry">Pantry</Link></AwesomeButton>
-                    
+                    <AwesomeButton
+                        type="secondary"
+                        size="medium"
+                        ripple
+                        element="Link"
+                        className='button'
+                    ><Link className ="btnFontClr" to="/login">Log In</Link></AwesomeButton>
                 </ul>
 
             </div>
