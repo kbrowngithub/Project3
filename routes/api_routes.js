@@ -15,6 +15,8 @@ function api_routes(app) {
     });
 
     //User Routes
+    app.post("/api/user/:id", usersController.update);
+
     app.post("/api/users", usersController.create);
 
     app.get('/logout', (req, res) => {

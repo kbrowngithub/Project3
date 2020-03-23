@@ -60,6 +60,7 @@ class Signup extends Component {
                         name: this.state.fullName,
                         email: this.state.email,
                         password: this.state.password,
+                        contacts: []
                     })
                         .then(user => {
                             sessionStorage.setItem("Logout", false);

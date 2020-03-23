@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/themes/theme-blue.css';
 import './assets/css/styles.css';
+import API from "../utils/API";
 
 // function testing() {
 //   alert("Yup")
@@ -34,11 +35,11 @@ class Invite extends Component {
     });
   };
 
-  // handleRadioButtonChange = event => {
-  //   this.setState({
-  //     placeholder: event.target.value
-  //   })
-  // }
+  updateContact = (id, contactData) => {
+    API.updateContact({ id: id, contact: contactData })
+      .then(res => console.log("Contact Added"))
+      .catch(err => console.log(err));
+  }
 
   normalizeCell = cellNum => {
     this.state.message.to = cellNum.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1$2$3');
@@ -88,6 +89,9 @@ class Invite extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
+          API.updateContact({mobile:this.state.to})
+          .then(res => console.log("Contact Updated"))
+          .catch(err => console.log(err));
           
           if (data.success) {
             alert(`Invite sent to ${this.state.message.to}`)
@@ -133,6 +137,10 @@ class Invite extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
+          API.updateContact({email:this.state.to})
+          .then(res => console.log("Contact Updated"))
+          .catch(err => console.log(err));
+
           alert(`Invite sent to ${this.state.message.to}`)
           if (data.success) {
             this.setState({

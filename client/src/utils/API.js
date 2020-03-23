@@ -2,6 +2,10 @@ import axios from "axios";
 import { UserInstance } from "twilio/lib/rest/chat/v1/service/user";
 
 export default {
+  updateContact: function (contactData) {
+    return axios.put("/api/user/" + contactData.id, contactData);
+  },
+
   //Recipe Routes
   getRecipes: function () {
     return axios.get("/api/recipes");
