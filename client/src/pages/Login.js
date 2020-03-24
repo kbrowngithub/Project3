@@ -20,13 +20,15 @@ class Login extends Component {
         if (this.state.email && this.state.password) {
             let currentComponent = this;
 
-            console.log("state test" + this.state.email);
-            sessionStorage.setItem("UserEmail", JSON.stringify(this.state.email))
+            console.log("state test " + this.state.email);
             API.login({
                 email: this.state.email,
                 password: this.state.password
-            }).then(function(data){
-                console.log("CLIENT DATA ",data);
+            }).then(function(res){
+                console.log("CLIENT DATA ",res.data);
+                sessionStorage.setItem("UserEmail", JSON.stringify(res.data.email))
+                sessionStorage.setItem("UserId", JSON.stringify(res.data._id))
+                sessionStorage.setItem("UserName", JSON.stringify(res.data.name))
                 sessionStorage.setItem("Logout", false);
                 window.location.href="/profile"
             }).catch(function(error){
