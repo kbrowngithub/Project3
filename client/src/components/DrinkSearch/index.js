@@ -8,19 +8,25 @@ class DrinkSearch extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            strQuery: ""
+            strQuery: "",
+            userEmail: ""
         }
         this.searchDrinks = this.searchDrinks.bind(this);
     }
     componentDidMount() {
+        this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) })
         this.loadLiquors();
     }
     loadLiquors = () => {
         API.getLiquors()
-            .then(res => this.jsonConverter(res.data))
+            .then(res => {
+                var index = res.data.map(x => x.userEmail).indexOf(this.state.userEmail);
+                var liquorList = res.data[index].liquors;
+                this.jsonConverter(liquorList)
+            })
             .catch(err => console.log(err));
     }
-    
+
     jsonConverter = json => {
         var array = [];
         if (json.length > 0) {
@@ -45,24 +51,23 @@ class DrinkSearch extends Component {
         this.setState({ strQuery: liquorQuery });
     }
     searchDrinks() {
-        console.log(this.state.strQuery);
         API.searchDrinks({
             query: this.state.strQuery
         })
-        .then(res => {
-            this.props.updateDrinksCB(res.data.drinks);
-        })
-        .catch(err => console.log(err));
+            .then(res => {
+                this.props.updateDrinksCB(res.data.drinks);
+            })
+            .catch(err => console.log(err));
     }
     render() {
-        return (            
+        return (
 
             <Button
-            onClick={this.searchDrinks}
-            className='drinkButton standardButton'
-          >
-            Drink Recipes
-          </Button>
+                onClick={this.searchDrinks}
+                className='drinkButton standardButton'
+            >
+                Drink Recipes
+            </Button>
         )
     }
 }
