@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
 import { List, ListItem } from "../components/List"
 import { Button } from 'react-bootstrap';
 import API from "../utils/API";
@@ -58,7 +57,6 @@ class Detail extends Component {
         const sentence = instructions.split('.');
         const cleanArray = sentence.splice(0, sentence.length - 1);
         const ruleArr = cleanArray.filter(el => el.length > 3);
-        console.log(ruleArr, cleanArray)
         this.setState({ instructions: ruleArr })
     }
     saveDrink = () => {
@@ -78,55 +76,55 @@ class Detail extends Component {
             <Container fluid>
                 <div className="resultContainer">
                     <Row>
-                      
+
                         <Col size="md-12">
                             <h2 className="drinkTitle">
                                 {this.state.drink.strDrink}
                             </h2>
                         </Col>
-                       
+
                     </Row>
-                    
+
                     <Row>
-                    
+
                         <Col size="md-10 md-offset-1">
                             <div key={this.state.drink.id}>
                                 <List>
                                     <strong>Ingredients</strong>
                                     <div className="font">
-                                    {this.state.ingredients.map(ingredient => (
-                                        <ListItem key={this.state.ingredients.indexOf(ingredient)}>
-                                            {ingredient}
-                                        </ListItem>
-                                    ))}
+                                        {this.state.ingredients.map(ingredient => (
+                                            <ListItem key={this.state.ingredients.indexOf(ingredient)}>
+                                                {ingredient}
+                                            </ListItem>
+                                        ))}
                                     </div>
                                 </List>
-<br></br>
+                                <br></br>
                                 <List>
                                     <strong>Instructions</strong>
                                     <div className="font">
-                                    {this.state.instructions.map(step => (
-                                        <ListItem key={this.state.instructions.indexOf(step)}>
-                                            {this.state.instructions.indexOf(step) + 1}: {step}
-                                        </ListItem>
-                                    ))}
+                                        {this.state.instructions.map(step => (
+                                            <ListItem key={this.state.instructions.indexOf(step)}>
+                                                {this.state.instructions.indexOf(step) + 1}: {step}
+                                            </ListItem>
+                                        ))}
                                     </div>
                                 </List>
                                 <br></br>
                                 <Button className="saveButton standardButton" variant="light" onClick={() => { this.saveDrink() }}>Save to Favorites</Button>
-                               
+
                             </div>
                         </Col>
-                        
+
                     </Row>
                     <br></br>
                     <Row>
-                       
+
                         <Col size="md-4">
                             <Link className="colorBlack" to="/">← Back to Recipes</Link>
                         </Col>
                     </Row>
-                    
+
                 </div>
             </Container>
         );
