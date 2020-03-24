@@ -34,13 +34,15 @@ export default {
     return axios.get("/api/drinks/" + id);
   },
   saveLiquor: function(drinkData) {
+    console.log(drinkData)
     return axios.post("/api/liquor", drinkData);
   },
   getLiquors: function() {
+    
     return axios.get("/api/liquor");
   },
-  deleteLiquor: function(id) {
-    return axios.delete("/api/liquor/" + id);
+  deleteLiquor: function(drinkData) {
+    return axios.delete("/api/liquor/" + drinkData.id + '/' + drinkData.email);
   },
 
   //Pantry Routes
@@ -52,6 +54,7 @@ export default {
     return axios.delete("/api/pantry/" + pantryData.id + "/" + pantryData.email);
   },
   saveIngredient: function (pantryData) {
+
     return axios.post("/api/pantry", pantryData);
   },
   updateIngredient: function (pantryData) {

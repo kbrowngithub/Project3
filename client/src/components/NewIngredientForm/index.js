@@ -46,13 +46,13 @@ export function IngredientForm(props) {
                 name="newUnit"
                 type="text"
                 placeholder="Add Unit"
-                value={props.newUnit}
+                defaultValue={props.newUnit}
                 onChange={props.addIngredient}
                 ref={register({
                     required: false,
-                    maxLength: 5
+                    maxLength: 10
                 })} />
-            {errors.newUnit && errors.newUnit.type === "max" && "Unit name must shorter"}
+            {errors.newUnit && errors.newUnit.type === "maxLength" && "Unit name must shorter"}
             <button type="submit">Submit Ingredient</button>
         </form>
     )
@@ -69,7 +69,7 @@ export function DrinkForm(props) {
                 name="newDrink"
                 type="text"
                 placeholder="Add Liquor(Required)"
-                defaultValue={props.newDrink}
+                value={props.newDrink}
                 onChange={props.addIngredient}
                 ref={register({
                     required: true,

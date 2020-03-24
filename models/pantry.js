@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const pantrySchema = new Schema({
     userEmail: {
         type: String,
-        trime: true,
+        trim: true,
         required: true
     },
     ingredients: [{

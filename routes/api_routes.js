@@ -34,13 +34,11 @@ function api_routes(app) {
 
     app.post("/api/users", usersController.create);
 
-    app.post('/api/login', (req, res, next) => {
-        console.log("Login Request Recieved")
-        passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login'
-        })(req, res, next);
-    });
+    app.post('/api/login', passport.authenticate('local'), 
+        (req, res, next) => {
+           res.send(req.user) 
+        });
+    
 
     // Get all sessions for a user
     app.get('/api/sessions', sessionsController.findAll);
@@ -90,7 +88,7 @@ function api_routes(app) {
 
     app.post('/api/liquor', liquorController.create);
 
-    app.delete('/api/liquor/:id', liquorController.remove);
+    app.delete('/api/liquor/:id/:email', liquorController.remove);
 
     //Pantry Routes
     app.get('/api/pantry', pantryController.findAll);

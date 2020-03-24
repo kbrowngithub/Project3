@@ -79,8 +79,7 @@ class Home extends Component {
                                             image={drink.strDrinkThumb}
                                         />
                                     ))
-                                ) :
-                                    (
+                                ) : (
                                         <h3></h3>
                                     )}
                             </div>

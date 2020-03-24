@@ -8,6 +8,7 @@ class IngredientList extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      userEmail: "",
       ingredients: [],
       liquors: [],
       newIngredient: "",
@@ -17,24 +18,23 @@ class IngredientList extends Component {
     }
   }
   componentDidMount() {
+    this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) })
     this.loadIngredients();
     this.loadLiquors();
+
   }
 
-  updateQuantity = (id, int, email) => {
-    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
-    API.updateIngredient({ id: id, quantity: int, email: email })
-      .then(res => console.log("Quantity Changed"))
+  updateQuantity = (id, int) => {
+    API.updateIngredient({ id: id, quantity: int, email: this.state.userEmail })
+      .then(res => null)
       .catch(err => console.log(err));
   }
 
   loadIngredients = () => {
-    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
     API.getIngredients()
       .then(res => {
-        console.log("Getingdredients",res.data)
 
-        var index = res.data.map(function(x) {return x.userEmail}).indexOf(email);
+        var index = res.data.map(x => x.userEmail).indexOf(this.state.userEmail);
         var ingredientList = res.data[index].ingredients
 
         this.setState({ ingredients: ingredientList });
@@ -45,7 +45,9 @@ class IngredientList extends Component {
   loadLiquors = () => {
     API.getLiquors()
       .then(res => {
-        this.setState({ liquors: res.data })
+        var index = res.data.map(x => x.userEmail).indexOf(this.state.userEmail);
+        var liquorList = res.data[index].liquors;
+        this.setState({ liquors: liquorList });
       })
       .catch(err => console.log(err))
   }
@@ -57,29 +59,26 @@ class IngredientList extends Component {
 
   }
 
-  deleteIngredient = (id, email) => {
-    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
-    console.log(id)
-    API.deleteIngredient({id: id, email: email})
+  deleteIngredient = id => {
+    API.deleteIngredient({ id: id, email: this.state.userEmail })
       .then(res => this.loadIngredients())
       .catch(err => console.log(err));
   }
 
-  deleteLiquor = (id) => {
-    API.deleteLiquor(id)
+  deleteLiquor = id => {
+    API.deleteLiquor({ id: id, email: this.state.userEmail })
       .then(res => this.loadLiquors())
       .catch(err => console.log(err));
   }
 
 
   sendIngredient = data => {
-    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
     API.saveIngredient({
-      userEmail: email,
+      userEmail: this.state.userEmail,
       ingredients: {
-         name: this.state.newIngredient,
-          quantity: this.state.newQuantity,
-          unit: this.state.newUnit,
+        name: data.newIngredient,
+        quantity: data.newQuantity,
+        unit: data.newUnit,
       }
     })
       .then(res => {
@@ -91,7 +90,10 @@ class IngredientList extends Component {
 
   sendDrink = data => {
     API.saveLiquor({
-      name: data.newDrink
+      userEmail: this.state.userEmail,
+      liquors: {
+        name: data.newDrink
+      }
     })
       .then(res => {
         this.loadLiquors();
@@ -156,7 +158,7 @@ class IngredientList extends Component {
                     ))}
                   </div>
                 ) : (
-                    <h3 className="fontStyled">No drink bases to display</h3>
+                    <h3 className="fontStyled">No liquors to display</h3>
                   )}
               </List>
               <DrinkForm

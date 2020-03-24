@@ -10,18 +10,22 @@ class RecipeSearch extends Component {
         super(props)
         this.state = {
             ingredients: [],
-            strQuery: ""
+            strQuery: "",
+            userEmail: ""
         }
         this.searchRecipes = this.searchRecipes.bind(this);
     }
     componentDidMount() {
+        this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) })
         this.loadIngredients();
     }
 
     loadIngredients = () => {
         API.getIngredients()
             .then(res => {
-                this.jsonConverter(res.data);
+                var index = res.data.map(x => x.userEmail).indexOf(this.state.userEmail);
+                var ingredientList = res.data[index].ingredients
+                this.jsonConverter(ingredientList);
             })
             .catch(err => console.log(err));
     }
