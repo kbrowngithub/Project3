@@ -33,7 +33,8 @@ module.exports = {
             { userEmail: req.body.userEmail },
             { $push : { ingredients: newIngredient }}
           )
-          .then(dbModel => res.json(dbModel))
+          .then(dbModel => {res.json(dbModel)
+          console.log(dbModel)})
           .catch(err => res.status(422).json(err))
         } else {
           db.Pantry
@@ -50,20 +51,18 @@ module.exports = {
       console.log("id: ",req.params.id)
       console.log(req.body.quantity)
       db.Pantry
-          .update({ userEmail: req.body.email , _id: req.params.id}, { $set : {quantity: req.body.quantity}})
-          .then(dbModel => {
-            console.log(dbModel)
-            res.json(dbModel)})
+          .findOneAndUpdate({ userEmail: req.body.email , "ingredients._id": req.params.id },
+          { $set : {"ingredients.$.quantity": req.body.quantity }})
+          .then(dbModel => 
+            res.json(dbModel))
           .catch(err => res.status(422).json(err));
       },
     remove: function(req, res) {
-      console.log(req.params);
+      console.log("Req params: ",req.params.id);
+      console.log("email",req.params.email);
         db.Pantry
-          .findById({ _id: req.params.id })
-          .then(dbModel => {
-   
-            dbModel.remove()
-          })
+          .update({ userEmail: req.params.email },
+            {$pull: {ingredients: { _id: req.params.id}}})
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
     }

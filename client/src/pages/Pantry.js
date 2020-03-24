@@ -44,9 +44,10 @@ class IngredientList extends Component {
 
   }
 
-  deleteIngredient = (id) => {
+  deleteIngredient = (id, email) => {
     var email = JSON.parse(sessionStorage.getItem("UserEmail"));
-    API.deleteIngredient(id)
+    console.log(id)
+    API.deleteIngredient({id: id, email: email})
       .then(res => this.loadIngredients())
       .catch(err => console.log(err));
   }

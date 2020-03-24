@@ -86,7 +86,7 @@ function api_routes(app) {
 
     app.put('/api/pantry/:id', pantryController.update)
 
-    app.delete('/api/pantry/:id', pantryController.remove);
+    app.delete('/api/pantry/:id/:email', pantryController.remove);
 
     app.post('/api/pantry', pantryController.create);
 
