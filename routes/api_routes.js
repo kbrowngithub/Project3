@@ -86,7 +86,7 @@ function api_routes(app) {
 
     app.post('/api/liquor', liquorController.create);
 
-    app.delete('/api/liquor/:id', liquorController.remove);
+    app.delete('/api/liquor/:id/:email', liquorController.remove);
 
     //Pantry Routes
     app.get('/api/pantry', pantryController.findAll);

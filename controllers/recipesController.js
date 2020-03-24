@@ -20,15 +20,33 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log(req.body);
-    db.Recipe
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    db.Recipe.findOne({ userEmail: req.body.userEmail }, (err, user) => {
+      if (err) {console.log(err)}
+      if (user) {
+        var newRecipe = {
+          title: req.body.recipe.title,
+          image: req.body.recipe.image,
+          idAPI: req.body.recipe.idAPI,
+          summary: req.body.recipe.summary,
+          ingredients: req.body.recipe.ingredients,
+          instructions: req.body.recipe.instructions,
+        }
+        db.Recipe.findOneAndUpdate(
+          { userEmail: req.body.userEmail },
+          { $push : { recipes: newRecipe }}
+        )
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+      } else {
+        db.Pantry
+          .create(req.body)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      }
+    })
   },
   update: function(req, res) {
-    let newRecipe = req.body.newData
-    console.log(newRecipe);
+    let newRecipe = req.body.newData;
     db.Recipe
       .findOneAndUpdate({ _id: req.params.id }, newRecipe)
       .then(dbModel => res.json(dbModel))
@@ -36,8 +54,9 @@ module.exports = {
   },
   remove: function(req, res) {
     db.Recipe
+      .update({ userEmail: req.parmas.email },
+        {$pull: {recipes: { _id: req.params.id}}})
       .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
