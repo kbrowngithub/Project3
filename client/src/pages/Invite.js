@@ -159,12 +159,12 @@ class Invite extends Component {
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col size="md-12">
-            {/* <Jumbotron>
-              <h1>Who should I invite?</h1>
-            </Jumbotron> */}
-            <div className="radioContainer">
+        <div className="row mt-5">
+          <div className="col-md-6 m-auto">
+            <div className="card bordered card-body radioContainer">
+              <h1 className="text-center heading mb-3">
+                <i className="fas fa-user-plus"></i> Invite
+              </h1>
               <form>
 
                 <div className="form-group">
@@ -192,18 +192,18 @@ class Invite extends Component {
                   />
                 </div>
 
-                <button
+                <button type="button"
                   // disabled={!(this.state.message.to)}
                   onClick={this.handleFormSubmit}
-                  className='sendButton'
+                  className='standardButton btn-friend btn-block'
                 >
                   Send
                 </button>
 
               </form>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </Container>
     );
   }

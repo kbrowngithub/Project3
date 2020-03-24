@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { RenderTableData, RenderTableHeader } from "../components/Table";
 import IngredientForm from '../components/NewIngredientForm';
 import API from "../utils/API";
+
 class IngredientList extends Component {
   constructor(props) {
     super(props)
@@ -70,34 +71,40 @@ class IngredientList extends Component {
   }
   render() {
     return (
-      <div>
-        <h1 id='title'>Pantry</h1>
-        {this.state.ingredients.length ? (
-          <table id='ingredients'>
-            <tbody>
-              <tr>
-                <RenderTableHeader
-                  header={Object.keys(this.state.ingredients[0])}
-                />
-              </tr>
-              <RenderTableData
-                ingredients={this.state.ingredients}
-                updateQuantity={this.updateQuantity}
-                deleteIngredient={this.deleteIngredient}
-              />
-            </tbody>
-          </table>
+      <div className="row mt-5">
+        <div className="col-md-8 m-auto">
+          <div className="bordered card card-body">
+            <h1 className="heading">Pantry</h1>
+            {this.state.ingredients.length ? (
+              <table id='ingredients'>
+                <tbody>
+                  <tr className="tableHeader">
+                    <RenderTableHeader
+                      header={Object.keys(this.state.ingredients[0])}
+                    />
+                  </tr>
+                  <RenderTableData
+                    ingredients={this.state.ingredients}
+                    updateQuantity={this.updateQuantity}
+                    deleteIngredient={this.deleteIngredient}
+                  />
+                </tbody>
+              </table>
 
-        ) : (
-            <h3>No ingredients to display, add some below!</h3>
-          )}
-        <IngredientForm
-          newIngredient={this.state.newIngredient}
-          newQuantity={this.state.newQuantity}
-          newUnit={this.state.newUnit}
-          addIngredient={this.addIngredient}
-          sendIngredient={this.sendIngredient}
-        />
+            ) : (
+                <h3 className="fontStyled">No ingredients to display, add some below!</h3>
+              )}
+              <div className="fontNorm">
+            <IngredientForm
+              newIngredient={this.state.newIngredient}
+              newQuantity={this.state.newQuantity}
+              newUnit={this.state.newUnit}
+              addIngredient={this.addIngredient}
+              sendIngredient={this.sendIngredient}
+            />
+            </div>
+          </div>
+        </div>
       </div>
 
 

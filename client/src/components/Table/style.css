@@ -27,4 +27,17 @@
     background-color: #4CAF50;
     color: white;
   }
+
+  .delete {
+color: red;
+max-width: 50px;
+}
+
+.delete:hover {
+    cursor: pointer;
+  }
+
+  .deleteColumn {
+    width: 75px;
+  }
   

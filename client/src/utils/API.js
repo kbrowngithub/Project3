@@ -23,6 +23,12 @@ export default {
   saveDrink: function (drinkData) {
     return axios.post("/api/drinks", drinkData);
   },
+  loadDrinks: function() {
+    return axios.get("/api/drinks");
+  },
+  loadDrink: function(id) {
+    return axios.get("/api/drinks/" + id);
+  },
 
   //Pantry Routes
   getIngredients: function () {

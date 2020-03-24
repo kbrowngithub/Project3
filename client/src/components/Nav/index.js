@@ -41,7 +41,7 @@ function Nav() {
                         ripple
                         element="Link"
                         className='button'
-                    ><Link className ="btnFontClr" to="/create">New User</Link></AwesomeButton>
+                    ><Link className ="btnFontClr" to="/signup">New User</Link></AwesomeButton>
                     <AwesomeButton
                         type="secondary"
                         size="medium"
@@ -49,17 +49,18 @@ function Nav() {
                         element="Link"
                         className='button'
                     ><Link className ="btnFontClr" to="/pantry">Pantry</Link></AwesomeButton>
-                    
+                    <AwesomeButton
+                        type="secondary"
+                        size="medium"
+                        ripple
+                        element="Link"
+                        className='button'
+                    ><Link className ="btnFontClr" to="/login">Log In</Link></AwesomeButton>
                 </ul>
 
             </div>
 
-            <div className="md-form my-0">
-                <input className="form-control mr-sm-2 searchBar" type="text" placeholder="Search Favorite Recipes" aria-label="Search" />
-            </div>
-            <div>
-        
-</div>
+
 
         </nav>
     

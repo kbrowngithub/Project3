@@ -62,7 +62,8 @@ class RecipeSearch extends Component {
         return (
             <Button
                 onClick={this.searchRecipes}
-                className='foodButton'
+                className='standardButton foodButton'
+
             >
                 Food Recipes
             </Button>

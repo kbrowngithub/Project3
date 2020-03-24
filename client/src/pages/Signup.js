@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import bcrypt from "bcryptjs";
+import { Button } from 'react-bootstrap';
+
 class Signup extends Component {
     state = {
         fullName: "",
@@ -86,8 +88,8 @@ class Signup extends Component {
         return (
             <div className="row mt-5">
                 <div className="col-md-6 m-auto">
-                    <div className="card card-body">
-                        <h1 className="text-center mb-3">
+                    <div className="bordered card card-body">
+                        <h1 className="text-center mb-3 heading">
                             <i className="fas fa-user-plus"></i> Register
                     </h1>
                         {/* <% include ./partials/messages %> */}
@@ -145,11 +147,12 @@ class Signup extends Component {
                                     onChange={this.handleInputChange}
                                 />
                             </div>
-                            <button onClick={this.handleFormSubmit} type="button" className="btn btn-primary btn-block">
-                                Register
-                        </button>
+                            {/* <button onClick={this.handleFormSubmit} type="button" className="btn btn-primary btn-block btn-login"> */}
+                            <Button className="standardButton" variant="light" onClick={this.handleFormSubmit}>Register</Button>
+                                {/* Register
+                        </button> */}
                         </form>
-                        <p className="lead mt-4">Have An Account? <a href="/login">Login</a></p>
+                        <p className="lead mt-4">Already Have An Account? <a href="/login">Click to Login</a></p>
                     </div>
                 </div>
             </div>

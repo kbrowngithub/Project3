@@ -5,6 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import { List, ListItem } from "../components/List"
 import { Button } from 'react-bootstrap';
 import API from "../utils/API";
+import './assets/css/resultstyles.css';
 
 class Detail extends Component {
     state = {
@@ -19,12 +20,12 @@ class Detail extends Component {
         console.log(this.props.match.params.id);
         this.loadDrinkDetails(this.props.match.params.id);
     }
-    
+
     loadDrinkDetails = (id) => {
         API.searchDrinkDetails(id)
             .then(res => {
                 const drink = res.data.drinks[0];
-                this.setState({ 
+                this.setState({
                     drink: drink
                 })
                 this.ingredientParser(drink);
@@ -38,15 +39,15 @@ class Detail extends Component {
 
         let ingredientKeys = Object.keys(obj).filter(propertyName => {
             return propertyName.indexOf("strIngredient") === 0;
-        });           
-        
+        });
+
         let measureKeys = Object.keys(obj).filter(propName => {
             return propName.indexOf("strMeasure") === 0;
         });
-        
+
         for (let i = 0; i < ingredientKeys.length; i++) {
             if (obj[measureKeys[i]] !== null && obj[ingredientKeys[i]] !== null) {
-            ingredients.push(obj[measureKeys[i]] + " " + obj[ingredientKeys[i]] );
+                ingredients.push(obj[measureKeys[i]] + " " + obj[ingredientKeys[i]]);
             }
         }
         this.setState({ ingredients: ingredients });
@@ -55,7 +56,7 @@ class Detail extends Component {
     instructionSplit = obj => {
         const instructions = obj.strInstructions;
         const sentence = instructions.split('.');
-        const cleanArray = sentence.splice(0, sentence.length-1);
+        const cleanArray = sentence.splice(0, sentence.length - 1);
         this.setState({ instructions: cleanArray })
     }
     saveDrink = () => {
@@ -73,47 +74,58 @@ class Detail extends Component {
     render() {
         return (
             <Container fluid>
-                <Row>
-                    <Col size="md-12">
-                        <Jumbotron>
-                            <h1>
+                <div className="resultContainer">
+                    <Row>
+                      
+                        <Col size="md-12">
+                            <h2 className="drinkTitle">
                                 {this.state.drink.strDrink}
-                            </h1>
-                        </Jumbotron>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col size="md-10 md-offset-1">
-                        <div key={this.state.drink.id}>
-                            <h1>{this.state.drink.strDrink}</h1>
-                            <image src={this.state.drink.strDrinkThumb} alt="Drink Image"></image>
-                            <List>
-                                <strong>Ingredients</strong>
-                                {this.state.ingredients.map(ingredient => (
-                                    <ListItem key={this.state.ingredients.indexOf(ingredient)}>
-                                        {ingredient} 
-                                    </ListItem>
-                                ))}
-                            </List>
-         
-                            <List>
-                                <strong>Instructions</strong>
-                                {this.state.instructions.map(step => (
-                                        <ListItem key={this.state.instructions.indexOf(step)}>
-                                            {this.state.instructions.indexOf(step) + 1}: {step}
+                            </h2>
+                        </Col>
+                       
+                    </Row>
+                    
+                    <Row>
+                    
+                        <Col size="md-10 md-offset-1">
+                            <div key={this.state.drink.id}>
+                                <List>
+                                    <strong>Ingredients</strong>
+                                    <div className="font">
+                                    {this.state.ingredients.map(ingredient => (
+                                        <ListItem key={this.state.ingredients.indexOf(ingredient)}>
+                                            {ingredient}
                                         </ListItem>
-                                ))}
-                            </List>
-            
-                            <Button onClick={() => { this.saveDrink() }}>Save to your Favourites</Button>
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col size="md-2">
-                        <Link to="/">← Back to Recipes</Link>
-                    </Col>
-                </Row>
+                                    ))}
+                                    </div>
+                                </List>
+<br></br>
+                                <List>
+                                    <strong>Instructions</strong>
+                                    <div className="font">
+                                    {this.state.instructions.map(step => (
+                                        <ListItem key={this.state.instructions.indexOf(step)}>
+                                            {this.state.instructions.indexOf(step) + 1}: {step}class
+                                        </ListItem>
+                                    ))}
+                                    </div>
+                                </List>
+                                <br></br>
+                                <Button className="saveButton standardButton" variant="light" onClick={() => { this.saveDrink() }}>Save to Favorites</Button>
+                               
+                            </div>
+                        </Col>
+                        
+                    </Row>
+                    <br></br>
+                    <Row>
+                       
+                        <Col size="md-4">
+                            <Link className="colorBlack" to="/">← Back to Recipes</Link>
+                        </Col>
+                    </Row>
+                    
+                </div>
             </Container>
         );
     }
