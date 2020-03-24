@@ -50,9 +50,9 @@ export function IngredientForm(props) {
                 onChange={props.addIngredient}
                 ref={register({
                     required: false,
-                    maxLength: 5
+                    maxLength: 10
                 })} />
-            {errors.newUnit && errors.newUnit.type === "max" && "Unit name must shorter"}
+            {errors.newUnit && errors.newUnit.type === "maxLength" && "Unit name must shorter"}
             <button type="submit">Submit Ingredient</button>
         </form>
     )
