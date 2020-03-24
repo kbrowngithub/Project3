@@ -10,17 +10,17 @@ export default class Friends extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            userId: sessionStorage.getItem("UserId"),
             userEmail: sessionStorage.getItem("UserEmail"),
             userContacts: JSON.parse(sessionStorage.getItem("UserContacts"))
         }
     }
 
     componentDidMount() {
-        console.log(`componentDidMount: sessionStorage.getItem(\"UserContacts\") = ${sessionStorage.getItem("UserContacts")}`);
-        console.log(`componentDidMount: sessionStorage.getItem(\"UserEmail\") = ${sessionStorage.getItem("UserEmail")}`);
+        // console.log(`componentDidMount: sessionStorage.getItem(\"UserContacts\") = ${sessionStorage.getItem("UserContacts")}`);
+        // console.log(`componentDidMount: sessionStorage.getItem(\"UserEmail\") = ${sessionStorage.getItem("UserEmail")}`);
         // this.setState(
         //     {
-        //         userEmail: JSON.parse(sessionStorage.getItem("UserEmail")),
         //         userContacts: JSON.parse(sessionStorage.getItem("UserContacts")) 
         //     }
         // );
@@ -28,18 +28,15 @@ export default class Friends extends Component {
     }
 
     loadContacts = () => {
+        console.log(`loadContacts: this.state.userId = ${this.state.userId}`);
         console.log(`loadContacts: this.state.userEmail = ${this.state.userEmail}`);
         console.log(`loadContacts: this.state.userContacts = ${this.state.userContacts}`);
-        // API.getContacts({ email: this.state.userEmail })
-        //     .then(res => {
-        //         console.log(`contactList = ${JSON.stringify(res.data)}`);
-        //         // var index = res.data.map(x => x.userEmail).indexOf(this.state.userEmail);
-        //         // var contactList = res.data[index].contacts
-        //         var contactList = res.data.contacts
-
-        //         this.setState({ contacts: contactList });
-        //     })
-        //     .catch(err => console.log(err));
+        API.getContacts({ userId: this.state.userEmail })
+            .then(res => {
+                console.log(`contactList = ${JSON.stringify(res.data)}`);
+                this.setState({ userContacts: res.data });
+            })
+            .catch(err => console.log(err));
     }
 
     handleFormSubmit = event => {

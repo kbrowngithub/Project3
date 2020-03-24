@@ -24,12 +24,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findAllContacts: function (req, res) {
-    console.log(`findAllContacts: req.params.email = ${req.params.email}`);
+    console.log(`findAllContacts: req.params.userEmail = ${req.params.userEmail}`);
     db.User
-      .find({ email: req.params.email })
-      .then(dbModel => console.log(`dbModel = ${dbModel}`))
+      .findOne({ email: JSON.parse(req.params.userEmail) })
+      // .then(dbModel => console.log(`dbModel.contacts = ${dbModel.contacts}`))
       // .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => res.json(dbModel.contacts))
+      // .then(dbModel => res.send(dbModel))
       .catch(err => res.status(422).json(err));
   },
   updateContacts: function (req, res) {

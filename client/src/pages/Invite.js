@@ -153,8 +153,8 @@ class Invite extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
-          console.log(`Invite: userID = ${sessionStorage.getItem("user")}\nname:${this.state.name}, mobile:none, email:${this.state.to}`);
-          API.updateContact({ userEmail: sessionStorage.getItem("user"), name: this.state.name, mobile: "", email: this.state.to })
+          console.log(`Invite: userID = ${sessionStorage.getItem("user")}\nname:${this.state.cname}, mobile:none, email:${this.state.to}`);
+          API.updateContact({ userEmail: sessionStorage.getItem("user"), name: this.state.cname, mobile: "", email: this.state.to })
             .then(res => console.log("Contact Updated"))
             .catch(err => console.log(err));
 

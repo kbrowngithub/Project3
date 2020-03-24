@@ -2,10 +2,9 @@ import axios from "axios";
 import { UserInstance } from "twilio/lib/rest/chat/v1/service/user";
 
 export default {
-  getContacts: function (emailData) {
-    console.log(`emailData: ${JSON.stringify(emailData)}`);
-    // return axios.get("/api/contacts/" + email);
-    return axios.get("/api/contacts/" + emailData.email);
+  getContacts: function (data) {
+    console.log(`data: ${JSON.stringify(data)}`);
+    return axios.get("/api/contacts/" + data.userId);
   },
   updateContact: function (contactData) {
     return axios.post("/api/contact/" + contactData.userEmail, contactData);
