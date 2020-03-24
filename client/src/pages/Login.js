@@ -19,7 +19,9 @@ class Login extends Component {
 
         if (this.state.email && this.state.password) {
             let currentComponent = this;
-            
+
+            console.log("state test" + this.state.email);
+            sessionStorage.setItem("UserEmail", JSON.stringify(this.state.email))
             API.login({
                 email: this.state.email,
                 password: this.state.password
