@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const liquorSchema = new Schema({
-    // userEmail: {
-    //     type: String,
-    //     trime: true,
-    //     required: true
-    // },
-    // liquors: [{
+    userEmail: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    liquors: [{
         name: {
             type: String,
             trim: true,
@@ -15,8 +15,7 @@ const liquorSchema = new Schema({
             minlength: 2,
             maxlength: 30
         }
-    //}
-//]
+    }]
 });
 
 const Liquor = mongoose.model("Liquor", liquorSchema);
