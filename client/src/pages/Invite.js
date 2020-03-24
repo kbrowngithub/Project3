@@ -13,28 +13,39 @@ import API from "../utils/API";
 // }
 
 class Invite extends Component {
-  state = {
-    name: "Enter a name for this contact",
-    placeholder: "10-digit cell num or email address",
-    to: '',
-    from: '<username goes here>',
-    note: '',
-    message: {
+  constructor(props) {
+    super(props)
+    this.state = {
+      namePlaceholder: "...Enter a name for this contact",
+      placeholder: "...10-digit cell num or email address",
       to: '',
-      body: ''
-    },
-    submitting: false,
-    error: false
-  };
+      cname: '',
+      from: '<username goes here>',
+      note: '',
+      message: {
+        to: '',
+        body: ''
+      },
+      submitting: false,
+      error: false
+    }
+  }
 
   handleInputChange = event => {
-    // const { name, value } = event.target;
-    // this.setState({ [name]: value });
-    const name = event.target.getAttribute('name');
+    const { name, value } = event.target;
     this.setState({
+      [name]: value,
       message: { ...this.state.message, [name]: event.target.value }
     });
   };
+
+  // handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({ [name]: value });
+  //   const name = event.target.getAttribute('name');
+  //   this.setState({message: { ...this.state.message, [name]: event.target.value }});
+  //   this.setState({message: { ...this.state.message, [name]: value }});
+  // };
 
   updateContact = (id, contactData) => {
     API.updateContact({ id: id, contact: contactData })
@@ -52,7 +63,7 @@ class Invite extends Component {
     const addr = this.state.message.to;
     if (!addr) {
       alert(`Must enter a valid \'To\' address (email or 10-digit cell)`);
-    // } else if (/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/.test(addr)) {
+      // } else if (/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/.test(addr)) {
     } else if (/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/.test(addr)) {
       this.normalizeCell(addr);
       this.handleCellFormSubmit(event);
@@ -61,8 +72,9 @@ class Invite extends Component {
     } else {
       alert(`Invalid \'To\' address: ${addr}; Must be either 10 digit cell (US) or valid email.`);
       this.setState({
-        
-        placeholder: "10-digit cell num or email address",
+        namePlaceholder: "***Enter a name for this contact",
+        placeholder: "***10-digit cell num or email address...",
+        cname: '',
         to: '',
         from: '<username goes here>',
         message: {
@@ -77,7 +89,7 @@ class Invite extends Component {
   handleCellFormSubmit = event => {
     // event.preventDefault();
     if (this.state.message.to) {
-      this.state.message.to = '+1'+this.state.message.to;
+      this.state.message.to = '+1' + this.state.message.to;
       console.log(`Sending sms to ${this.state.message.to}`);
 
       this.setState({ submitting: true });
@@ -91,23 +103,24 @@ class Invite extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
-          API.updateContact({name:this.state.name, mobile:this.state.to, email:""})
-          .then(res => console.log("Contact Updated"))
-          .catch(err => console.log(err));
-          
+          API.updateContact({ name: this.state.name, mobile: this.state.to, email: "" })
+            .then(res => console.log("Contact Updated"))
+            .catch(err => console.log(err));
+
           if (data.success) {
             alert(`Invite sent to ${this.state.message.to}`)
             this.setState({
-              name: "Enter a name for this contact",
+              namePlaceholder: "Enter a name for this contact***",
               error: false,
               submitting: false,
+              cname: '',
               to: '',
               from: '<username goes here>',
               message: {
                 to: '',
                 body: ''
               },
-              placeholder: "10-digit cell num or email address",
+              placeholder: "10-digit cell num or email address***",
               submitting: false,
               error: false
             });
@@ -140,10 +153,10 @@ class Invite extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
-          console.log(`Invite: userID = ${sessionStorage.getItem("user")}`);
-          API.updateContact({userEmail:sessionStorage.getItem("user"), name:this.state.name, mobile:"", email:this.state.to})
-          .then(res => console.log("Contact Updated"))
-          .catch(err => console.log(err));
+          console.log(`Invite: userID = ${sessionStorage.getItem("user")}\nname:${this.state.name}, mobile:none, email:${this.state.to}`);
+          API.updateContact({ userEmail: sessionStorage.getItem("user"), name: this.state.name, mobile: "", email: this.state.to })
+            .then(res => console.log("Contact Updated"))
+            .catch(err => console.log(err));
 
           alert(`Invite sent to ${this.state.message.to}`)
           if (data.success) {
@@ -178,14 +191,15 @@ class Invite extends Component {
               </h1>
               <form onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
-                  <label htmlFor="name">Contact Name:</label>
+                  <label htmlFor="cname">Contact Name:</label>
                   <input
                     className="form-control"
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder={this.state.name}
+                    type="tel"
+                    name="cname"
+                    id="cname"
+                    placeholder={this.state.namePlaceholder}
                     // value={this.state.message.to}
+                    value={this.state.cname}
                     onChange={this.handleInputChange}
                   />
                 </div>

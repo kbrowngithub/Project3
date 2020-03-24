@@ -34,12 +34,12 @@ module.exports = {
           mobile: req.body.mobile,
           email: req.body.email
         }
-        console.log(`newContact: ${newContact}`);
+        console.log(`newContact: ${JSON.stringify(newContact)}`);
 
         db.User.findOneAndUpdate({ _id: user._id }, { $addToSet: { contacts: newContact } })
           .then(dbModel => {
             res.json(dbModel)
-            console.log(`dbModel: ${dbModel}`);
+            console.log(`dbModel: ${dbModel}`)
           })
           .catch(err => res.status(422).json(err));
       }
