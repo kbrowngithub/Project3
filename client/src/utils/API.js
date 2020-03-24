@@ -3,7 +3,7 @@ import { UserInstance } from "twilio/lib/rest/chat/v1/service/user";
 
 export default {
   updateContact: function (contactData) {
-    return axios.put("/api/user/" + contactData.id, contactData);
+    return axios.post("/api/contact/" + contactData.userEmail, contactData);
   },
 
   //Recipe Routes

@@ -29,6 +29,7 @@ class Login extends Component {
             }).then(function(data){
                 console.log("CLIENT DATA ",data);
                 sessionStorage.setItem("Logout", false);
+                sessionStorage.setItem("user", currentComponent.state.email);
                 // window.location.href="/profile"
                 history.push('/');
             }).catch(function(error){

@@ -14,6 +14,7 @@ import API from "../utils/API";
 
 class Invite extends Component {
   state = {
+    name: "Enter a name for this contact",
     placeholder: "10-digit cell num or email address",
     to: '',
     from: '<username goes here>',
@@ -60,6 +61,7 @@ class Invite extends Component {
     } else {
       alert(`Invalid \'To\' address: ${addr}; Must be either 10 digit cell (US) or valid email.`);
       this.setState({
+        
         placeholder: "10-digit cell num or email address",
         to: '',
         from: '<username goes here>',
@@ -89,13 +91,14 @@ class Invite extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
-          API.updateContact({mobile:this.state.to})
+          API.updateContact({name:this.state.name, mobile:this.state.to, email:""})
           .then(res => console.log("Contact Updated"))
           .catch(err => console.log(err));
           
           if (data.success) {
             alert(`Invite sent to ${this.state.message.to}`)
             this.setState({
+              name: "Enter a name for this contact",
               error: false,
               submitting: false,
               to: '',
@@ -137,7 +140,8 @@ class Invite extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
-          API.updateContact({email:this.state.to})
+          console.log(`Invite: userID = ${sessionStorage.getItem("user")}`);
+          API.updateContact({userEmail:sessionStorage.getItem("user"), name:this.state.name, mobile:"", email:this.state.to})
           .then(res => console.log("Contact Updated"))
           .catch(err => console.log(err));
 
@@ -174,13 +178,13 @@ class Invite extends Component {
               </h1>
               <form onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
-                  <label htmlFor="cName">Contact Name:</label>
+                  <label htmlFor="name">Contact Name:</label>
                   <input
                     className="form-control"
                     type="text"
-                    name="cName"
-                    id="cName"
-                    placeholder="Enter a name for this contact"
+                    name="name"
+                    id="name"
+                    placeholder={this.state.name}
                     // value={this.state.message.to}
                     onChange={this.handleInputChange}
                   />
