@@ -20,13 +20,11 @@ class Recipes extends Component {
         this.loadRecipes();
         this.loadDrinks();
     }
-
     loadDrinks = () => {
         API.loadDrinks()
             .then(res => this.setState({ drinks: res.data }))
             .catch(err => console.log(err));
     }
-
     loadRecipes = () => {
         API.getRecipes()
             .then(res => this.setState({ recipes: res.data }))
@@ -37,6 +35,12 @@ class Recipes extends Component {
             .then(res => this.loadRecipes())
             .catch(err => console.log(err));
     };
+    deleteDrink = id => {
+        API.deleteDrink(id)
+            .then(res => this.loadDrinks())
+            .catch(err => console.log(err))
+    }
+
 
     handleInputChange = event => {
         const { name, value } = event.target;

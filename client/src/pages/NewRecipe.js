@@ -32,7 +32,7 @@ class Detail extends Component {
     loadRecipeSumm = id => {
         API.searchSumms(id)
             .then(res => {
-                this.setState({ cleanText: res.data.summary.replace(/<\/?[^>]+(>|$)/g, "") })
+                this.setState({ cleanText: res.data.summary.replace(/<\/?[^>]+(>|$)/g, "") });
             })
             .catch(err => console.log(err));
     }

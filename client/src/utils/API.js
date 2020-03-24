@@ -29,6 +29,15 @@ export default {
   loadDrink: function(id) {
     return axios.get("/api/drinks/" + id);
   },
+  saveLiquor: function(drinkData) {
+    return axios.post("/api/liquor", drinkData);
+  },
+  getLiquors: function() {
+    return axios.get("/api/liquor");
+  },
+  deleteLiquor: function(id) {
+    return axios.delete("/api/liquor/" + id);
+  },
 
   //Pantry Routes
   getIngredients: function () {
