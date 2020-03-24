@@ -17,16 +17,23 @@ class IngredientList extends Component {
     this.loadIngredients();
   }
 
-  updateQuantity = (id, int) => {
-    API.updateIngredient({ id: id, quantity: int })
+  updateQuantity = (id, int, email) => {
+    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
+    API.updateIngredient({ id: id, quantity: int, email: email })
       .then(res => console.log("Quantity Changed"))
       .catch(err => console.log(err));
   }
 
   loadIngredients = () => {
+    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
     API.getIngredients()
       .then(res => {
-        this.setState({ ingredients: res.data });
+        console.log("Getingdredients",res.data)
+
+        var index = res.data.map(function(x) {return x.userEmail}).indexOf(email);
+        var ingredientList = res.data[index].ingredients
+
+        this.setState({ ingredients: ingredientList });
       })
       .catch(err => console.log(err));
   }
@@ -38,17 +45,23 @@ class IngredientList extends Component {
 
   }
 
-  deleteIngredient = (id) => {
-    API.deleteIngredient(id)
+  deleteIngredient = (id, email) => {
+    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
+    console.log(id)
+    API.deleteIngredient({id: id, email: email})
       .then(res => this.loadIngredients())
       .catch(err => console.log(err));
   }
 
   sendIngredient = data => {
+    var email = JSON.parse(sessionStorage.getItem("UserEmail"));
     API.saveIngredient({
-      name: data.newIngredient,
-      quantity: data.newQuantity,
-      unit: data.newUnit
+      userEmail: email,
+      ingredients: {
+         name: this.state.newIngredient,
+          quantity: this.state.newQuantity,
+          unit: this.state.newUnit,
+      }
     })
       .then(res => {
         this.loadIngredients();
