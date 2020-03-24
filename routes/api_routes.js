@@ -5,6 +5,7 @@ const smsController = require("../controllers/smsController");
 const pantryController = require("../controllers/pantryController");
 const recipesController = require("../controllers/recipesController");
 const drinksController = require("../controllers/drinksController");
+const liquorController = require("../controllers/liquorController");
 const sessionsController = require("../controllers/sessionsController");
 const axios = require("axios");
 
@@ -83,13 +84,20 @@ function api_routes(app) {
 
     app.post('/api/drinks', drinksController.create);
 
+    //Liquor routes
+
+    app.get('/api/liquor', liquorController.findAll);
+
+    app.post('/api/liquor', liquorController.create);
+
+    app.delete('/api/liquor/:id', liquorController.remove);
 
     //Pantry Routes
     app.get('/api/pantry', pantryController.findAll);
 
     app.put('/api/pantry/:id', pantryController.update)
 
-    app.delete('/api/pantry/:id', pantryController.remove);
+    app.delete('/api/pantry/:id/:email', pantryController.remove);
 
     app.post('/api/pantry', pantryController.create);
 
@@ -126,7 +134,7 @@ function api_routes(app) {
     });
 
     app.post("/api/drink", function (req, res) {
-        var queryURL = "https://www.thecocktaildb.com/api/json/v1/" + process.env.drinkAPIKey + "/filter.php?i=" + req.body.query;
+        var queryURL = "https://www.thecocktaildb.com/api/json/v2/" + process.env.drinkAPIKey + "/filter.php?i=" + req.body.query;
         axios.get(queryURL)
             .then(response => {
                 res.json(response.data);
@@ -135,7 +143,7 @@ function api_routes(app) {
     });
     1
     app.post("/api/drinkDetail/:id", function (req, res) {
-        var queryURL = "https://www.thecocktaildb.com/api/json/v1/" + process.env.drinkAPIKey + "//lookup.php?i=" + req.params.id;
+        var queryURL = "https://www.thecocktaildb.com/api/json/v2/" + process.env.drinkAPIKey + "/lookup.php?i=" + req.params.id;
         axios.get(queryURL)
             .then(response => {
                 res.json(response.data);

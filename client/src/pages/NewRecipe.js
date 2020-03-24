@@ -32,9 +32,9 @@ class Detail extends Component {
     loadRecipeSumm = id => {
         API.searchSumms(id)
             .then(res => {
-                this.setState({ cleanText: res.data.summary.replace(/<\/?[^>]+(>|$)/g, "") })
+                this.setState({ cleanText: res.data.summary.replace(/<\/?[^>]+(>|$)/g, "") });
             })
-            .catch(err=> console.log(err));
+            .catch(err => console.log(err));
     }
     saveRecipe = () => {
         let ingredients = [];
@@ -71,65 +71,65 @@ class Detail extends Component {
         return (
             <Container fluid>
                 <div className="resultContainer">
-                <Row>
-                    <Col size="md-12">
+                    <Row>
+                        <Col size="md-12">
                             <h2 className="drinkTitle">
                                 {this.state.recipe.title}
                             </h2>
-                    </Col>
-                </Row>
-                <Row>
-                <div className="center">
-                    <Col size="md-10 md-offset-1">
-                        <div key={this.state.recipe.id}>
-                            <image src={this.state.recipe.image} alt="Recipe Image"></image>
-                            <p className="teaser">{this.state.cleanText}</p>
-                            
-                            <List>
-                                <strong>Ingredients</strong>
-                                <div className="font">
-                                {this.state.ingredients.map(ingredient => (
-                                    <ListItem key={ingredient.id}>
-                                        {ingredient.amount} {ingredient.unit} {ingredient.name}
-                                    </ListItem>
-                                ))}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <div className="centerResult">
+                            <Col size="md-10 md-offset-1">
+                                <div key={this.state.recipe.id}>
+                                    <image src={this.state.recipe.image} alt="Recipe Image"></image>
+                                    <p className="teaser">{this.state.cleanText}</p>
+
+                                    <List>
+                                        <strong>Ingredients</strong>
+                                        <div className="font">
+                                            {this.state.ingredients.map(ingredient => (
+                                                <ListItem key={ingredient.id}>
+                                                    {ingredient.amount} {ingredient.unit} {ingredient.name}
+                                                </ListItem>
+                                            ))}
+                                        </div>
+                                    </List>
+                                    <br></br>
+                                    <List>
+                                        <strong>Missing Ingredients</strong>
+                                        <div className="font">
+                                            {this.state.missingIngredients.map(ingredient => (
+                                                <ListItem key={ingredient.id}>
+                                                    {ingredient.amount} {ingredient.unit} {ingredient.name}
+                                                </ListItem>
+                                            ))}
+                                        </div>
+                                    </List>
+                                    <br></br>
+                                    <List>
+                                        <strong>Instructions</strong>
+                                        <div className="font">
+                                            {this.state.instructions.map(step => (
+                                                <ListItem key={this.state.recipe.key}>
+                                                    {step.number}: {step.step}
+                                                </ListItem>
+
+                                            ))}
+                                        </div>
+                                    </List>
+                                    <br></br>
+                                    <Button className="saveButton standardButton" variant="light" onClick={() => { this.saveRecipe() }}>Save to your Favorites</Button>
                                 </div>
-                            </List>
-                            <br></br>
-                            <List>
-                                <strong>Missing Ingredients</strong>
-                                <div className="font">
-                                {this.state.missingIngredients.map(ingredient => (
-                                    <ListItem key={ingredient.id}>
-                                        {ingredient.amount} {ingredient.unit} {ingredient.name}
-                                    </ListItem>
-                                ))}
-                                </div>
-                            </List>
-                            <br></br>
-                            <List>
-                                <strong>Instructions</strong>
-                                <div className="font">
-                                {this.state.instructions.map(step => (
-                                    <ListItem key={this.state.recipe.key}>
-                                        {step.number}: {step.step}
-                                    </ListItem>
-                                   
-                                ))}
-                                </div>
-                            </List>
-                            <br></br>
-                            <Button className="saveButton standardButton" variant="light" onClick={() => { this.saveRecipe() }}>Save to your Favourites</Button>
+                            </Col>
                         </div>
-                    </Col>
-                    </div>
-                </Row>
-                <br></br>
-                <Row>
-                    <Col size="md-4">
-                        <Link className="colorBlack" to="/">← Back to Recipes</Link>
-                    </Col>
-                </Row>
+                    </Row>
+                    <br></br>
+                    <Row>
+                        <Col size="md-4">
+                            <Link className="colorBlack" to="/">← Back to Recipes</Link>
+                        </Col>
+                    </Row>
                 </div>
             </Container>
         );

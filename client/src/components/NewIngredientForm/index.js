@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form'
 
 
-export default function IngredientForm(props) {
+export function IngredientForm(props) {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
         props.sendIngredient(data);
@@ -54,6 +54,36 @@ export default function IngredientForm(props) {
                 })} />
             {errors.newUnit && errors.newUnit.type === "max" && "Unit name must shorter"}
             <button type="submit">Submit Ingredient</button>
+        </form>
+    )
+}
+
+export function DrinkForm(props) {
+    const { register, handleSubmit, errors } = useForm();
+    const onSubmit = data => {
+        props.sendDrink(data);
+    };
+    return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+                name="newDrink"
+                type="text"
+                placeholder="Add Liquor(Required)"
+                defaultValue={props.newDrink}
+                onChange={props.addIngredient}
+                ref={register({
+                    required: true,
+                    pattern: /^[a-zA-Z0-9]*$/,
+                    minLength: 1,
+                    maxLength: 30
+                })} />
+
+            {errors.newDrink && errors.newDrink.type === "required" && "Please enter an drink name"}
+            {errors.newDrink && errors.newDrink.type === "pattern" && "Please enter only letters and numbers"}
+            {errors.newDrink && errors.newDrink.type === "minLength" && "Drink name must be longer"}
+            {errors.newDrink && errors.newDrink.type === "maxLength" && "Drink name must be shorter"}
+    
+            <button type="submit">Submit Liquor</button>
         </form>
     )
 }

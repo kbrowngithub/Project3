@@ -33,13 +33,23 @@ export default {
   loadDrink: function(id) {
     return axios.get("/api/drinks/" + id);
   },
+  saveLiquor: function(drinkData) {
+    return axios.post("/api/liquor", drinkData);
+  },
+  getLiquors: function() {
+    return axios.get("/api/liquor");
+  },
+  deleteLiquor: function(id) {
+    return axios.delete("/api/liquor/" + id);
+  },
 
   //Pantry Routes
   getIngredients: function () {
     return axios.get("/api/pantry");
   },
-  deleteIngredient: function (id) {
-    return axios.delete("/api/pantry/" + id);
+  deleteIngredient: function (pantryData) {
+    console.log(pantryData.email)
+    return axios.delete("/api/pantry/" + pantryData.id + "/" + pantryData.email);
   },
   saveIngredient: function (pantryData) {
     return axios.post("/api/pantry", pantryData);

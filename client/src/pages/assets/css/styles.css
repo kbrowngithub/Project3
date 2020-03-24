@@ -19,16 +19,18 @@
     width: 150px;
 }
 
+.loginButton {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .lead {
-font-weight: bold;
-font-size: medium;
-border-style: solid;
-border-radius: 5px;
-border-color: black;
-width: 330px;
-border-width: 1px;
-padding-left: 10px;
-padding-right: 10px;
+    font-weight: bold;
+    font-size: medium;
+    width: 330px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .createRecipe {
@@ -50,6 +52,11 @@ padding-right: 10px;
     width: 800px;
     padding-left: 100px;
     margin-left: 30%;
+}
+
+.centerResult {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .center {
@@ -76,7 +83,7 @@ padding-right: 10px;
 }
 
 .recipeList {
-    width: 500px;
+    width: 350px;
     margin-left: 80px;
     padding: 30px;
 }
@@ -312,20 +319,12 @@ body {
 
 .containerDrink {
     height: 300px;
-    overflow-y: scroll;
+    overflow-x: scroll;
     margin-left: 60px;
   }
-  ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; 
-}
 
 .containerRecipe {
     height: 300px;
-    overflow-y: scroll;
+    overflow-x: scroll;
     margin-left: 90px;
   }
-  ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; 
-}

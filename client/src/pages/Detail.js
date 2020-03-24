@@ -4,61 +4,157 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { List, ListItem } from "../components/List"
-
+import { EditBtn } from "../components/DeleteBtn";
+import { TitleForm, SummForm } from "../components/EditForms";
+// import { Title } from "react-bootstrap/lib/Modal";
 class Detail extends Component {
   state = {
     recipe: {},
     ingredients: [],
-    instructions: []
+    instructions: [],
+    field: "",
+    title: "",
+    summ: "",
+    image: ""
   };
   // When this component mounts, grab the recipe with the _id of this.props.match.params.id
   // e.g. localhost:3000/recipes/599dcb67f0f16317844583fc
   componentDidMount() {
-    API.getRecipe(this.props.match.params.id)
+    this.loadRecipe(this.props.match.params.id);
+  }
+  loadRecipe = (id) => {
+    API.getRecipe(id)
       .then(res => {
-        this.setState({ recipe: res.data })
-        this.setState({ ingredients: res.data.ingredients });
-        this.setState({ instructions: res.data.instructions });
+        this.setState({
+          recipe: res.data,
+          ingredients: res.data.ingredients,
+          title: res.data.title,
+          summ: res.data.summary,
+          image: res.data.image,
+          instructions: res.data.instructions
+        });
       })
       .catch(err => console.log(err));
+  }
+
+  editRecipe = (field) => {
+    switch (field) {
+      case "title":
+        this.setState({ field: field });
+        break;
+      case "summary":
+        this.setState({ field: field });
+        break;
+      case "ingredients":
+        this.setState({ field: field });
+        break;
+      case "instructions":
+        this.setState({ field: field });
+        break;
+    }
 
   }
+  updateField = (data) => {
+    if (data !== undefined) {
+      let recipe = this.state.recipe
+      let id = recipe._id
+      console.log(data);
+      console.log(this.state.field);
+      switch (this.state.field) {
+        case "title":
+          recipe.title = data.title
+          break;
+        case "summary":
+          recipe.summary = data.summary
+          break;
+        case "ingredients":
+          recipe.ingredients = data.ingredients
+          break;
+        case "instructions":
+          recipe.instructions = data.instructions
+          break;
+      }
+      this.setState({ field: "" });
+      console.log(recipe)
+      API.updateRecipe({
+        id: recipe._id,
+        newData: recipe
+      })
+        .then(res => this.loadRecipe(id))
+        .catch(err => console.log(err));
+    }
+
+  }
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
 
   render() {
     return (
       <Container fluid>
         <div className="bordered column savedRecipe">
-    
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <div key={this.state.recipe._id}>
-              <h1 className="heading recipeHeading">{this.state.recipe.title}</h1>
-              <p className="backing">{this.state.recipe.summary}</p>
-              <List>
-                <strong>Ingredients</strong>
-                {this.state.ingredients.map(ingredient => (
-                  <ListItem key={ingredient.id}>
-                    {ingredient.amount} {ingredient.unit} {ingredient.name}
-                  </ListItem>
-                ))}
-              </List>
-              <List>
-                <strong>Instructions</strong>
-                {this.state.instructions.map(step => (
-                  <ListItem key={this.state.recipe.key++}>
-                    {step.number}: {step.step}
-                  </ListItem>
-                ))}
-              </List>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-2">
-            <Link to="/">← Back to Recipes</Link>
-          </Col>
-        </Row>
+
+          <Row>
+            <Col size="md-10 md-offset-1">
+              <div key={this.state.recipe._id}>
+                {this.state.field === "title" ? (
+                  <TitleForm
+                    key={this.state.recipe._id}
+                    value={this.state.title}
+                    updateField={this.updateField}
+                    handleInputChange={this.handleInputChange}
+                  />
+                ) : (
+                    <span>
+                      <EditBtn onClick={() => this.editRecipe("title")}></EditBtn>
+                      <h1 className="heading recipeHeading">{this.state.recipe.title}</h1>
+
+                    </span>
+                  )}
+
+                {this.state.field === "summary" ? (
+                  <SummForm
+                    key={this.state.recipe._id}
+                    value={this.state.summ}
+                    updateField={this.updateField}
+                    handleInputChange={this.handleInputChange}
+                  />
+                ) : (
+                    <span>
+                      <EditBtn onClick={() => this.editRecipe("summary")}></EditBtn>
+                      <p className="backing">{this.state.recipe.summary}</p>
+                    </span>
+                  )}
+
+                <List>
+                  <strong>Ingredients</strong>
+                  {this.state.ingredients.map(ingredient => (
+                    <ListItem key={ingredient.id}>
+                      {ingredient.amount} {ingredient.unit} {ingredient.name}
+                    </ListItem>
+                  ))}
+                </List>
+                <List>
+                  <strong>Instructions</strong>
+                  {this.state.instructions.map(step => (
+                    <ListItem key={this.state.recipe.key++}>
+                      {step.number}: {step.step}
+                    </ListItem>
+                  ))}
+                </List>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-2">
+              <Link to="/">← Back to Recipes</Link>
+
+            </Col>
+          </Row>
         </div>
       </Container>
     );
