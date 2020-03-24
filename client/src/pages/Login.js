@@ -32,6 +32,7 @@ class Login extends Component {
                 sessionStorage.setItem("UserEmail", JSON.stringify(res.data.email))
                 sessionStorage.setItem("UserId", JSON.stringify(res.data._id))
                 sessionStorage.setItem("UserName", JSON.stringify(res.data.name))
+                sessionStorage.setItem("UserContacts", JSON.stringify(res.data.contacts));
                 sessionStorage.setItem("Logout", false);
                 sessionStorage.setItem("user", currentComponent.state.email);
                 // window.location.href="/profile"

@@ -3,23 +3,43 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { AwesomeButton } from 'react-awesome-button';
+import API from "../utils/API";
 
 //class component
 export default class Friends extends Component {
-    state = {
-        contacts: [
-           { id: 1, name: 'Wasif', mobile: 2123456789, email: 'wasif@email.com' },
-           { id: 2, name: 'Ali', mobile: 1923567890, email: 'ali@email.com' },
-           { id: 3, name: 'Saad', mobile: 1612233445, email: 'saad@email.com' },
-           { id: 4, name: 'Asad', mobile: 2598765432, email: 'asad@email.com' }
-        ]
-     }
+    constructor(props) {
+        super(props)
+        this.state = {
+            userEmail: sessionStorage.getItem("UserEmail"),
+            userContacts: JSON.parse(sessionStorage.getItem("UserContacts"))
+        }
+    }
 
     componentDidMount() {
-        console.log(sessionStorage.getItem("Logout"))
-        if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
-            window.location.href = "/login"
-        }
+        console.log(`componentDidMount: sessionStorage.getItem(\"UserContacts\") = ${sessionStorage.getItem("UserContacts")}`);
+        console.log(`componentDidMount: sessionStorage.getItem(\"UserEmail\") = ${sessionStorage.getItem("UserEmail")}`);
+        // this.setState(
+        //     {
+        //         userEmail: JSON.parse(sessionStorage.getItem("UserEmail")),
+        //         userContacts: JSON.parse(sessionStorage.getItem("UserContacts")) 
+        //     }
+        // );
+        this.loadContacts();
+    }
+
+    loadContacts = () => {
+        console.log(`loadContacts: this.state.userEmail = ${this.state.userEmail}`);
+        console.log(`loadContacts: this.state.userContacts = ${this.state.userContacts}`);
+        // API.getContacts({ email: this.state.userEmail })
+        //     .then(res => {
+        //         console.log(`contactList = ${JSON.stringify(res.data)}`);
+        //         // var index = res.data.map(x => x.userEmail).indexOf(this.state.userEmail);
+        //         // var contactList = res.data[index].contacts
+        //         var contactList = res.data.contacts
+
+        //         this.setState({ contacts: contactList });
+        //     })
+        //     .catch(err => console.log(err));
     }
 
     handleFormSubmit = event => {
@@ -29,17 +49,18 @@ export default class Friends extends Component {
     }
 
     renderTableData() {
-        return this.state.contacts.map((contact, index) => {
-           const { id, name, mobile, email } = contact //destructuring
-           return (
-              <tr key={id}>
-                 <td>{name}</td>
-                 <td>{mobile}</td>
-                 <td>{email}</td>
-              </tr>
-           )
+        console.log(`renderTableData: this.state.userContacts = ${this.state.userContacts}`);
+        return this.state.userContacts.map((contacts) => {
+            const { _id, name, mobile, email } = contacts //destructuring
+            return (
+                <tr key={_id}>
+                    <td>{name}</td>
+                    <td>{mobile}</td>
+                    <td>{email}</td>
+                </tr>
+            )
         })
-     }
+    }
 
     render() {
         return (

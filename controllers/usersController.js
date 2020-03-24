@@ -23,6 +23,15 @@ module.exports = {
       // .catch(err => console.log(err.message));
       .catch(err => res.status(422).json(err));
   },
+  findAllContacts: function (req, res) {
+    console.log(`findAllContacts: req.params.email = ${req.params.email}`);
+    db.User
+      .find({ email: req.params.email })
+      .then(dbModel => console.log(`dbModel = ${dbModel}`))
+      // .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   updateContacts: function (req, res) {
     console.log(`updateContacts: id: ${req.params.id}`);
     db.User.findOne({ email: req.params.id }, function (err, user) {
