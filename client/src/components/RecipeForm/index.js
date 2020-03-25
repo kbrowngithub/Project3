@@ -70,7 +70,7 @@ export default function RecipeForm(props) {
             </div>
             <div className="form-group">
             <textarea
-                className="form-control"
+                className="form-control recipesForm"
                 rows= "20"
                 value={props.instructions}
                 onChange={props.handleInputChange}

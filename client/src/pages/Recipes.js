@@ -87,7 +87,7 @@ class Recipes extends Component {
         return (
             <Container fluid>
                 <Row>
-                    <div className="column bordered">
+                    <div className="column bordered recipeBlock">
 
                         <h1 className="heading createRecipe">Create Recipe</h1>
                         <RecipeForm
@@ -118,7 +118,7 @@ class Recipes extends Component {
                                 ))}
                             </List>
                         ) : (
-                                <h3>No Results to Display</h3>
+                                <h3 className="fontStyled">No Results to Display</h3>
                             )}
                     </div>
                     <div className="bordered recipeList column">
@@ -138,7 +138,7 @@ class Recipes extends Component {
                                 ))}
                             </List>
                         ) : (
-                                <h3>No Results to Display</h3>
+                                <h3 className="fontStyled">No Results to Display</h3>
                             )}
                     </div>
 
