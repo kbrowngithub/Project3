@@ -47,11 +47,11 @@ class Invite extends Component {
   //   this.setState({message: { ...this.state.message, [name]: value }});
   // };
 
-  updateContact = (id, contactData) => {
-    API.updateContact({ id: id, contact: contactData })
-      .then(res => console.log("Contact Added"))
-      .catch(err => console.log(err));
-  }
+  // updateContact = (id, contactData) => {
+  //   API.updateContact({ id: id, contact: contactData })
+  //     .then(res => console.log("Contact Added"))
+  //     .catch(err => console.log(err));
+  // }
 
   normalizeCell = cellNum => {
     this.state.message.to = cellNum.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1$2$3');
@@ -103,7 +103,7 @@ class Invite extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
-          API.updateContact({ name: this.state.name, mobile: this.state.to, email: "" })
+          API.updateContact({ userEmail: sessionStorage.getItem("UserEmail"), name: this.state.cname, mobile: this.state.to, email: "" })
             .then(res => console.log("Contact Updated"))
             .catch(err => console.log(err));
 
@@ -154,7 +154,7 @@ class Invite extends Component {
         .then(data => {
           console.log(`data.success = ${data.success}`);
           console.log(`Invite: userID = ${sessionStorage.getItem("user")}\nname:${this.state.cname}, mobile:none, email:${this.state.to}`);
-          API.updateContact({ userEmail: sessionStorage.getItem("user"), name: this.state.cname, mobile: "", email: this.state.to })
+          API.updateContact({ userEmail: sessionStorage.getItem("UserEmail"), name: this.state.cname, mobile: "", email: this.state.to })
             .then(res => console.log("Contact Updated"))
             .catch(err => console.log(err));
 

@@ -70,15 +70,15 @@ export default class Friends extends Component {
                     {/* {this.state.recipes.map(recipe => ( */}
                         <ListItem key={_id}>
                             <Link to={"/invite/" + _id}>
-                            <tr key={_id}>
+                                {name}
+                            </Link>
+                            {/* <tr key={_id}>
                                 <td>{name}</td>
                                 <td>{mobile}</td>
                                 <td>{email}</td>
-                            </tr>
-                            </Link>
+                            </tr> */}
                             <DeleteBtn onClick={() => this.removeContact(this.state.userEmail, {id: _id, name:name, mobile:mobile, email:email})} />
                         </ListItem>
-                    // ))}
                 </List>
             )
         })

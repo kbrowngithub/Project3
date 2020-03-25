@@ -32,7 +32,7 @@ module.exports = {
   },
   updateContacts: function (req, res) {
     console.log(`updateContacts: id: ${req.params.id}`);
-    db.User.findOne({ email: req.params.id }, function (err, user) {
+    db.User.findOne({ email: JSON.parse(req.params.id) }, function (err, user) {
       if (err) { console.log(err) }
       if (user) {
         console.log(`User found: ${JSON.stringify(user)}`);
