@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import {  } from 'react-router-dom'
+
 class Login extends Component {
     state = {
         email: "",
@@ -16,7 +16,7 @@ class Login extends Component {
         history: PropTypes.object.isRequired
     };
     componentDidMount() {
-        if (JSON.parse(sessionStorage.getItem("Logout")) !== true) {
+        if (JSON.parse(sessionStorage.getItem("Logout")) === false) {
             this.setState({loggedIn: true});
         }
     }

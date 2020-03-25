@@ -8,8 +8,8 @@ class Signup extends Component {
         fullName: "",
         email: "",
         password: "",
-        password2: ""
-
+        password2: "",
+        pass2Send: ""
     };
 
     handleInputChange = event => {
@@ -20,32 +20,15 @@ class Signup extends Component {
     };
 
     handleFormSubmit = event => {
-
-        // alert("Fullname: " + this.state.fullName +
-        // "\nEmail: " + this.state.email +
-        // "\nPassword: " + this.state.password);
         if (!this.state.fullName || !this.state.email || !this.state.password || !this.state.password2) {
-            // errors.push({ msg: 'Please enter all fields' });
-            // return alert("Must enter all fields")
             return this.setState({signupFlag: 1});
         }
 
         if (this.state.password !== this.state.password2) {
-            // errors.push({ msg: 'Passwords do not match' });
-            // return alert("Passowrds do not match")
             return this.setState({signupFlag: 2});
         }
 
-        // if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(this.state.email)) {
-
-        // } else {
-        //     // return alert("Please enter valid email")
-        //     return this.setState({signupFlag: 3});
-        // }
-
         if (this.state.password.length < 6) {
-            // errors.push({ msg: 'Password must be at least 6 characters' });
-            // return alert("Password must be at least 6 characters")
             return this.setState({signupFlag: 4});
         }
 
@@ -55,15 +38,18 @@ class Signup extends Component {
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(this.state.password, salt, (err, hash) => {
                     if (err) throw err;
-                    this.setState({password: hash});
+                    this.setState({pass2Send: hash});
                     API.newUser({
                         name: this.state.fullName,
                         email: this.state.email,
-                        password: this.state.password,
+                        password: this.state.pass2Send,
                     })
-                        .then(user => {
+                        .then(res => {
+                            sessionStorage.setItem("UserEmail", JSON.stringify(res.data.email))
+                            sessionStorage.setItem("UserId", JSON.stringify(res.data._id))
+                            sessionStorage.setItem("UserName", JSON.stringify(res.data.name))
                             sessionStorage.setItem("Logout", false);
-                            window.location.replace('/profile');
+                            currentComponent.props.history.push('/');
                         })
                         .catch(function(error) {
                             console.log("Error: " + error)
