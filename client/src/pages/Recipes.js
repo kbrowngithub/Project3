@@ -86,9 +86,9 @@ class Recipes extends Component {
     render() {
         return (
             <Container fluid>
+                <div className="create-recipe-smallest">
                 <Row>
                     <div className="column bordered recipeBlock">
-
                         <h1 className="heading createRecipe">Create Recipe</h1>
                         <RecipeForm
                             handleInputChange={this.handleInputChange}
@@ -143,6 +143,7 @@ class Recipes extends Component {
                     </div>
 
                 </Row>
+                </div>
             </Container>
         )
     }

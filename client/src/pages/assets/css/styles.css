@@ -206,33 +206,84 @@ body {
     margin-bottom: 10px;
     color: #EB6864;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     .button{
         margin-left: 10px;
-        font-size: small;
-        width: 70px;
-        height: 40px;
+        font-size: xx-small;
+        width: 90px;
+        height: 30px;
     }
 
     body {
         background-image: url(../images/silhouette.png);
-        background-size: 120% 190%;
+        background-size: contain;
+        background-position: 50% 5%;
     }
+
     .drinkButton {
-        left: 40%;
-        margin-top: 40%;
-        width: 30%;
+        left: 35%;
+        margin-top: 5%;
+        width: 40%;
         height: 60px;
-        font-size: small;
+        font-size: medium;
     }
     
     .foodButton {
-        left: 10%;
-        margin-top: 60%;
-        width: 30%;
+        left: -5%;
+        margin-top: 20%;
+        width: 40%;
         height: 60px;
+        font-size: medium;
+    }
+
+    .containerDrink {
+        height: 300px;
+        overflow-x: scroll;
+        max-width: 150px;
+      }
+    
+    .containerRecipe {
+        height: 300px;
+        max-width: 150px;
+        overflow-x: scroll;
+      }
+    
+    .heading {
+        font-size: x-large;
+    }
+
+    .smallestFont {
         font-size: small;
     }
+
+    .btn-friend {
+        font-size: small;
+    }
+
+    .create-recipe-smallest {
+        max-width: 500px;
+    }
+
+    .recipeBlock {
+        overflow: hidden;
+    }    
+
+    .smaller {
+        width: 300px;
+    }
+
+    .create-recipe-button {
+        float: left;
+    }
+
+    .createRecipe {
+       margin-left: 100px;
+    }
+
+    .recipeList {
+        margin-left: 30px;
+    }
+    
 }
 
 @media only screen and (min-width: 768px) {
@@ -335,8 +386,4 @@ body {
 
 .recipesForm {
     max-height: 200px;
-}
-
-.recipesPage {
-    
 }

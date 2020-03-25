@@ -11,16 +11,17 @@ import PropTypes from "prop-types";
 export default function Nav() {
     return (
 
-        <nav className="image-blurred-edge navbar navbar-expand-lg navbar-dark">
-
-            <Link to="/" className="navbar-brand">Woking Title</Link>
-            <div className="">
-                <ul className="navbar-nav naving">
+        <nav className="image-blurred-edge navbar navbar-expand-lg navbar-dark dropdown">
+            <Link to="/" className="navbar-brand">Woking Title<span className="spanned"> ▼ </span></Link>
+            
+                <ul className="navbar-nav naving dropdown-content">
+                <div class="row">
+                    <div className="blocking col-sm">
                     <AwesomeButton
                         type="secondary"
                         size="medium"
                         ripple
-                        className='button'
+                        className="button"
                     ><Link className="btnFontClr" to="/">Home</Link>
                     </AwesomeButton>
                     <AwesomeButton
@@ -35,6 +36,10 @@ export default function Nav() {
                         ripple
                         className='button'
                     ><Link className="btnFontClr" to="/recipes">Recipes</Link></AwesomeButton>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div className="blocking col-sm">
                     <AwesomeButton
                         type="secondary"
                         size="medium"
@@ -48,15 +53,10 @@ export default function Nav() {
                         className='button'
                     ><Link className="btnFontClr" to="/pantry">Pantry</Link></AwesomeButton>
                     <LogBtn></LogBtn>
-
+                    </div>
+                    </div>
                 </ul>
-
-            </div>
-
-
-
         </nav>
-
     );
 }
 

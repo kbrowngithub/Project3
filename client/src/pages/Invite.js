@@ -7,10 +7,6 @@ import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/themes/theme-blue.css';
 import './assets/css/styles.css';
 
-function testing() {
-  alert("Yup")
-}
-
 class Invite extends Component {
   state = {
     placeholder: "10-digit cell num or email address",

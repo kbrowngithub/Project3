@@ -25,7 +25,7 @@ class Friends extends Component {
                         </h1>
                         <table className="table">
                             <thead className="thead-light">
-                                <tr>
+                                <tr className="smallestFont">
                                     <th>Username</th>
                                     <th>Mobile#</th>
                                     <th>Email</th>
