@@ -60,8 +60,13 @@ class DrinkSearch extends Component {
                 query: this.state.strQuery
             })
                 .then(res => {
-                    this.props.updateDrinksCB(res.data.drinks);
                     console.log(res.data.drinks)
+                    if (res.data.drinks === "None Found") {
+                        alert("No drinks returned, try a different liquor");
+                    } else {
+                        this.props.updateDrinksCB(res.data.drinks);
+                    }
+                    
                 })
                 .catch(err => console.log(err));
         } else {

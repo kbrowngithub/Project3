@@ -214,7 +214,7 @@ body {
 }
 
 .drinkButton {
-    height: auto;
+    height: 5vw;
     width: 26%;
     font-size: 2vw;
     padding: 10px;
@@ -224,7 +224,7 @@ body {
 }
 
 .foodButton {
-    height: auto;
+    height: 5vw;
     width: 26%;
     font-size: 2vw;
     padding: 10px;
@@ -232,6 +232,15 @@ body {
 }
 
 @media only screen and (max-width: 700px) {
+
+    .drinkButton {
+        height: 8vw;
+    }
+    
+    .foodButton {
+        height: 8vw;
+    }
+
     .button{
         margin-left: 10px;
         font-size: xx-small;
@@ -239,9 +248,7 @@ body {
         height: 30px;
     }
 
-
-
-    .containerDrink {
+    /* .containerDrink {
         height: 300px;
         overflow-x: scroll;
         max-width: 150px;
@@ -253,7 +260,7 @@ body {
         height: 300px;
         max-width: 150px;
         overflow-x: scroll;
-      }
+      } */
     
     .heading {
         font-size: 6vw;
@@ -305,17 +312,17 @@ body {
         font-size: 1vw;
     }
 
-    .containerDrink {
+    /* .containerDrink {
         height: 300px;
         overflow-x: scroll;
-        max-width: 150px;
+        max-width: 300px;
       }
     
     .containerRecipe {
         height: 300px;
-        max-width: 150px;
+        max-width: 300px;
         overflow-x: scroll;
-      }
+      } */
 
     .btn-friend {
         font-size: small;
