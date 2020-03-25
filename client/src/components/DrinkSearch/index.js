@@ -23,7 +23,7 @@ class DrinkSearch extends Component {
     loadLiquors = () => {
         API.getLiquors()
             .then(res => {
-                
+
                 var index = res.data.map(x => x.userEmail).indexOf(this.state.userEmail);
                 var liquorList = res.data[index].liquors;
                 this.jsonConverter(liquorList)
@@ -55,7 +55,7 @@ class DrinkSearch extends Component {
         this.setState({ strQuery: liquorQuery });
     }
     searchDrinks() {
-        if(this.state.strQuery) {
+        if (this.state.strQuery) {
             API.searchDrinks({
                 query: this.state.strQuery
             })
@@ -66,7 +66,7 @@ class DrinkSearch extends Component {
                     } else {
                         this.props.updateDrinksCB(res.data.drinks);
                     }
-                    
+
                 })
                 .catch(err => console.log(err));
         } else {

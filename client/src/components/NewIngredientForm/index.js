@@ -58,7 +58,8 @@ export function IngredientForm(props) {
 
 export function DrinkForm(props) {
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => {
+    const onSubmit = (data, e) => {
+        e.target.reset();
         props.sendDrink(data);
     };
     return (
