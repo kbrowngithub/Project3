@@ -25,9 +25,6 @@ class Friends extends Component {
     }
 
     loadContacts = () => {
-        // console.log(`loadContacts: this.state.userId = ${this.state.userId}`);
-        // console.log(`loadContacts: this.state.userEmail = ${this.state.userEmail}`);
-        // console.log(`loadContacts: this.state.userContacts = ${this.state.userContacts}`);
         API.getContacts({ userId: this.state.userEmail })
             .then(res => {
                 console.log(`contactList = ${JSON.stringify(res.data)}`);
