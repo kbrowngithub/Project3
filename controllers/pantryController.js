@@ -41,8 +41,7 @@ module.exports = {
     db.Pantry
       .findOneAndUpdate({ userEmail: req.body.email, "ingredients._id": req.params.id },
         { $set: { "ingredients.$.quantity": req.body.quantity } })
-      .then(dbModel =>
-        res.json(dbModel))
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function (req, res) {

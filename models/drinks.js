@@ -31,6 +31,9 @@ const DrinkSchema = new Schema({
         instructions: { 
             type: Array
         },
+        notes: {
+            type: String
+        },
         date: { type: Date, default: Date.now }
 
     }]

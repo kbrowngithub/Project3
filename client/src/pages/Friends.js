@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
 //allows linking to different routes
-import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { AwesomeButton } from 'react-awesome-button';
 import API from "../utils/API";
 import { List, ListItem } from "../components/List";
 import DeleteBtn from "../components/DeleteBtn";
+import { Link, Redirect, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 //class component
-export default class Friends extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            userId: sessionStorage.getItem("UserId"),
-            userEmail: sessionStorage.getItem("UserEmail"),
-            userContacts: JSON.parse(sessionStorage.getItem("UserContacts"))
-        }
+class Friends extends Component {
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
+    state = {
+        userId: sessionStorage.getItem("UserId"),
+        userEmail: sessionStorage.getItem("UserEmail"),
+        userContacts: JSON.parse(sessionStorage.getItem("UserContacts"))
     }
 
     componentDidMount() {
-        // console.log(`componentDidMount: sessionStorage.getItem(\"UserContacts\") = ${sessionStorage.getItem("UserContacts")}`);
-        // console.log(`componentDidMount: sessionStorage.getItem(\"UserEmail\") = ${sessionStorage.getItem("UserEmail")}`);
-        // this.setState(
-        //     {
-        //         userContacts: JSON.parse(sessionStorage.getItem("UserContacts")) 
-        //     }
-        // );
         this.loadContacts();
     }
 
@@ -43,7 +38,6 @@ export default class Friends extends Component {
 
     removeContact = (email, contactData) => {
         console.log(`removeContact: ${JSON.stringify(contactData)}`)
-        // API.removeContact({ email:email, contact: contactData })
         API.removeContact({ userEmail: email, name: contactData.name, mobile: contactData.mobile, email: contactData.email })
             .then(res => console.log("Contact Removed"))
             .then(this.loadContacts)
@@ -52,8 +46,7 @@ export default class Friends extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-
-        window.location.href = '/invite';
+        this.props.history.push('/invite');
     }
 
     renderTableData() {
@@ -62,12 +55,12 @@ export default class Friends extends Component {
             const { _id, name, mobile, email } = contacts //destructuring
             return (
                 <List>
-                        <ListItem key={_id} >
-                            <Link to={"/invite/" + name + "/" + mobile + "/" + email}>
-                                {name}
-                            </Link>
-                            <DeleteBtn onClick={() => this.removeContact(this.state.userEmail, {id: _id, name:name, mobile:mobile, email:email})} />
-                        </ListItem>
+                    <ListItem key={_id} >
+                        <Link to={"/invite/" + name + "/" + mobile + "/" + email}>
+                            {name}
+                        </Link>
+                        <DeleteBtn onClick={() => this.removeContact(this.state.userEmail, { id: _id, name: name, mobile: mobile, email: email })} />
+                    </ListItem>
                 </List>
             )
         })
@@ -81,11 +74,7 @@ export default class Friends extends Component {
                         <h1 className="text-center mb-3 heading">
                             <i className="fas fa-user-plus"></i> Friends
                         </h1>
-                        {/* <table className="table">
-                            <tbody> */}
-                                {this.renderTableData()}
-                            {/* </tbody>
-                        </table> */}
+                        {this.renderTableData()}
                         <Button className="btn-friend standardButton" variant="light" onClick={this.handleFormSubmit}>New Friend</Button>
                     </div>
                 </div>
@@ -93,4 +82,4 @@ export default class Friends extends Component {
         )
     }
 }
-
+export default withRouter(Friends);

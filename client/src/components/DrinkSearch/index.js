@@ -14,12 +14,18 @@ class DrinkSearch extends Component {
         this.searchDrinks = this.searchDrinks.bind(this);
     }
     componentDidMount() {
-        this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) })
-        this.loadLiquors();
+        this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) }, () => {
+            if (this.state.userEmail !== null) {
+                this.loadLiquors();
+            } else {
+                console.log("No user found");
+            }
+        })
     }
     loadLiquors = () => {
         API.getLiquors()
             .then(res => {
+                
                 var index = res.data.map(x => x.userEmail).indexOf(this.state.userEmail);
                 var liquorList = res.data[index].liquors;
                 this.jsonConverter(liquorList)
@@ -51,6 +57,7 @@ class DrinkSearch extends Component {
         this.setState({ strQuery: liquorQuery });
     }
     searchDrinks() {
+        if(this.state.strQuery) {
         API.searchDrinks({
             query: this.state.strQuery
         })
@@ -58,6 +65,7 @@ class DrinkSearch extends Component {
                 this.props.updateDrinksCB(res.data.drinks);
             })
             .catch(err => console.log(err));
+        }
     }
     render() {
         return (
