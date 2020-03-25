@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import { Button } from 'react-bootstrap';
-import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/themes/theme-blue.css';
 
 
