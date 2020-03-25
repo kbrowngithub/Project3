@@ -13,49 +13,49 @@ export default function Nav() {
 
         <nav className="image-blurred-edge navbar navbar-expand-lg navbar-dark dropdown">
             <Link to="/" className="navbar-brand">Woking Title<span className="spanned"> ▼ </span></Link>
-            
-                <ul className="navbar-nav naving dropdown-content">
+
+            <ul className="navbar-nav naving dropdown-content">
                 <div class="row">
                     <div className="blocking col-sm">
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className="button"
-                    ><Link className="btnFontClr" to="/">Home</Link>
-                    </AwesomeButton>
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className='button'
-                    ><Link className="btnFontClr" to="/friends">Friends</Link></AwesomeButton>
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className='button'
-                    ><Link className="btnFontClr" to="/recipes">Recipes</Link></AwesomeButton>
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className="button"
+                        ><Link className="btnFontClr" to="/">Home</Link>
+                        </AwesomeButton>
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className='button'
+                        ><Link className="btnFontClr" to="/friends">Friends</Link></AwesomeButton>
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className='button'
+                        ><Link className="btnFontClr" to="/recipes">Recipes</Link></AwesomeButton>
                     </div>
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                     <div className="blocking col-sm">
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className='button'
-                    ><Link className="btnFontClr" to="/signup">New User</Link></AwesomeButton>
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className='button'
-                    ><Link className="btnFontClr" to="/pantry">Pantry</Link></AwesomeButton>
-                    <LogBtn></LogBtn>
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className='button'
+                        ><Link className="btnFontClr" to="/signup">New User</Link></AwesomeButton>
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className='button'
+                        ><Link className="btnFontClr" to="/pantry">Pantry</Link></AwesomeButton>
+                        <LogBtn></LogBtn>
                     </div>
-                    </div>
-                </ul>
+                </div>
+            </ul>
         </nav>
     );
 }

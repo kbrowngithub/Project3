@@ -239,6 +239,8 @@ body {
         height: 30px;
     }
 
+
+
     .containerDrink {
         height: 300px;
         overflow-x: scroll;
@@ -298,8 +300,9 @@ body {
     .button{
         margin-left: 10px;
         margin-bottom: 10px;
-        width: 120px;
-        height: 40px;
+        width: 11vw;
+        height: 3vw;
+        font-size: 1vw;
     }
 
     .containerDrink {
@@ -329,12 +332,21 @@ body {
     }
 
     body {
-        background-position-y: 25vw;
+        background-position-y: 10vw;
     }
 }
 
 @media only screen and (min-width: 1000px) {
+
     body {
         background-position-y: 5vw;
+    }
+
+    .button{
+        margin-left: 10px;
+        margin-bottom: 10px;
+        width: 8vw;
+        height: 3vw;
+        font-size: 1vw;
     }
 }
