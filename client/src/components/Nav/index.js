@@ -4,9 +4,8 @@ import { createBrowserHistory } from "history";
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/themes/theme-red.css';
 import './styles.css';
-import API from "../../utils/API";
 import LogBtn from "../LogBtn"
-import PropTypes from "prop-types";
+import SignBtn from "../SignBtn"
 
 export default function Nav() {
     return (
@@ -40,12 +39,8 @@ export default function Nav() {
                 </div>
                 <div class="row">
                     <div className="blocking col-sm">
-                        <AwesomeButton
-                            type="secondary"
-                            size="medium"
-                            ripple
-                            className='button'
-                        ><Link className="btnFontClr" to="/signup">New User</Link></AwesomeButton>
+                        <SignBtn></SignBtn>
+ 
                         <AwesomeButton
                             type="secondary"
                             size="medium"
