@@ -68,8 +68,6 @@ class Friends extends Component {
             alert("Please log in to use this page");
             return <Redirect to={"/login"}></Redirect>
         }
-
-     
     }
 
     render() {
