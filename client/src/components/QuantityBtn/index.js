@@ -28,9 +28,9 @@ class QuantityBtn extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.DecreaseItem}>{"<--"}</button>
+        <button onClick={this.DecreaseItem}>{"←"}</button>
         {"    " + this.state.quantity + "   "}
-        <button onClick={this.IncrementItem}>{"-->"}</button>
+        <button onClick={this.IncrementItem}>{"→"}</button>
         
       </div>
     );

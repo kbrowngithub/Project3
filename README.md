@@ -38,7 +38,8 @@ Controller (MVC) model.
     can be entered along with the contact name and a message to send. A send button initiates the text or email send and
     saves the contact to the list.
 
-3. Recipe:
+3. Recipe: Holds user's saved drink and food recipes, allowing them to open links to the instructions and ingredients of said recipes. This page 
+    also allows users to create and save their own recipes.
 
 4. Pantry
 
