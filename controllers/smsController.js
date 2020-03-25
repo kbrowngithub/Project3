@@ -46,7 +46,7 @@ module.exports = {
   },
   emailInvite: function (req, res) {
     console.log(`smsController:emailInvite(): from=<session-uid-here>, to=${req.body.to}, body=${req.body.body}`);
-    const msgText = "Dinner invite from <session-uid-here>\n" + req.body.body + "\nTo accept go to: https://chuck-wagon.herokuapp.com/"
+    const msgText = `Dinner invite from ${sessionStorage.getItem("UserName")}\n" + req.body.body + "\nTo accept go to: https://chuck-wagon.herokuapp.com/`
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
