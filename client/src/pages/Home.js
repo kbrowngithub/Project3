@@ -25,38 +25,35 @@ class Home extends Component {
     render() {
         return (
 
-            <div
-            // className="background"
-            >
-                <div className="row">
-                    <div className="homeButtons">
+            <div>
+                
                     <DrinkSearch updateDrinksCB={this.updateDrinks}></DrinkSearch>
-
+                    <br></br>
                     <RecipeSearch updateRecipesCB={this.updateRecipes}></RecipeSearch>
-                    </div>
-                </div>
+                
+
 
                 <Row>
                     <Col size="md-6">
-                    <div class="containerRecipe">
+                        <div class="containerRecipe">
                             <div class="row">
-                            {this.state.recipeData.length ? (
-                                this.state.recipeData.map(recipe => (
-                                    <RecipeCard
-                                        id={recipe.id}
-                                        key={recipe.id}
-                                        image={recipe.image}
-                                        summary={recipe.summary}
-                                        title={recipe.title}
-                                        missingIngredients={recipe.missedIngredients}
-                                        usedIngredients={recipe.usedIngredients}
-                                    />
-                                ))
+                                {this.state.recipeData.length ? (
+                                    this.state.recipeData.map(recipe => (
+                                        <RecipeCard
+                                            id={recipe.id}
+                                            key={recipe.id}
+                                            image={recipe.image}
+                                            summary={recipe.summary}
+                                            title={recipe.title}
+                                            missingIngredients={recipe.missedIngredients}
+                                            usedIngredients={recipe.usedIngredients}
+                                        />
+                                    ))
 
-                            ) : (
-                                    <h3></h3>
-                                )}
-                        </div>
+                                ) : (
+                                        <h3></h3>
+                                    )}
+                            </div>
                         </div>
                     </Col>
 
