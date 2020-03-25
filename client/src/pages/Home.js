@@ -29,9 +29,11 @@ class Home extends Component {
             // className="background"
             >
                 <div className="row">
+                    <div className="homeButtons">
                     <DrinkSearch updateDrinksCB={this.updateDrinks}></DrinkSearch>
 
                     <RecipeSearch updateRecipesCB={this.updateRecipes}></RecipeSearch>
+                    </div>
                 </div>
 
                 <Row>

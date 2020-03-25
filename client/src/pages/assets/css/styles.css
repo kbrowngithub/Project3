@@ -206,6 +206,36 @@ body {
     margin-bottom: 10px;
     color: #EB6864;
 }
+
+.savedItems {
+    color: brown;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+ }
+ 
+ .row > div[class*='col-'] {
+   display: flex;
+ }
+
+.containerDrink {
+    height: 300px;
+    overflow-x: scroll;
+    margin-left: 60px;
+  }
+
+.containerRecipe {
+    height: 300px;
+    overflow-x: scroll;
+    margin-left: 90px;
+  }
+
+.recipesForm {
+    max-height: 200px;
+}
+
 @media only screen and (max-width: 700px) {
     .button{
         margin-left: 10px;
@@ -286,15 +316,66 @@ body {
     
 }
 
-@media only screen and (min-width: 768px) {
+ @media only screen and (min-width: 700px) {
     .button{
         margin-left: 10px;
-        font-size: small;
-        width: 90px;
+        margin-bottom: 10px;
+        width: 120px;
         height: 40px;
+    }
+
+    body {
+        background-image: url(../images/silhouette.png);
+        background-size: contain;
+        background-position: 50% 20%;
+    }
+
+    .homeButtons {
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
+    }
+
+     .drinkButton {
+        height: 60px;
+        font-size: 0.9em;
+        margin-top: -20px;
+    }
+    
+    .foodButton {
+        height: 60px;
+        font-size: medium;
+    }
+
+    .containerDrink {
+        height: 300px;
+        overflow-x: scroll;
+        max-width: 150px;
+      }
+    
+    .containerRecipe {
+        height: 300px;
+        max-width: 150px;
+        overflow-x: scroll;
+      }
+
+    .btn-friend {
+        font-size: small;
+    }
+
+    .recipeBlock {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .recipeList {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
+
+/*
 @media only screen and (min-width: 992px) {
 
     .button{
@@ -308,26 +389,9 @@ body {
         background-image: url(../images/silhouette.png);
         background-size: 120% 190%;
     }
-    /* .drinkButton {
-        left: 43.5%;
-        margin-top: 19%;
-        width: 20%;
-        height: 60px;
-        font-size: large;
-    }
-    
-    .foodButton {
-        left: 23.5%;
-        margin-top: 26%;
-        width: 20%;
-        height: 60px;
-        font-size: large;
-    } */
 }
 
-.savedItems {
-    color: brown;
-}
+
 
 @media only screen and (min-width: 1200px) {
 
@@ -355,35 +419,4 @@ body {
         background-size: 80%;
     }
 
-}
-
-/* @media only screen and (min-width: 1680px) {
-    .navbar-brand {
-        text-shadow: 4px 4px 4px blue;
-        }
 } */
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
- }
- 
- .row > div[class*='col-'] {
-   display: flex;
- }
-
-.containerDrink {
-    height: 300px;
-    overflow-x: scroll;
-    margin-left: 60px;
-  }
-
-.containerRecipe {
-    height: 300px;
-    overflow-x: scroll;
-    margin-left: 90px;
-  }
-
-.recipesForm {
-    max-height: 200px;
-}

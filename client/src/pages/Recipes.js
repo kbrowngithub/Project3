@@ -87,62 +87,62 @@ class Recipes extends Component {
         return (
             <Container fluid>
                 <div className="create-recipe-smallest">
-                <Row>
-                    <div className="column bordered recipeBlock">
-                        <h1 className="heading createRecipe">Create Recipe</h1>
-                        <RecipeForm
-                            handleInputChange={this.handleInputChange}
-                            handleFormSubmit={this.handleFormSubmit}
-                            title={this.state.title}
-                            image={this.state.image}
-                            ingredients={this.state.ingredients}
-                            instructions={this.state.instructions}
-                        />
+                    <Row>
+                        <div className="column bordered recipeBlock">
+                            <h1 className="heading createRecipe">Create Recipe</h1>
+                            <RecipeForm
+                                handleInputChange={this.handleInputChange}
+                                handleFormSubmit={this.handleFormSubmit}
+                                title={this.state.title}
+                                image={this.state.image}
+                                ingredients={this.state.ingredients}
+                                instructions={this.state.instructions}
+                            />
 
-                    </div>
+                        </div>
 
-                    <div className="bordered recipeList column">
-                        <h1 className="heading">Saved Recipes</h1>
+                        <div className="bordered recipeList column">
+                            <h1 className="heading">Saved Recipes</h1>
 
-                        {this.state.recipes.length > 0 ? (
-                            <List>
-                                {this.state.recipes.map(recipe => (
-                                    <ListItem key={recipe._id}>
-                                        <Link to={"/recipes/" + recipe._id}>
-                                            <strong className="savedItems">
-                                                {recipe.title}
-                                            </strong>
-                                        </Link>
-                                        <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        ) : (
-                                <h3 className="fontStyled">No Results to Display</h3>
-                            )}
-                    </div>
-                    <div className="bordered recipeList column">
-                        <h1 className="heading">Saved Drinks</h1>
+                            {this.state.recipes.length > 0 ? (
+                                <List>
+                                    {this.state.recipes.map(recipe => (
+                                        <ListItem key={recipe._id}>
+                                            <Link to={"/recipes/" + recipe._id}>
+                                                <strong className="savedItems">
+                                                    {recipe.title}
+                                                </strong>
+                                            </Link>
+                                            <DeleteBtn onClick={() => this.deleteRecipe(recipe._id)} />
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            ) : (
+                                    <h3 className="fontStyled">No Results to Display</h3>
+                                )}
+                        </div>
+                        <div className="bordered recipeList column">
+                            <h1 className="heading">Saved Drinks</h1>
 
-                        {this.state.drinks.length > 0 ? (
-                            <List>
-                                {this.state.drinks.map(drink => (
-                                    <ListItem key={drink._id}>
-                                        <Link to={"/drinks/" + drink._id}>
-                                            <strong className="savedItems">
-                                                {drink.title}
-                                            </strong>
-                                        </Link>
-                                        <DeleteBtn onClick={() => this.deleteDrink(drink._id)} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        ) : (
-                                <h3 className="fontStyled">No Results to Display</h3>
-                            )}
-                    </div>
+                            {this.state.drinks.length > 0 ? (
+                                <List>
+                                    {this.state.drinks.map(drink => (
+                                        <ListItem key={drink._id}>
+                                            <Link to={"/drinks/" + drink._id}>
+                                                <strong className="savedItems">
+                                                    {drink.title}
+                                                </strong>
+                                            </Link>
+                                            <DeleteBtn onClick={() => this.deleteDrink(drink._id)} />
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            ) : (
+                                    <h3 className="fontStyled">No Results to Display</h3>
+                                )}
+                        </div>
 
-                </Row>
+                    </Row>
                 </div>
             </Container>
         )
