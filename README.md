@@ -47,7 +47,7 @@ Controller (MVC) model.
 ---
 
 ## Authors
-- Lucas Aho - [LucasAho]https://github.com/LucasAho
+- Lucas Aho - [LucasAho](https://github.com/LucasAho)
 - Kevin Brown - [kbrowngithub](https://github.com/kbrowngithub)
 - Richard Hamp - [RichardHamp](https://github.com/RichardHamp)
 - Tucker Fiumara - [thy-turk](https://github.com/thy-turk)
