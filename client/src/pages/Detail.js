@@ -163,6 +163,7 @@ class Detail extends Component {
                 ) : (
                     <span>
                       <strong>Notes</strong>
+                      <br></br>
                       {this.state.notes.length > 0 ? (
 
                         <span>
@@ -170,7 +171,7 @@ class Detail extends Component {
                         </span>
                       ) : (
                           <span>
-                            <br></br>
+                            
                       Customize recipe by noting your own preferences
 
                           </span>

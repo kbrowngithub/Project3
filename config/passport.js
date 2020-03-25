@@ -11,32 +11,24 @@ passport.use(new LocalStrategy(
   },
   function(email, password, done) {
     // When a user tries to sign in this code runs
-    console.log("Local Strategy hit")
     db.User.findOne({
         email: email
     }).then(function(user, userEmail, nameOfUser) {
       // If there's no user with the given email
       if (!user) {
-        console.log("User not found")
         return done(null, false, {
           message: "Incorrect email."
         });
       }
     //   If there is a user with the given email, but the password the user gives us is incorrect
       else if (!user.validPassword(password)) {
-        console.log("Incorrect password")
         return done(null, false, {
           message: "Incorrect password."
         });
       }
       
-      // If none of the above, return the user
-      console.log("User authed")
-      // console.log("User data: ",user)
       userEmail = user.email;
       nameOfUser = user.nameOfUser
-      console.log("userEmail var:" + userEmail)
-      // window.sessionStorage.setItem("UserEmail", userEmail);
       return done(null, user, userEmail, nameOfUser);
     });
   }
@@ -50,7 +42,7 @@ passport.serializeUser(function(user, done) {
   if (user) {
     console.log("USER IS NOW LOGGED IN");
   };
-  console.log("User data",user)
+  console.log("User data", user)
 });
 
 passport.deserializeUser(function(email, done) {

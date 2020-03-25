@@ -2,11 +2,9 @@ import React from 'react';
 import "./style.css";
 import DeleteBtn from "../DeleteBtn";
 import QuantityBtn from '../QuantityBtn'
-import { Button } from 'react-bootstrap';
 
 export function RenderTableData(props) {
     if (props.ingredients.length > 0) {
-        console.log(props.ingredients)
         return props.ingredients.map((ingredient, index) => {
             return (
                 <tr key={ingredient._id}>

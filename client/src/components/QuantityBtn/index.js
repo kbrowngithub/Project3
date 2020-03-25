@@ -16,7 +16,7 @@ class QuantityBtn extends Component {
   }
   DecreaseItem = () => {
     if (this.state.quantity == "") {
-      console.log("Sorry, negativety is illegal");
+      console.log("Negativity is illegal sir")
     } else {
       this.setState({ quantity: this.state.quantity - 1 }, () => {
         this.props.updateQuantityCB(this.state.id, this.state.quantity);

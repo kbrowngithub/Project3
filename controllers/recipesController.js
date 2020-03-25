@@ -41,7 +41,6 @@ module.exports = {
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
       } else {
-        console.log("1", req.body)
         db.Recipe
           .create(req.body)
           .then(dbModel => res.json(dbModel))
@@ -69,7 +68,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   invite: function (req, res) {
-    console.log(`recipesController:invite(): from=${process.env.TWILIO_PHONE_NUMBER}, to=${req.body.to}, body=${req.body.body}`);
 
     res.header('Content-Type', 'application/json');
     client.messages

@@ -23,7 +23,6 @@ function api_routes(app) {
     app.post("/api/users", usersController.create);
 
     app.get('/logout', (req, res) => {
-        console.log("Logout")
         res.send("Logout!");
         req.logout();
     });
@@ -62,7 +61,6 @@ function api_routes(app) {
     app.post("/api/messages", smsController.invite);
 
     app.get("/sms", function (req, res) {
-        console.log(`Hit the localhost:1337/sms get route`);
         res.send("Hello SMS");
     });
 

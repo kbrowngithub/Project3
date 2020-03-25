@@ -13,7 +13,7 @@ const recipeSchema = new Schema({
             required: [true, "You need a title dude"],
             trim: true,
             minlength: 2,
-            maxlength: 60
+            maxlength: 100
         },
         image: { 
             type: String, 
