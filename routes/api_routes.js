@@ -34,7 +34,7 @@ function api_routes(app) {
 
     app.post('/api/login', passport.authenticate('local'), 
         (req, res, next) => {
-           res.send(req.user) 
+           res.send(req.user); 
         });
     
 

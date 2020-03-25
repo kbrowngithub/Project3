@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
-import { withRouter } from 'react-router-dom'
+import { Link, Redirect, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import {  } from 'react-router-dom'
 class Login extends Component {
     state = {
         email: "",
         password: "",
+        loginFlag: 0,
         loggedIn: false
     };
-    handleRedirect = () => {
-        console.log("yo")
-        if (this.state.loggedIn === true) {
-            this.props.history.push('/')
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
+    componentDidMount() {
+        if (JSON.parse(sessionStorage.getItem("Logout")) !== true) {
+            this.setState({loggedIn: true});
         }
     }
-    
 
     handleFormSubmit = event => {
         if (!this.state.email) {
@@ -28,21 +33,19 @@ class Login extends Component {
 
         if (this.state.email && this.state.password) {
             let currentComponent = this;
-
-            console.log("state test " + this.state.email);
             API.login({
                 email: this.state.email,
                 password: this.state.password
             }).then(function(res){
-                console.log("CLIENT DATA ",res.data);
                 sessionStorage.setItem("UserEmail", JSON.stringify(res.data.email))
                 sessionStorage.setItem("UserId", JSON.stringify(res.data._id))
                 sessionStorage.setItem("UserName", JSON.stringify(res.data.name))
                 sessionStorage.setItem("Logout", false);
-                
+                currentComponent.props.history.push('/');
+
             }).catch(function(error){
                 if (error) {
-                    return currentComponent.setState({loginFlag: 3})
+                    currentComponent.setState({loginFlag: 3})
                 }
             })
         }
@@ -57,48 +60,57 @@ class Login extends Component {
     
     render() {
         return (
-            <div className="row mt-5">
-                <div className="col-md-6 m-auto">
-                    <div className="card card-body">
-                        <h1 className="text-center mb-3 heading"><i className="fas fa-sign-in-alt"></i>  Login</h1>
-                        {/* <% include ./partials/messages %> */}
-                        { this.state.loginFlag === 1 && <p>Please enter your email</p>}
-                        { this.state.loginFlag === 2 && <p>Please enter your password</p>}
-                        { this.state.loginFlag === 3 && <p>Email or password is incorrect</p>}
-                        <form action="/login" method="POST">
-                            <div className="form-group">
-                                <label for="email">Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    className="form-control"
-                                    placeholder="Enter Email"
-                                    value={this.state.email}
-                                    onChange={this.handleInputChange}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label for="password">Password</label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    className="form-control"
-                                    placeholder="Enter Password"
-                                    value={this.state.password}
-                                    onChange={this.handleInputChange}
-                                />
-                            </div>
-                            <button onClick={this.handleFormSubmit} type="button" className="standardButton loginButton">Login</button>
-                        </form>
-                        <p className="lead mt-4">
-                            No Account? <Link to="/signup">Register</Link>
-                        </p>
+            <div>
+            {this.state.loggedIn === false ? (
+                
+                    <div className="row mt-5">
+                    <div className="col-md-6 m-auto">
+                        <div className="card card-body">
+                            <h1 className="text-center mb-3 heading"><i className="fas fa-sign-in-alt"></i>  Login</h1>
+                            {/* <% include ./partials/messages %> */}
+                            { this.state.loginFlag === 1 && <p>Please enter your email</p>}
+                            { this.state.loginFlag === 2 && <p>Please enter your password</p>}
+                            { this.state.loginFlag === 3 && <p>Email or password is incorrect</p>}
+                            <form action="/login" method="POST">
+                                <div className="form-group">
+                                    <label for="email">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        className="form-control"
+                                        placeholder="Enter Email"
+                                        value={this.state.email}
+                                        onChange={this.handleInputChange}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label for="password">Password</label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        className="form-control"
+                                        placeholder="Enter Password"
+                                        value={this.state.password}
+                                        onChange={this.handleInputChange}
+                                    />
+                                </div>
+                                <button onClick={this.handleFormSubmit} type="button" className="standardButton loginButton">Login</button>
+                            </form>
+                            <p className="lead mt-4">
+                                No Account? <Link to="/signup">Register</Link>
+                            </p>
+                        </div>
                     </div>
                 </div>
+                
+            ) : (
+                    <div><Redirect to={'/'}/></div>
+            )}
             </div>
         )
+        
     }
 }
 
