@@ -51,19 +51,24 @@ class Friends extends Component {
 
     renderTableData() {
         console.log(`renderTableData: this.state.userContacts = ${this.state.userContacts}`);
-        return this.state.userContacts.map((contacts) => {
-            const { _id, name, mobile, email } = contacts //destructuring
-            return (
-                <List>
-                    <ListItem key={_id} >
-                        <Link to={"/invite/" + name + "/" + mobile + "/" + email}>
-                            {name}
-                        </Link>
-                        <DeleteBtn onClick={() => this.removeContact(this.state.userEmail, { id: _id, name: name, mobile: mobile, email: email })} />
-                    </ListItem>
-                </List>
-            )
-        })
+        if (this.state.userContacts !== null) {
+            return this.state.userContacts.map((contacts) => {
+                const { _id, name, mobile, email } = contacts //destructuring
+                return (
+                    <List>
+                        <ListItem key={_id} >
+                            <Link to={"/invite/" + name + "/" + mobile + "/" + email}>
+                                {name}
+                            </Link>
+                            <DeleteBtn onClick={() => this.removeContact(this.state.userEmail, { id: _id, name: name, mobile: mobile, email: email })} />
+                        </ListItem>
+                    </List>
+                )
+            })
+        } else {
+            alert("Please log in to use this functionality");
+        }
+     
     }
 
     render() {
