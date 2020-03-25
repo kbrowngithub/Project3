@@ -18,7 +18,7 @@ export function TitleForm(props) {
                     required: true,
                     pattern: /^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/,
                     minLength: 2,
-                    maxLength: 60
+                    maxLength: 100
                 })}
 
             />

@@ -16,7 +16,7 @@ class QuantityBtn extends Component {
   }
   DecreaseItem = () => {
     if (this.state.quantity == "") {
-      console.log("Sorry, negativety is illegal");
+      console.log("Negativity is illegal sir")
     } else {
       this.setState({ quantity: this.state.quantity - 1 }, () => {
         this.props.updateQuantityCB(this.state.id, this.state.quantity);
@@ -28,9 +28,9 @@ class QuantityBtn extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.DecreaseItem}>{"<--"}</button>
+        <button onClick={this.DecreaseItem}>{"←"}</button>
         {"    " + this.state.quantity + "   "}
-        <button onClick={this.IncrementItem}>{"-->"}</button>
+        <button onClick={this.IncrementItem}>{"→"}</button>
         
       </div>
     );
