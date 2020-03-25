@@ -22,7 +22,12 @@ class Friends extends Component {
 
     componentDidMount() {
         this.loadContacts();
+        if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
+            this.props.history.push("/login");
+        }
     }
+
+    
 
     loadContacts = () => {
         API.getContacts({ userId: this.state.userEmail })

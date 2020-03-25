@@ -22,6 +22,10 @@ class Recipes extends Component {
         this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) })
         this.loadRecipes();
         this.loadDrinks();
+
+        if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
+            this.props.history.push("/login");
+        }
     }
     loadDrinks = () => {
         API.loadDrinks()
