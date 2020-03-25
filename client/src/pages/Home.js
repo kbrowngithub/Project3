@@ -1,16 +1,15 @@
-import React, { Component, useState } from 'react';
-import Grid, { Col, Row } from "../components/Grid";
+import React, { Component } from 'react';
+import { Col, Row } from "../components/Grid";
 import RecipeSearch from "../components/RecipeSearch";
 import DrinkSearch from "../components/DrinkSearch";
 import RecipeCard from "../components/RecipeCard";
 import DrinkCard from "../components/DrinkCard";
-
 class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
             recipeData: [],
-            drinkData: []
+            drinkData: [],
         }
     }
 
@@ -24,9 +23,7 @@ class Home extends Component {
 
     render() {
         return (
-
-            <div>
-                
+                <div className="row">
                     <DrinkSearch updateDrinksCB={this.updateDrinks}></DrinkSearch>
                     <br></br>
                     <RecipeSearch updateRecipesCB={this.updateRecipes}></RecipeSearch>
@@ -80,6 +77,7 @@ class Home extends Component {
 
                 </Row>
             </div>
+
         )
     }
 }

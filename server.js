@@ -14,13 +14,13 @@ const PORT = process.env.PORT || 3001;
 
 // Define middleware here
 // Twilio Specific
-// app.use(logger("dev"));
+app.use(logger("dev"));
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(pino);
+// app.use(pino);
 
 
 app.use(express.urlencoded({ extended: true }));
