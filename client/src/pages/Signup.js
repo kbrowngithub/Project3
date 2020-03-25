@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import bcrypt from "bcryptjs";
 import { Button } from 'react-bootstrap';
-
+import { Link } from "react-router-dom";
 class Signup extends Component {
     state = {
         fullName: "",
@@ -152,7 +152,7 @@ class Signup extends Component {
                                 {/* Register
                         </button> */}
                         </form>
-                        <p className="lead mt-4">Already Have An Account? <a href="/login">Click to Login</a></p>
+                        <p className="lead mt-4">Already Have An Account? <Link to="/login">Click to Login</Link></p>
                     </div>
                 </div>
             </div>

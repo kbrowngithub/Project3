@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-
+import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom'
 class Login extends Component {
     state = {
         email: "",
         password: "",
+        loggedIn: false
     };
+    handleRedirect = () => {
+        console.log("yo")
+        if (this.state.loggedIn === true) {
+            this.props.history.push('/')
+        }
+    }
+    
 
     handleFormSubmit = event => {
         if (!this.state.email) {
@@ -30,7 +39,7 @@ class Login extends Component {
                 sessionStorage.setItem("UserId", JSON.stringify(res.data._id))
                 sessionStorage.setItem("UserName", JSON.stringify(res.data.name))
                 sessionStorage.setItem("Logout", false);
-                window.location.href="/profile"
+                
             }).catch(function(error){
                 if (error) {
                     return currentComponent.setState({loginFlag: 3})
@@ -84,7 +93,7 @@ class Login extends Component {
                             <button onClick={this.handleFormSubmit} type="button" className="standardButton loginButton">Login</button>
                         </form>
                         <p className="lead mt-4">
-                            No Account? <a href="/signup">Register</a>
+                            No Account? <Link to="/signup">Register</Link>
                         </p>
                     </div>
                 </div>

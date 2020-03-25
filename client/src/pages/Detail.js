@@ -81,7 +81,6 @@ class Detail extends Component {
       this.setState({ field: "" });
       delete recipe.key;
       delete recipe.date;
-      console.log(recipe)
       API.updateRecipe({
         email: this.state.userEmail,
         id: recipe._id,

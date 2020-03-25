@@ -43,9 +43,17 @@ module.exports = {
       })
     },
     update: function(req, res) {
-      db.Drink
-        .findOneAndUpdate({ _id: req.params.id }, req.body)
-        .then(dbModel => res.json(dbModel))
+      let newRecipe = req.body.newData;
+      console.log(47, newRecipe)
+      db.Recipe
+        .findOneAndUpdate({ userEmail: req.body.email, "drinks._id": req.params.id }, 
+          { $set: { drinks: newDrink } },
+          {new: true}  
+        )
+        .then(dbModel => {
+          console.log(59, dbModel);
+          res.json(dbModel)
+        })
         .catch(err => res.status(422).json(err));
     },
     remove: function(req, res) {
