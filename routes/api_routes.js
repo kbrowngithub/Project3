@@ -18,6 +18,7 @@ function api_routes(app) {
     //User Routes
     app.get("/api/contacts/:userEmail", usersController.findAllContacts);
     app.post("/api/contact/:id", usersController.updateContacts);
+    app.post("/api/removecontact/:id", usersController.removeContact);
 
     app.post("/api/users", usersController.create);
 

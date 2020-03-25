@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { AwesomeButton } from 'react-awesome-button';
 import API from "../utils/API";
+import { List, ListItem } from "../components/List";
+import DeleteBtn from "../components/DeleteBtn";
 
 //class component
 export default class Friends extends Component {
@@ -28,14 +30,23 @@ export default class Friends extends Component {
     }
 
     loadContacts = () => {
-        console.log(`loadContacts: this.state.userId = ${this.state.userId}`);
-        console.log(`loadContacts: this.state.userEmail = ${this.state.userEmail}`);
-        console.log(`loadContacts: this.state.userContacts = ${this.state.userContacts}`);
+        // console.log(`loadContacts: this.state.userId = ${this.state.userId}`);
+        // console.log(`loadContacts: this.state.userEmail = ${this.state.userEmail}`);
+        // console.log(`loadContacts: this.state.userContacts = ${this.state.userContacts}`);
         API.getContacts({ userId: this.state.userEmail })
             .then(res => {
                 console.log(`contactList = ${JSON.stringify(res.data)}`);
                 this.setState({ userContacts: res.data });
             })
+            .catch(err => console.log(err));
+    }
+
+    removeContact = (email, contactData) => {
+        console.log(`removeContact: ${JSON.stringify(contactData)}`)
+        // API.removeContact({ email:email, contact: contactData })
+        API.removeContact({ userEmail: email, name: contactData.name, mobile: contactData.mobile, email: contactData.email })
+            .then(res => console.log("Contact Removed"))
+            .then(this.loadContacts)
             .catch(err => console.log(err));
     }
 
@@ -50,11 +61,25 @@ export default class Friends extends Component {
         return this.state.userContacts.map((contacts) => {
             const { _id, name, mobile, email } = contacts //destructuring
             return (
-                <tr key={_id}>
-                    <td>{name}</td>
-                    <td>{mobile}</td>
-                    <td>{email}</td>
-                </tr>
+                // <tr key={_id}>
+                //     <td>{name}</td>
+                //     <td>{mobile}</td>
+                //     <td>{email}</td>
+                // </tr>
+                <List>
+                    {/* {this.state.recipes.map(recipe => ( */}
+                        <ListItem key={_id}>
+                            <Link to={"/invite/" + _id}>
+                            <tr key={_id}>
+                                <td>{name}</td>
+                                <td>{mobile}</td>
+                                <td>{email}</td>
+                            </tr>
+                            </Link>
+                            <DeleteBtn onClick={() => this.removeContact(this.state.userEmail, {id: _id, name:name, mobile:mobile, email:email})} />
+                        </ListItem>
+                    // ))}
+                </List>
             )
         })
     }
@@ -68,14 +93,14 @@ export default class Friends extends Component {
                             <i className="fas fa-user-plus"></i> Friends
                         </h1>
                         <table className="table">
-                            <thead>
+                            {/* <thead>
                                 <tr>
                                     <th>Username</th>
                                     <th>Mobile#</th>
                                     <th>Email</th>
                                 </tr>
 
-                            </thead>
+                            </thead> */}
                             <tbody>
                                 {this.renderTableData()}
                             </tbody>
@@ -87,3 +112,4 @@ export default class Friends extends Component {
         )
     }
 }
+

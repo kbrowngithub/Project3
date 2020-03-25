@@ -27,10 +27,7 @@ module.exports = {
     console.log(`findAllContacts: req.params.userEmail = ${req.params.userEmail}`);
     db.User
       .findOne({ email: JSON.parse(req.params.userEmail) })
-      // .then(dbModel => console.log(`dbModel.contacts = ${dbModel.contacts}`))
-      // .sort({ date: -1 })
       .then(dbModel => res.json(dbModel.contacts))
-      // .then(dbModel => res.send(dbModel))
       .catch(err => res.status(422).json(err));
   },
   updateContacts: function (req, res) {
@@ -52,6 +49,32 @@ module.exports = {
             console.log(`dbModel: ${dbModel}`)
           })
           .catch(err => res.status(422).json(err));
+      }
+    })
+  },
+  removeContact: function (req, res) {
+    // console.log(`removeContact: id: ${req.params.id}`);
+    // console.log(`removeContact: ${req.body}`);
+    db.User.findOne({ email: JSON.parse(req.params.id) }, function (err, user) {
+      if (err) { console.log(err) }
+      if (user) {
+        console.log(`User found: ${JSON.stringify(user)}`);
+        var newContact = {
+          name: req.body.name,
+          mobile: req.body.mobile,
+          email: req.body.email
+        }
+        console.log(`removeContact: ${JSON.stringify(newContact)}`);
+
+        // { $pull: { <field1>: <value|condition>, <field2>: <value|condition>, ... } }
+        db.User.findOneAndUpdate({ _id: user._id }, { $pull: { contacts: newContact } })
+          .then(dbModel => {
+            res.json(dbModel)
+            console.log(`dbModel: ${dbModel}`)
+          })
+          .catch(err => res.status(422).json(err));
+      } else {
+        console.log(`Not found: ${req.params.id}`)
       }
     })
   },

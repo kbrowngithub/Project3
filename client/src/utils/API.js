@@ -9,6 +9,9 @@ export default {
   updateContact: function (contactData) {
     return axios.post("/api/contact/" + contactData.userEmail, contactData);
   },
+  removeContact: function (contactData) {
+    return axios.post("/api/removecontact/" + contactData.userEmail, contactData);
+  },
 
   //Recipe Routes
   getRecipes: function () {
