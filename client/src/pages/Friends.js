@@ -51,7 +51,6 @@ class Friends extends Component {
 
     renderTableData() {
         console.log(`renderTableData: this.state.userContacts = ${this.state.userContacts}`);
-        if (this.state.userContacts !== null) {
             return this.state.userContacts.map((contacts) => {
                 const { _id, name, mobile, email } = contacts //destructuring
                 return (
@@ -65,9 +64,8 @@ class Friends extends Component {
                     </List>
                 )
             })
-        } else {
-            alert("Please log in to use this functionality");
-        }
+
+
      
     }
 

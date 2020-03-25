@@ -110,7 +110,10 @@ class Invite extends Component {
         .then(data => {
           console.log(`data.success = ${data.success}`);
           API.updateContact({ userEmail: sessionStorage.getItem("UserEmail"), name: this.state.cname, mobile: this.state.message.to, email: "none" })
-            .then(res => console.log("Contact Updated"))
+            .then(res => {
+              sessionStorage.setItem("UserContacts", JSON.stringify(res.data.contacts));
+              console.log("Contact Updated");
+            })
             .catch(err => console.log(err));
 
           if (data.success) {

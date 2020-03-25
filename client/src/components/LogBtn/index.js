@@ -17,6 +17,7 @@ class LogBtn extends Component {6
                 sessionStorage.setItem("Logout", true);
                 sessionStorage.setItem("UserEmail", null);
                 sessionStorage.setItem("UserId", null);
+                sessionStorage.setItem("UserContacts", null);
                 sessionStorage.setItem("UserName", null);
                 currentComponent.props.history.push('/');
             })
