@@ -11,52 +11,52 @@ import PropTypes from "prop-types";
 export default function Nav() {
     return (
 
-        <nav className="image-blurred-edge navbar navbar-expand-lg navbar-dark">
+        <nav className="image-blurred-edge navbar navbar-expand-lg navbar-dark dropdown">
+            <Link to="/" className="navbar-brand">Woking Title<span className="spanned"> ▼ </span></Link>
 
-            <Link to="/" className="navbar-brand">Woking Title</Link>
-            <div className="">
-                <ul className="navbar-nav naving">
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className='button'
-                    ><Link className="btnFontClr" to="/">Home</Link>
-                    </AwesomeButton>
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className='button'
-                    ><Link className="btnFontClr" to="/friends">Friends</Link></AwesomeButton>
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className='button'
-                    ><Link className="btnFontClr" to="/recipes">Recipes</Link></AwesomeButton>
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className='button'
-                    ><Link className="btnFontClr" to="/signup">New User</Link></AwesomeButton>
-                    <AwesomeButton
-                        type="secondary"
-                        size="medium"
-                        ripple
-                        className='button'
-                    ><Link className="btnFontClr" to="/pantry">Pantry</Link></AwesomeButton>
-                    <LogBtn></LogBtn>
-
-                </ul>
-
-            </div>
-
-
-
+            <ul className="navbar-nav naving dropdown-content">
+                <div class="row">
+                    <div className="blocking col-sm">
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className="button"
+                        ><Link className="btnFontClr" to="/">Home</Link>
+                        </AwesomeButton>
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className='button'
+                        ><Link className="btnFontClr" to="/friends">Friends</Link></AwesomeButton>
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className='button'
+                        ><Link className="btnFontClr" to="/recipes">Recipes</Link></AwesomeButton>
+                    </div>
+                </div>
+                <div class="row">
+                    <div className="blocking col-sm">
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className='button'
+                        ><Link className="btnFontClr" to="/signup">New User</Link></AwesomeButton>
+                        <AwesomeButton
+                            type="secondary"
+                            size="medium"
+                            ripple
+                            className='button'
+                        ><Link className="btnFontClr" to="/pantry">Pantry</Link></AwesomeButton>
+                        <LogBtn></LogBtn>
+                    </div>
+                </div>
+            </ul>
         </nav>
-
     );
 }
 

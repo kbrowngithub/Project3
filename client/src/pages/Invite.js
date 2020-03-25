@@ -8,10 +8,6 @@ import 'react-awesome-button/dist/themes/theme-blue.css';
 import './assets/css/styles.css';
 import API from "../utils/API";
 
-// function testing() {
-//   alert("Yup")
-// }
-
 class Invite extends Component {
   constructor(props) {
     super(props)

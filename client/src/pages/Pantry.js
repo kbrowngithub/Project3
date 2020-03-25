@@ -147,10 +147,10 @@ class IngredientList extends Component {
         <div className="row mt-5">
           <div className="col-md-8 m-auto">
             <div className="bordered card card-body">
-              <h1 id="heading">Liquor Cabinent</h1>
+              <h1 className="heading">Liquor Cabinent</h1>
               <List>
                 {this.state.liquors.length ? (
-                  <div>
+                  <div className="fontNorm">
                     {this.state.liquors.map(liquor => (
 
                       <ListItem>
@@ -160,7 +160,7 @@ class IngredientList extends Component {
                     ))}
                   </div>
                 ) : (
-                    <h3 className="fontStyled">No liquors to display</h3>
+                    <h3 className="fontStyled">No liquors to display, add some below!</h3>
                   )}
               </List>
               <DrinkForm
