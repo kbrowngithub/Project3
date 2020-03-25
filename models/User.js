@@ -15,6 +15,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  contacts: [
+    {
+      name: String,
+      mobile: String,
+      email: String
+    }
+  ],
   date: {
     type: Date,
     default: Date.now

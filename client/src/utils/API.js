@@ -2,6 +2,17 @@ import axios from "axios";
 import { UserInstance } from "twilio/lib/rest/chat/v1/service/user";
 
 export default {
+  getContacts: function (data) {
+    console.log(`data: ${JSON.stringify(data)}`);
+    return axios.get("/api/contacts/" + data.userId);
+  },
+  updateContact: function (contactData) {
+    return axios.post("/api/contact/" + contactData.userEmail, contactData);
+  },
+  removeContact: function (contactData) {
+    return axios.post("/api/removecontact/" + contactData.userEmail, contactData);
+  },
+
   //Recipe Routes
   getRecipes: function () {
     return axios.get("/api/recipes");

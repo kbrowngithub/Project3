@@ -9,7 +9,7 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 module.exports = {
   invite: function (req, res) {
-    console.log(`recipesController:invite(): from=${process.env.TWILIO_PHONE_NUMBER}, to=+1${req.body.to}, body=${req.body.body}`);
+    console.log(`smsController:invite(): from=${process.env.TWILIO_PHONE_NUMBER}, to=+1${req.body.to}, body=${req.body.body}`);
     const msgText = req.body.body + " Respond with YES to accept or NO to decline."
     res.header('Content-Type', 'application/json');
     client.messages
@@ -23,14 +23,16 @@ module.exports = {
       })
       .catch(err => {
         console.log(err);
-        res.send(JSON.stringify({ success: false }));
+        if(err.message === 'The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers.')
+        // res.send(JSON.stringify({ success: false }));
+        res.send(JSON.stringify({ success: false, errMsg: 'The number  is unverified. Trial accounts cannot send messages to unverified numbers' }));
       });
   },
   inviteResponse: function (req, res) {
     const twiml = new MessagingResponse();
 
     if (req.body.Body == 'YES') {
-      twiml.message('Great! Go to this url: https://bachelor-helper-recipes.herokuapp.com/');
+      twiml.message('Great! Go to this url: https://chuck-wagon.herokuapp.com/');
     } else if (req.body.Body == 'NO') {
       twiml.message('Okay. Maybe some other time.');
     } else {
@@ -43,7 +45,7 @@ module.exports = {
     res.end(twiml.toString());
   },
   emailInvite: function (req, res) {
-    console.log(`recipesController:emailInvite(): from=<session-uid-here>, to=${req.body.to}, body=${req.body.body}`);
+    console.log(`smsController:emailInvite(): from=<session-uid-here>, to=${req.body.to}, body=${req.body.body}`);
     const msgText = "Dinner invite from <session-uid-here>\n" + req.body.body + "\nTo accept go to: https://chuck-wagon.herokuapp.com/"
     var transporter = nodemailer.createTransport({
       service: 'gmail',

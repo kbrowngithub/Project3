@@ -14,6 +14,14 @@ class Home extends Component {
         }
     }
 
+    componentDidMount() {
+        console.log(sessionStorage.getItem("Logout"))
+        if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
+            window.location.href = "/login"
+        }
+
+    }
+
     updateRecipes = (array) => {
         this.setState({ recipeData: array });
     }

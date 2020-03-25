@@ -17,6 +17,7 @@ class Recipes extends Component {
         instructions: [],
         drinks: []
     }
+
     componentDidMount() {
         this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) })
         this.loadRecipes();
