@@ -19,11 +19,9 @@ class RecipeSearch extends Component {
         this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) }, () => {
             if (this.state.userEmail !== null) {
                 this.loadIngredients();
-            } else {
-                console.log("No user found");
             }
         })
-        
+
     }
 
     loadIngredients = () => {
@@ -36,13 +34,17 @@ class RecipeSearch extends Component {
             .catch(err => console.log(err));
     }
     searchRecipes = () => {
-        API.searchRecipes({
-            query: this.state.strQuery
-        })
-            .then(res => {
-                this.props.updateRecipesCB(res.data);
+        if (this.state.strQuery) {
+            API.searchRecipes({
+                query: this.state.strQuery
             })
-            .catch(err => console.log(err));
+                .then(res => {
+                    this.props.updateRecipesCB(res.data);
+                })
+                .catch(err => console.log(err));
+        } else {
+            alert("Please add something to your pantry to search for recipes");
+        }
     }
 
     jsonConverter = json => {

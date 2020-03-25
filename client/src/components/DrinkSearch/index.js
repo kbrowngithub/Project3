@@ -17,8 +17,6 @@ class DrinkSearch extends Component {
         this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) }, () => {
             if (this.state.userEmail !== null) {
                 this.loadLiquors();
-            } else {
-                console.log("No user found");
             }
         })
     }
@@ -58,13 +56,15 @@ class DrinkSearch extends Component {
     }
     searchDrinks() {
         if(this.state.strQuery) {
-        API.searchDrinks({
-            query: this.state.strQuery
-        })
-            .then(res => {
-                this.props.updateDrinksCB(res.data.drinks);
+            API.searchDrinks({
+                query: this.state.strQuery
             })
-            .catch(err => console.log(err));
+                .then(res => {
+                    this.props.updateDrinksCB(res.data.drinks);
+                })
+                .catch(err => console.log(err));
+        } else {
+            alert("Please add something to your liquor cabinent to search for cocktails");
         }
     }
     render() {

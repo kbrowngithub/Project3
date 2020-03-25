@@ -19,9 +19,11 @@ class IngredientList extends Component {
   }
   componentDidMount() {
     this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) })
-    this.loadIngredients();
-    this.loadLiquors();
 
+    if (this.state.userEmail !== null) {
+      this.loadLiquors();
+      this.loadIngredients();
+    }
   }
 
   updateQuantity = (id, int) => {

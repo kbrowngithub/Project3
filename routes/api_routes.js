@@ -108,7 +108,7 @@ function api_routes(app) {
     //External API Routes
 
     app.post('/api/spoon', function (req, res) {
-        var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&limitLicense=true&ranking=2&number=3";
+        var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&limitLicense=true&ranking=2&number=10";
         axios.get(queryURL)
             .then(response => {
                 res.json(response.data);
