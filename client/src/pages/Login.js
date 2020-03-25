@@ -41,10 +41,13 @@ class Login extends Component {
                 password: this.state.password
             }).then(function(res){
                 let contactArr = ["No contacts"];
-                if (res.data.contacts.length === 0) {
-                    sessionStorage.setItem("UserContacts", JSON.stringify(contactArr));
-                } else {
+                if (res.data.contacts.length > 0) {
+                    console.log("maybe");
                     sessionStorage.setItem("UserContacts", JSON.stringify(res.data.contacts));
+                } else {
+                    console.log("nope");
+                    sessionStorage.setItem("UserContacts", JSON.stringify(contactArr));
+                 
                 }
                 sessionStorage.setItem("UserEmail", JSON.stringify(res.data.email))
                 sessionStorage.setItem("UserId", JSON.stringify(res.data._id))
