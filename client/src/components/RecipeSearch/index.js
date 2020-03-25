@@ -16,8 +16,14 @@ class RecipeSearch extends Component {
         this.searchRecipes = this.searchRecipes.bind(this);
     }
     componentDidMount() {
-        this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) })
-        this.loadIngredients();
+        this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) }, () => {
+            if (this.state.userEmail !== null) {
+                this.loadIngredients();
+            } else {
+                console.log("No user found");
+            }
+        })
+        
     }
 
     loadIngredients = () => {
