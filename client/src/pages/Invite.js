@@ -17,7 +17,7 @@ class Invite extends Component {
     super(props)
     this.state = {
       namePlaceholder: "...Enter a name for this contact",
-      placeholder: "...10-digit cell num or email address",
+      placeholder: "10-digit cell num or email address",
       to: '',
       cname: '',
       from: '<username goes here>',
@@ -79,7 +79,7 @@ class Invite extends Component {
       alert(`Invalid \'To\' address: ${addr}; Must be either 10 digit cell (US) or valid email.`);
       this.setState({
         namePlaceholder: "***Enter a name for this contact",
-        placeholder: "***10-digit cell num or email address...",
+        placeholder: "10-digit cell num or email address",
         cname: '',
         to: '',
         from: '<username goes here>',

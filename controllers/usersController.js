@@ -43,7 +43,7 @@ module.exports = {
         }
         console.log(`newContact: ${JSON.stringify(newContact)}`);
 
-        // db.User.findOneAndUpdate({ _id: user._id }, { $addToSet: { contacts: newContact } })
+        // db.User.update({ name: req.params.id, contacts: {$ne: {name: req.body.name}} }, { $addToSet: { contacts: newContact } })
         db.User.findOneAndUpdate({ name: user.name }, { $addToSet: { contacts: newContact } })
           .then(dbModel => {
             res.json(dbModel)
@@ -78,17 +78,17 @@ module.exports = {
       }
     })
   },
-  update: function (req, res) {
-    db.User
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  remove: function (req, res) {
-    db.User
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  }
+update: function (req, res) {
+  db.User
+    .findOneAndUpdate({ _id: req.params.id }, req.body)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+},
+remove: function (req, res) {
+  db.User
+    .findById({ _id: req.params.id })
+    .then(dbModel => dbModel.remove())
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+}
 };
