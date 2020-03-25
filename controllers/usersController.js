@@ -43,7 +43,8 @@ module.exports = {
         }
         console.log(`newContact: ${JSON.stringify(newContact)}`);
 
-        db.User.findOneAndUpdate({ _id: user._id }, { $addToSet: { contacts: newContact } })
+        // db.User.findOneAndUpdate({ _id: user._id }, { $addToSet: { contacts: newContact } })
+        db.User.findOneAndUpdate({ name: user.name }, { $addToSet: { contacts: newContact } })
           .then(dbModel => {
             res.json(dbModel)
             console.log(`dbModel: ${dbModel}`)
@@ -66,7 +67,6 @@ module.exports = {
         }
         console.log(`removeContact: ${JSON.stringify(newContact)}`);
 
-        // { $pull: { <field1>: <value|condition>, <field2>: <value|condition>, ... } }
         db.User.findOneAndUpdate({ _id: user._id }, { $pull: { contacts: newContact } })
           .then(dbModel => {
             res.json(dbModel)

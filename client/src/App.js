@@ -35,7 +35,7 @@ function App() {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/invite" component={Invite} />
-          <Route exact path="/invite/:id" component={Invite} />
+          <Route exact path="/invite/:name/:mobile/:email" component={Invite} />
           <Route component={NoMatch} />
         </Switch>
       </div>

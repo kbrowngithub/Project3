@@ -31,6 +31,20 @@ class Invite extends Component {
     }
   }
 
+  componentDidMount() {
+    let toAddr = (this.props.match.params.mobile === "none") ? this.props.match.params.email : this.props.match.params.mobile;
+    this.setState(
+      {
+        cname: this.props.match.params.name,
+        to: toAddr,
+        message: {
+          to: toAddr,
+          body: ''
+        },
+      }
+    );
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -38,14 +52,6 @@ class Invite extends Component {
       message: { ...this.state.message, [name]: event.target.value }
     });
   };
-
-  // handleInputChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({ [name]: value });
-  //   const name = event.target.getAttribute('name');
-  //   this.setState({message: { ...this.state.message, [name]: event.target.value }});
-  //   this.setState({message: { ...this.state.message, [name]: value }});
-  // };
 
   // updateContact = (id, contactData) => {
   //   API.updateContact({ id: id, contact: contactData })
@@ -103,7 +109,7 @@ class Invite extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
-          API.updateContact({ userEmail: sessionStorage.getItem("UserEmail"), name: this.state.cname, mobile: this.state.to, email: "" })
+          API.updateContact({ userEmail: sessionStorage.getItem("UserEmail"), name: this.state.cname, mobile: this.state.message.to, email: "none" })
             .then(res => console.log("Contact Updated"))
             .catch(err => console.log(err));
 
@@ -154,7 +160,7 @@ class Invite extends Component {
         .then(data => {
           console.log(`data.success = ${data.success}`);
           console.log(`Invite: userID = ${sessionStorage.getItem("user")}\nname:${this.state.cname}, mobile:none, email:${this.state.to}`);
-          API.updateContact({ userEmail: sessionStorage.getItem("UserEmail"), name: this.state.cname, mobile: "", email: this.state.to })
+          API.updateContact({ userEmail: sessionStorage.getItem("UserEmail"), name: this.state.cname, mobile: "none", email: this.state.to })
             .then(res => console.log("Contact Updated"))
             .catch(err => console.log(err));
 
@@ -162,6 +168,7 @@ class Invite extends Component {
           if (data.success) {
             this.setState({
               error: false,
+              cname: '',
               submitting: false,
               message: {
                 to: '',

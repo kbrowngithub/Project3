@@ -61,22 +61,11 @@ export default class Friends extends Component {
         return this.state.userContacts.map((contacts) => {
             const { _id, name, mobile, email } = contacts //destructuring
             return (
-                // <tr key={_id}>
-                //     <td>{name}</td>
-                //     <td>{mobile}</td>
-                //     <td>{email}</td>
-                // </tr>
                 <List>
-                    {/* {this.state.recipes.map(recipe => ( */}
-                        <ListItem key={_id}>
-                            <Link to={"/invite/" + _id}>
+                        <ListItem key={_id} >
+                            <Link to={"/invite/" + name + "/" + mobile + "/" + email}>
                                 {name}
                             </Link>
-                            {/* <tr key={_id}>
-                                <td>{name}</td>
-                                <td>{mobile}</td>
-                                <td>{email}</td>
-                            </tr> */}
                             <DeleteBtn onClick={() => this.removeContact(this.state.userEmail, {id: _id, name:name, mobile:mobile, email:email})} />
                         </ListItem>
                 </List>
@@ -92,19 +81,11 @@ export default class Friends extends Component {
                         <h1 className="text-center mb-3 heading">
                             <i className="fas fa-user-plus"></i> Friends
                         </h1>
-                        <table className="table">
-                            {/* <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Mobile#</th>
-                                    <th>Email</th>
-                                </tr>
-
-                            </thead> */}
-                            <tbody>
+                        {/* <table className="table">
+                            <tbody> */}
                                 {this.renderTableData()}
-                            </tbody>
-                        </table>
+                            {/* </tbody>
+                        </table> */}
                         <Button className="btn-friend standardButton" variant="light" onClick={this.handleFormSubmit}>New Friend</Button>
                     </div>
                 </div>
