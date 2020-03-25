@@ -23,7 +23,7 @@ class LogBtn extends Component {6
         return <Redirect to="/" push={true} />
     }
     render() {
-        if (JSON.parse(sessionStorage.getItem("Logout")) === true) {
+        if (JSON.parse(sessionStorage.getItem("Logout")) !== false) {
             return (
                 <div>
                     <AwesomeButton
