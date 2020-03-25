@@ -61,6 +61,7 @@ class DrinkSearch extends Component {
             })
                 .then(res => {
                     this.props.updateDrinksCB(res.data.drinks);
+                    console.log(res.data.drinks)
                 })
                 .catch(err => console.log(err));
         } else {
