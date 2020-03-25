@@ -34,8 +34,12 @@
 }
 
 .createRecipe {
-    margin-left: 30px;
+    margin-left: 130px;
     margin-top: 30px;
+}
+
+.recipeBlock {
+    margin-left: 30px;
 }
 
 .heading {
@@ -110,19 +114,12 @@ body {
     background-image: url(../images/silhouette.png);
     background-repeat: no-repeat;
     background-position-x: center;
+    background-position-y: 1vw;
     background-color: rgb(36, 27, 23);
-    margin-left: 50px;
-    margin-right: 50px;
+    background-size: 70vw;
+    margin-left: 3.5vw;
+    margin-right: 3.5vw;
     font-family: 'Fredericka the Great', cursive;
-}
-
-.drinkButton {
-    position: relative;
-    left: 42.5%;
-    margin-top: 14%;
-    width: 20%;
-    height: 100px;
-    font-size: xx-large;
 }
 
 .thead-light {
@@ -151,16 +148,6 @@ body {
     border-color: red;
   }
 
-.foodButton {
-    position: relative;
-    left: 22.5%;
-    margin-top: 22%;
-    width: 20%;
-    height: 100px;
-    font-size: xx-large;
-    opacity: 0.85;
-}
-
 .form-check {
     margin-left: 20px;
 }
@@ -181,10 +168,6 @@ body {
     padding-left: 40px;
 }
 
-/* .form-group {
-    position: unset;
-} */
-
 .bordered {
     border-style: solid;
     border-width: 2px;
@@ -192,8 +175,6 @@ body {
 }
 
 .radioContainer, .card-body {
-    /* background: white;
-    margin-top: 10px; */
     border-radius: 25px;
     background: url(../images/paperboard-texture_95678-72.jpg);
 }
@@ -202,111 +183,10 @@ body {
     margin-bottom: 10px;
     color: #EB6864;
 }
-@media only screen and (max-width: 600px) {
-    .button{
-        margin-left: 10px;
-        font-size: small;
-        width: 70px;
-        height: 40px;
-    }
-
-    body {
-        background-image: url(../images/silhouette.png);
-        background-size: 120% 190%;
-    }
-    .drinkButton {
-        left: 40%;
-        margin-top: 40%;
-        width: 30%;
-        height: 60px;
-        font-size: small;
-    }
-    
-    .foodButton {
-        left: 10%;
-        margin-top: 60%;
-        width: 30%;
-        height: 60px;
-        font-size: small;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .button{
-        margin-left: 10px;
-        font-size: small;
-        width: 90px;
-        height: 40px;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-
-    .button{
-        margin-left: 10px;
-        font-size: small;
-        width: 70px;
-        height: 40px;
-    }
-
-    body {
-        background-image: url(../images/silhouette.png);
-        background-size: 120% 190%;
-    }
-    /* .drinkButton {
-        left: 43.5%;
-        margin-top: 19%;
-        width: 20%;
-        height: 60px;
-        font-size: large;
-    }
-    
-    .foodButton {
-        left: 23.5%;
-        margin-top: 26%;
-        width: 20%;
-        height: 60px;
-        font-size: large;
-    } */
-}
 
 .savedItems {
     color: brown;
 }
-
-@media only screen and (min-width: 1200px) {
-
-    .button{
-        margin-left: 15px;
-        font-size: medium;
-        width: 130px;
-        height: 40px;
-    }
-    
-    .drinkButton {
-        margin-top: 16%;
-        height: 80px;
-        left: 42.5%;
-    }
-    
-    .foodButton {
-        margin-top: 23%;
-        height: 80px;
-        left: 22.5%;
-    }
-
-    body {
-        background-image: url(../images/silhouette.png);
-        background-size: 80%;
-    }
-
-}
-
-/* @media only screen and (min-width: 1680px) {
-    .navbar-brand {
-        text-shadow: 4px 4px 4px blue;
-        }
-} */
 
 .row {
     display: flex;
@@ -328,3 +208,145 @@ body {
     overflow-x: scroll;
     margin-left: 90px;
   }
+
+.recipesForm {
+    max-height: 200px;
+}
+
+.drinkButton {
+    height: auto;
+    width: 26%;
+    font-size: 2vw;
+    padding: 10px;
+    margin-left: 37%;
+    margin-top: 15%;
+    margin-bottom: 2%;
+}
+
+.foodButton {
+    height: auto;
+    width: 26%;
+    font-size: 2vw;
+    padding: 10px;
+    margin-left: 37%;
+}
+
+@media only screen and (max-width: 700px) {
+    .button{
+        margin-left: 10px;
+        font-size: xx-small;
+        width: 90px;
+        height: 30px;
+    }
+
+
+
+    .containerDrink {
+        height: 300px;
+        overflow-x: scroll;
+        max-width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    
+    .containerRecipe {
+        height: 300px;
+        max-width: 150px;
+        overflow-x: scroll;
+      }
+    
+    .heading {
+        font-size: 6vw;
+    }
+
+    .smallestFont {
+        font-size: small;
+    }
+
+    .btn-friend {
+        font-size: small;
+    }
+
+    .create-recipe-smallest {
+        max-width: 500px;
+    }
+
+    .recipeBlock {
+        overflow: hidden;
+    }    
+
+    .smaller {
+        width: 300px;
+    }
+
+    .create-recipe-button {
+        float: left;
+    }
+
+    .createRecipe {
+       margin-left: 100px;
+    }
+
+    .recipeList {
+        margin-left: 30px;
+    }
+
+    body {
+        background-position-y: 10vw;
+    }
+}
+    
+ @media only screen and (min-width: 700px) {
+    .button{
+        margin-left: 10px;
+        margin-bottom: 10px;
+        width: 11vw;
+        height: 3vw;
+        font-size: 1vw;
+    }
+
+    .containerDrink {
+        height: 300px;
+        overflow-x: scroll;
+        max-width: 150px;
+      }
+    
+    .containerRecipe {
+        height: 300px;
+        max-width: 150px;
+        overflow-x: scroll;
+      }
+
+    .btn-friend {
+        font-size: small;
+    }
+
+    .recipeBlock {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .recipeList {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    body {
+        background-position-y: 10vw;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+
+    body {
+        background-position-y: 5vw;
+    }
+
+    .button{
+        margin-left: 10px;
+        margin-bottom: 10px;
+        width: 8vw;
+        height: 3vw;
+        font-size: 1vw;
+    }
+}

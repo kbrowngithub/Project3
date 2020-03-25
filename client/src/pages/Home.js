@@ -23,12 +23,12 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
                 <div className="row">
                     <DrinkSearch updateDrinksCB={this.updateDrinks}></DrinkSearch>
-
+                    <br></br>
                     <RecipeSearch updateRecipesCB={this.updateRecipes}></RecipeSearch>
-                </div>
+                
+
 
                 <Row>
                     <Col size="md-6">

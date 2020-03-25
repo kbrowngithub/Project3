@@ -80,7 +80,7 @@ class Login extends Component {
                 
                     <div className="row mt-5">
                     <div className="col-md-6 m-auto">
-                        <div className="card card-body">
+                        <div className="card card-body bordered">
                             <h1 className="text-center mb-3 heading"><i className="fas fa-sign-in-alt"></i>  Login</h1>
                             {/* <% include ./partials/messages %> */}
                             { this.state.loginFlag === 1 && <p>Please enter your email</p>}
