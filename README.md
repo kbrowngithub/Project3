@@ -32,21 +32,17 @@ Controller (MVC) model.
 ---
 
 ## Site Organization
-1. Landing page contains a nav bar with Friends, Recipe, New User, Panty, Login/out buttons.
+1. Landing page contains a nav bar with Friends, Recipe, New User, Panty, Login/out buttons. Two central buttons will show either drinks that can be made from ingriedents in pantry or meals that can be.
 
-2. Friends: Lists saved contacts, button to add a contact. Button routes to Invite page where an email or mobile number
-    can be entered along with the contact name and a message to send. A send button initiates the text or email send and
-    saves the contact to the list.
+2. Friends: Lists saved contacts, button to add a contact. Button routes to Invite page where an email or mobile number can be entered along with the contact name and a message to send. A send button initiates the text or email send and saves the contact to the list.
 
-3. Recipe:
+3. Recipe: Shows saved recipes, both for food and drinks. Also has area to include your own recipes.
 
-4. Pantry
+4. Pantry: Lists all ingredients in pantry. These ingredients are used to pull in recipes that you can make.
 
-5. New User
+5. New User: If you haven't been in the system before, this is where you need to go.
 
-6. Login/Logout
-
-7. Drink Recipes / Food Recipes
+6. Login/Logout: Pantry will not populate without logging in.
 
 ---
 
