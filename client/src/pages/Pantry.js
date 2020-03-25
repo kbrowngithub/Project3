@@ -24,6 +24,10 @@ class IngredientList extends Component {
       this.loadLiquors();
       this.loadIngredients();
     }
+
+    if (sessionStorage.getItem("Logout") === "true" || sessionStorage.getItem("Logout") === null) {
+      this.props.history.push("/login");
+    }
   }
 
   updateQuantity = (id, int) => {
