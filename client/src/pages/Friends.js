@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 //allows linking to different routes
-import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { AwesomeButton } from 'react-awesome-button';
-
+import { Link, Redirect, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 //class component
-export default class Friends extends Component {
-    
+class Friends extends Component {
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
     handleFormSubmit = event => {
         event.preventDefault();
-    
-        window.location.href = '/invite';
+        this.props.history.push('/invite');
     }
 
     render() {
@@ -41,3 +43,4 @@ export default class Friends extends Component {
         )
     }
 }
+export default withRouter(Friends);
