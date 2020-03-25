@@ -11,7 +11,7 @@ export default function Nav() {
     return (
 
         <nav className="image-blurred-edge navbar navbar-expand-lg navbar-dark dropdown">
-            <Link to="/" className="navbar-brand">Woking Title<span className="spanned"> ▼ </span></Link>
+            <Link to="/" className="navbar-brand">Chuck Wagon<span className="spanned"> ▼ </span></Link>
 
             <ul className="navbar-nav naving dropdown-content">
                 <div class="row">
