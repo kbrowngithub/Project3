@@ -1,14 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import "./style.css";
 
 export function TitleForm(props) {
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
         props.updateField(data);
     };
-    return(
+    return (
         <form key={props.key} onSubmit={handleSubmit(onSubmit)}>
             <input
+                className="titleEdit"
                 defaultValue={props.value}
                 name="title"
                 onChange={props.handleInputChange}
@@ -17,8 +19,8 @@ export function TitleForm(props) {
                     pattern: /^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/,
                     minLength: 2,
                     maxLength: 60
-                })}  
-                
+                })}
+
             />
             {errors.title && errors.title.type === "required" && "Please enter a title"}
             {errors.title && errors.title.type === "pattern" && "Please enter only letters and numbers for the title"}
@@ -34,16 +36,17 @@ export function SummForm(props) {
     const onSubmit = data => {
         props.updateField(data);
     };
-    return(
+    return (
         <form key={props.key} onSubmit={handleSubmit(onSubmit)}>
             <textarea
+                className="summEdit"
                 defaultValue={props.value}
                 name="summary"
                 onChange={props.handleInputChange}
                 ref={register({
                     required: false,
                     minLength: 1
-                })}  
+                })}
             />
             <button type="submit">Submit</button>
         </form>
@@ -54,24 +57,23 @@ export function NoteForm(props) {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         props.updateField(data);
-        console.log(data);
     };
-    const ingredients = props.value;
-    return(
-        <form key={props.key} onSubmit={handleSubmit(onSubmit)}>
-            {ingredients.map(ingredient => (
-                <input
-                name="ingredient"
-                defaultValue={ingredient.amount + " " + ingredient.unit + " " + ingredient.name}
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <title className="noteHead">Custom Notes</title>
+            <textarea
+                name="notes"
+                className="noteEdit"
+                placeholder={props.ph}
+                defaultValue={props.value}
                 onChange={props.handleInputChange}
                 ref={register({
                     required: true,
                     minLength: 1
-                })}  
+                })}
             />
 
-            ))}
-            
+
             <button type="submit">Submit</button>
         </form>
     )

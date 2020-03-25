@@ -8,6 +8,7 @@ import './assets/css/resultstyles.css';
 
 class Detail extends Component {
     state = {
+        userEmail: "",
         drink: {},
         ingredients: [],
         instructions: []
@@ -18,6 +19,7 @@ class Detail extends Component {
         console.log(this.props.location.state.drinkData);
         console.log(this.props.match.params.id);
         this.loadDrinkDetails(this.props.match.params.id);
+        this.setState({ userEmail: JSON.parse(sessionStorage.getItem("UserEmail")) })
     }
 
     loadDrinkDetails = (id) => {
@@ -61,11 +63,14 @@ class Detail extends Component {
     }
     saveDrink = () => {
         API.saveDrink({
-            idDrink: this.state.drink.idDrink,
-            image: this.state.drink.strDrinkThumb,
-            title: this.state.drink.strDrink,
-            ingredients: this.state.ingredients,
-            instructions: this.state.instructions
+            userEmail: this.state.userEmail,
+            drink: {
+                idDrink: this.state.drink.idDrink,
+                image: this.state.drink.strDrinkThumb,
+                title: this.state.drink.strDrink,
+                ingredients: this.state.ingredients,
+                instructions: this.state.instructions
+            }
         })
             .then(res => null)
             .catch(err => console.log(err));

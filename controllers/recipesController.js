@@ -20,8 +20,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Recipe.findOne({ userEmail: req.body.userEmail }, (err, user) => {
+    db.Recipe.findOne({ userEmail: req.body.userEmail }, function (err, user) {
       if (err) {console.log(err)}
+
       if (user) {
         var newRecipe = {
           title: req.body.recipe.title,
@@ -30,7 +31,9 @@ module.exports = {
           summary: req.body.recipe.summary,
           ingredients: req.body.recipe.ingredients,
           instructions: req.body.recipe.instructions,
+          notes: ""
         }
+    
         db.Recipe.findOneAndUpdate(
           { userEmail: req.body.userEmail },
           { $push : { recipes: newRecipe }}
@@ -38,7 +41,8 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
       } else {
-        db.Pantry
+        console.log("1", req.body)
+        db.Recipe
           .create(req.body)
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
@@ -47,16 +51,30 @@ module.exports = {
   },
   update: function(req, res) {
     let newRecipe = req.body.newData;
+    console.log(54, newRecipe)
     db.Recipe
-      .findOneAndUpdate({ _id: req.params.id }, newRecipe)
-      .then(dbModel => res.json(dbModel))
+      .findOneAndUpdate({ userEmail: req.body.email, "recipes._id": req.params.id }, 
+        { $set: { 
+          "recipes.$[title]": newRecipe.title,
+          "recipes.$[ingredients]": newRecipe.ingredients,
+          "recipes.$[summary]": newRecipe.summary,
+          "recipes.$[instructions]": newRecipe.instructions,
+          "recipes.$[idAPI]": newRecipe.idAPI,
+          "recipes.$[image]": newRecipe.image,
+          "recipes.$[notes]": newRecipe.notes
+        }}
+
+        )
+      .then(dbModel => {
+        console.log(59, dbModel);
+        res.json(dbModel)
+      })
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
     db.Recipe
-      .update({ userEmail: req.parmas.email },
-        {$pull: {recipes: { _id: req.params.id}}})
-      .findById({ _id: req.params.id })
+      .update({ userEmail: req.params.email },
+        { $pull: {recipes: { _id: req.params.id}}})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
