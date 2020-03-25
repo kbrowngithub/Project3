@@ -71,7 +71,7 @@ export function DrinkForm(props) {
                     type="text"
                     placeholder="Add Liquor(Required)"
                     value={props.newDrink}
-                    onChange={props.addIngredient}
+                    onChange={props.addDrink}
                     ref={register({
                         required: true,
                         pattern: /^[a-zA-Z0-9]*$/,

@@ -40,7 +40,6 @@ export default function Nav() {
                 <div class="row">
                     <div className="blocking col-sm">
                         <SignBtn></SignBtn>
- 
                         <AwesomeButton
                             type="secondary"
                             size="medium"
