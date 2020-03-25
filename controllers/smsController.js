@@ -9,7 +9,6 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 module.exports = {
   invite: function (req, res) {
-    console.log(`smsController:invite(): from=${process.env.TWILIO_PHONE_NUMBER}, to=+1${req.body.to}, body=${req.body.body}`);
     const msgText = req.body.body + " Respond with YES to accept or NO to decline."
     res.header('Content-Type', 'application/json');
     client.messages
@@ -45,7 +44,6 @@ module.exports = {
     res.end(twiml.toString());
   },
   emailInvite: function (req, res) {
-    console.log(`smsController:emailInvite(): from=<session-uid-here>, to=${req.body.to}, body=${req.body.body}`);
     const msgText = "Dinner invite from <session-uid-here>\n" + req.body.body + "\nTo accept go to: https://chuck-wagon.herokuapp.com/"
     var transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -61,11 +59,9 @@ module.exports = {
       text: msgText
     }, function(error, info) {
       if (error) {
-        console.log(error);
         // res.send(`Email error: ${error}`);
         res.send(JSON.stringify({ success: false }));
       } else {
-        console.log(`Email sent: ${info.response}`);
         // res.send(info.response);
         res.send(JSON.stringify({ success: true }));
       }

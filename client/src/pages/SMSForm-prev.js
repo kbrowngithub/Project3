@@ -36,7 +36,6 @@ export default class SMSForm extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(`data.success = ${data.success}`);
         if (data.success) {
           this.setState({
             error: false,

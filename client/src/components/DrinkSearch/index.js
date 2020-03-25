@@ -60,7 +60,6 @@ class DrinkSearch extends Component {
                 query: this.state.strQuery
             })
                 .then(res => {
-                    console.log(res.data.drinks)
                     if (res.data.drinks === "None Found") {
                         alert("No drinks returned, try a different liquor");
                     } else {

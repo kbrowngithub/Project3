@@ -27,14 +27,12 @@ class Friends extends Component {
     loadContacts = () => {
         API.getContacts({ userId: this.state.userEmail })
             .then(res => {
-                console.log(`contactList = ${JSON.stringify(res.data)}`);
                 this.setState({ userContacts: res.data });
             })
             .catch(err => console.log(err));
     }
 
     removeContact = (email, contactData) => {
-        console.log(`removeContact: ${JSON.stringify(contactData)}`)
         API.removeContact({ userEmail: email, name: contactData.name, mobile: contactData.mobile, email: contactData.email })
             .then(res => console.log("Contact Removed"))
             .then(this.loadContacts)
@@ -47,7 +45,7 @@ class Friends extends Component {
     }
 
     renderTableData() {
-        console.log(`renderTableData: this.state.userContacts = ${this.state.userContacts}`);
+        if (JSON.parse(sessionStorage.getItem("Logout")) === false) {
             return this.state.userContacts.map((contacts) => {
                 const { _id, name, mobile, email } = contacts //destructuring
                 return (
@@ -61,7 +59,10 @@ class Friends extends Component {
                     </List>
                 )
             })
-
+        } else {
+            alert("Please log in to use this page");
+            return <Redirect to={"/login"}></Redirect>
+        }
 
      
     }
