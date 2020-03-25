@@ -10,7 +10,7 @@ const recipeSchema = new Schema({
     recipes: [{
         title: { 
             type: String, 
-            required: true,
+            required: [true, "You need a title dude"],
             trim: true,
             minlength: 2,
             maxlength: 60
@@ -29,10 +29,13 @@ const recipeSchema = new Schema({
         },
         ingredients: { 
             type: Array, 
-            required: true
+            required: [true, "You can't cook without ingredients"],
         },
         instructions: { 
             type: Array
+        },
+        notes: {
+            type: String
         },
         date: { type: Date, default: Date.now }
     }]

@@ -12,8 +12,8 @@ export default {
   saveRecipe: function (recipeData) {
     return axios.post("/api/recipes", recipeData);
   },
-  deleteRecipe: function (id) {
-    return axios.delete("/api/recipes/" + id);
+  deleteRecipe: function (recipeData) {
+    return axios.delete("/api/recipes/" + recipeData.id + '/' + recipeData.email);
   },
   updateRecipe: function(recipeData) {
     return axios.put("/api/recipes/" + recipeData.id, recipeData)
@@ -29,12 +29,16 @@ export default {
   loadDrink: function(id) {
     return axios.get("/api/drinks/" + id);
   },
+  deleteDrink: function (drinkData) {
+    return axios.delete("/api/drinks/" + drinkData.id + '/' + drinkData.email);
+  },
+  updateDrink: function (drinkData) {
+    return axios.put("/api/drinks/" + drinkData.id, drinkData);
+  },
   saveLiquor: function(drinkData) {
-    console.log(drinkData)
     return axios.post("/api/liquor", drinkData);
   },
   getLiquors: function() {
-    
     return axios.get("/api/liquor");
   },
   deleteLiquor: function(drinkData) {
@@ -46,11 +50,9 @@ export default {
     return axios.get("/api/pantry");
   },
   deleteIngredient: function (pantryData) {
-    console.log(pantryData.email)
     return axios.delete("/api/pantry/" + pantryData.id + "/" + pantryData.email);
   },
   saveIngredient: function (pantryData) {
-
     return axios.post("/api/pantry", pantryData);
   },
   updateIngredient: function (pantryData) {

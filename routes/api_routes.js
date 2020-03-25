@@ -71,7 +71,7 @@ function api_routes(app) {
 
     app.put('/api/recipes/:id', recipesController.update);
 
-    app.delete('/api/recipes/:id', recipesController.remove);
+    app.delete('/api/recipes/:id/:email', recipesController.remove);
 
     app.post('/api/recipes', recipesController.create);
 
@@ -80,7 +80,11 @@ function api_routes(app) {
 
     app.get('/api/drinks/:id', drinksController.findById);
 
+    app.put('/api/drinks/:id', drinksController.update);
+
     app.post('/api/drinks', drinksController.create);
+
+    app.delete('/api/drinks/:id/:email', drinksController.remove);
 
     //Liquor routes
 
@@ -102,7 +106,7 @@ function api_routes(app) {
     //External API Routes
 
     app.post('/api/spoon', function (req, res) {
-        var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&limitLicense=true&ranking=2&number=3&ignorePantry=true";
+        var queryURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + process.env.foodAPIKey + "&ingredients=" + req.body.query + "&limitLicense=true&ranking=2&number=3";
         axios.get(queryURL)
             .then(response => {
                 res.json(response.data);

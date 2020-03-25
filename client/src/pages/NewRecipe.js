@@ -13,16 +13,20 @@ class Detail extends Component {
         instructions: [],
         cleanText: "",
         ingredients: [],
-        missingIngredients: []
+        missingIngredients: [],
+        userEmail: ""
     };
     // When this component mounts, grab the recipe with the _id of this.props.match.params.id
     // e.g. localhost:3000/recipes/599dcb67f0f16317844583fc
     componentDidMount() {
-        this.setState({ recipe: this.props.location.state.recipeData });
+        this.setState({
+            userEmail: JSON.parse(sessionStorage.getItem("UserEmail")),
+            recipe: this.props.location.state.recipeData,
+            ingredients: this.props.location.state.recipeData.usedIngredients,
+            missingIngredients: this.props.location.state.recipeData.missingIngredients
+        });
         this.loadRecipeInstructions(this.props.match.params.id);
         this.loadRecipeSumm(this.props.match.params.id);
-        this.setState({ ingredients: this.props.location.state.recipeData.usedIngredients })
-        this.setState({ missingIngredients: this.props.location.state.recipeData.missingIngredients })
     }
     loadRecipeInstructions = id => {
         API.getInstructions(id)
@@ -57,12 +61,15 @@ class Detail extends Component {
             instructions.push(instructionObj);
         });
         API.saveRecipe({
-            title: this.state.recipe.title,
-            image: this.state.recipe.image,
-            idAPI: this.state.recipe.id,
-            instructions: instructions,
-            ingredients: ingredients,
-            summary: this.state.cleanText
+            userEmail: this.state.userEmail,
+            recipe: {
+                title: this.state.recipe.title,
+                image: this.state.recipe.image,
+                idAPI: this.state.recipe.id,
+                instructions: instructions,
+                ingredients: ingredients,
+                summary: this.state.cleanText
+            }
         })
             .then(res => null)
             .catch(err => console.log(err));
