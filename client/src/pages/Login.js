@@ -42,10 +42,8 @@ class Login extends Component {
             }).then(function(res){
                 let contactArr = ["No contacts"];
                 if (res.data.contacts.length > 0) {
-                    console.log("maybe");
                     sessionStorage.setItem("UserContacts", JSON.stringify(res.data.contacts));
                 } else {
-                    console.log("nope");
                     sessionStorage.setItem("UserContacts", JSON.stringify(contactArr));
                  
                 }
