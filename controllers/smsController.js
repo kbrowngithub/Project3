@@ -44,7 +44,7 @@ module.exports = {
     res.end(twiml.toString());
   },
   emailInvite: function (req, res) {
-    const msgText = "Dinner invite from " + sessionStorage.getItem("UserName") + "\n" + req.body.body + "\nTo accept go to: https://chuck-wagon.herokuapp.com/"
+    const msgText = "Dinner invite from Chuck Wagon \n" + req.body.body;
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
