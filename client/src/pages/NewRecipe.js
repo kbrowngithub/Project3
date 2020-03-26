@@ -135,7 +135,7 @@ class Detail extends Component {
                     <Row>
                         <Col size="md-4">
                             <Link className="colorBlack" to="/">← Back to Home</Link>
-                            <Link className="colorBlack" to="/recipes">← Go to Recipes</Link>
+                            <Link className="colorBlack goRight" to="/recipes">Go to Recipes →</Link>
                         </Col>
                     </Row>
                 </div>

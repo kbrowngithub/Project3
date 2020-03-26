@@ -154,7 +154,9 @@ class Invite extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(this.state.message)
+
       })
+    
         .then(res => res.json())
         .then(data => {
           console.log(`data.success = ${data.success}`);
